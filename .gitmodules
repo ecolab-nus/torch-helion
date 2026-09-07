@@ -1,0 +1,3 @@
+[submodule "third_party/loom"]
+	path = third_party/loom
+	url = https://github.com/ecolab-nus/loom.git

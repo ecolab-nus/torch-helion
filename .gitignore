@@ -12,7 +12,7 @@
 # Local Loom checkout. Not tracked here (and not a submodule) so that
 # torch-helion can later be added as Loom's own third_party module without a
 # circular submodule reference. install-docker.sh clones it on demand.
-third_party/loom/
+# third_party/loom/
 
 # ---------------------------------------------------------------------------
 # Python environments and packaging artifacts
