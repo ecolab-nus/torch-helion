@@ -1,0 +1,274 @@
+{
+  "k0_gemm": {
+    "kernel": "k0_gemm",
+    "ok": true,
+    "output_dir": "/workspace/torch-helion/results/mamba/loom/k0_gemm",
+    "best_variant": "_k0_gemm__x8_y1y8__d0i0_d1i0_d2i1__f01__dim_y_level1_bc8_dim_x_level0_bc8_dim_x_level0_bc8_n_n",
+    "solver_units": 880.0,
+    "block_sizes": {
+      "is_double_buffer": 1,
+      "tile_k": 256,
+      "tile_n": 128,
+      "tile_t": 64
+    },
+    "n_variants": 208,
+    "error": null,
+    "log_path": "/workspace/torch-helion/results/mamba/loom/k0_gemm.loom.log",
+    "wall_seconds": 15.016793966293335,
+    "cycles": 56320.0
+  },
+  "k1_gemm": {
+    "kernel": "k1_gemm",
+    "ok": true,
+    "output_dir": "/workspace/torch-helion/results/mamba/loom/k1_gemm",
+    "best_variant": "_k1_gemm__x8_y1y8__d0i1_d1i1_d2i0__f01__dim_x_level0_bc8_dim_y_level1_bc8_n",
+    "solver_units": 469.0,
+    "block_sizes": {
+      "is_double_buffer": 1,
+      "tile_k": 256,
+      "tile_n": 128,
+      "tile_t": 64
+    },
+    "n_variants": 208,
+    "error": null,
+    "log_path": "/workspace/torch-helion/results/mamba/loom/k1_gemm.loom.log",
+    "wall_seconds": 12.936631441116333,
+    "cycles": 30016.0
+  },
+  "k2_gemm": {
+    "kernel": "k2_gemm",
+    "ok": true,
+    "output_dir": "/workspace/torch-helion/results/mamba/loom/k2_gemm",
+    "best_variant": "_k2_gemm__x8_y2y1__d0i0_d1i0_d2i1__f01__n_dim_x_level0_bc8_dim_y_level1_bc2_n_n",
+    "solver_units": 202.0,
+    "block_sizes": {
+      "is_double_buffer": 1,
+      "tile_k": 256,
+      "tile_n": 32,
+      "tile_t": 32
+    },
+    "n_variants": 208,
+    "error": null,
+    "log_path": "/workspace/torch-helion/results/mamba/loom/k2_gemm.loom.log",
+    "wall_seconds": 21.726181507110596,
+    "cycles": 12928.0
+  },
+  "k3_gemm": {
+    "kernel": "k3_gemm",
+    "ok": true,
+    "output_dir": "/workspace/torch-helion/results/mamba/loom/k3_gemm",
+    "best_variant": "_k3_gemm__x8_y1y8__d0i0_d1i0_d2i1__f01__dim_y_level1_bc8_dim_x_level0_bc8_dim_x_level0_bc8_n_n",
+    "solver_units": 213.0,
+    "block_sizes": {
+      "is_double_buffer": 0,
+      "tile_k": 32,
+      "tile_n": 128,
+      "tile_t": 64
+    },
+    "n_variants": 208,
+    "error": null,
+    "log_path": "/workspace/torch-helion/results/mamba/loom/k3_gemm.loom.log",
+    "wall_seconds": 12.550874471664429,
+    "cycles": 13632.0
+  },
+  "k4_gemm": {
+    "kernel": "k4_gemm",
+    "ok": true,
+    "output_dir": "/workspace/torch-helion/results/mamba/loom/k4_gemm",
+    "best_variant": "_k4_gemm__x8_y1y8__d0i1_d1i1_d2i0__f01__dim_x_level0_bc8_dim_y_level1_bc8_n",
+    "solver_units": 469.0,
+    "block_sizes": {
+      "is_double_buffer": 1,
+      "tile_k": 256,
+      "tile_n": 128,
+      "tile_t": 64
+    },
+    "n_variants": 208,
+    "error": null,
+    "log_path": "/workspace/torch-helion/results/mamba/loom/k4_gemm.loom.log",
+    "wall_seconds": 13.03624677658081,
+    "cycles": 30016.0
+  },
+  "k5_gemm": {
+    "kernel": "k5_gemm",
+    "ok": true,
+    "output_dir": "/workspace/torch-helion/results/mamba/loom/k5_gemm",
+    "best_variant": "_k5_gemm__x8_y1y8__d0i1_d1i1_d2i0__f01__dim_x_level0_bc8_dim_y_level1_bc8_n_n_n_n_n_n_n",
+    "solver_units": 1001.0,
+    "block_sizes": {
+      "is_double_buffer": 1,
+      "tile_k": 256,
+      "tile_n": 64,
+      "tile_t": 64
+    },
+    "n_variants": 208,
+    "error": null,
+    "log_path": "/workspace/torch-helion/results/mamba/loom/k5_gemm.loom.log",
+    "wall_seconds": 22.735727548599243,
+    "cycles": 64064.0
+  },
+  "k6_ssd": {
+    "kernel": "k6_ssd",
+    "ok": true,
+    "output_dir": "/workspace/torch-helion/results/mamba/loom/k6_ssd",
+    "best_variant": "_k6_ssd__x1x8_y4y2__d0i2_d1i2_d2i1_d3i0__f012__n_n_n_n_n_dim_y_level0_bc4_dim_x_level1_bc8_dim_y_level0_bc4_dim_y_level0_bc4_dim_y_level0_bc4_n",
+    "solver_units": 2296.0,
+    "block_sizes": {
+      "is_double_buffer": 1,
+      "tile_b": 1,
+      "tile_h": 1,
+      "tile_m": 64,
+      "tile_n": 128
+    },
+    "n_variants": 393,
+    "error": null,
+    "log_path": "/workspace/torch-helion/results/mamba/loom/k6_ssd.loom.log",
+    "wall_seconds": 29.770259141921997,
+    "cycles": 146944.0
+  },
+  "k7_gemm": {
+    "kernel": "k7_gemm",
+    "ok": true,
+    "output_dir": "/workspace/torch-helion/results/mamba/loom/k7_gemm",
+    "best_variant": "_k7_gemm__x8_y1y8__d0i1_d1i1_d2i0__f01__dim_x_level0_bc8_dim_y_level1_bc8_n_n",
+    "solver_units": 642.0,
+    "block_sizes": {
+      "is_double_buffer": 1,
+      "tile_k": 512,
+      "tile_n": 64,
+      "tile_t": 64
+    },
+    "n_variants": 208,
+    "error": null,
+    "log_path": "/workspace/torch-helion/results/mamba/loom/k7_gemm.loom.log",
+    "wall_seconds": 18.599769592285156,
+    "cycles": 41088.0
+  },
+  "k8_gemm": {
+    "kernel": "k8_gemm",
+    "ok": true,
+    "output_dir": "/workspace/torch-helion/results/mamba/loom/k8_gemm",
+    "best_variant": "_k8_gemm__x8_y2y1__d0i0_d1i0_d2i1__f01__n_dim_x_level0_bc8_dim_y_level1_bc2_n_n",
+    "solver_units": 202.0,
+    "block_sizes": {
+      "is_double_buffer": 1,
+      "tile_k": 256,
+      "tile_n": 32,
+      "tile_t": 32
+    },
+    "n_variants": 208,
+    "error": null,
+    "log_path": "/workspace/torch-helion/results/mamba/loom/k8_gemm.loom.log",
+    "wall_seconds": 21.475327253341675,
+    "cycles": 12928.0
+  },
+  "k9_gemm": {
+    "kernel": "k9_gemm",
+    "ok": true,
+    "output_dir": "/workspace/torch-helion/results/mamba/loom/k9_gemm",
+    "best_variant": "_k9_gemm__x8_y1y8__d0i0_d1i0_d2i1__f01__dim_y_level1_bc8_dim_x_level0_bc8_dim_x_level0_bc8_n_n",
+    "solver_units": 213.0,
+    "block_sizes": {
+      "is_double_buffer": 0,
+      "tile_k": 32,
+      "tile_n": 128,
+      "tile_t": 64
+    },
+    "n_variants": 208,
+    "error": null,
+    "log_path": "/workspace/torch-helion/results/mamba/loom/k9_gemm.loom.log",
+    "wall_seconds": 12.509094476699829,
+    "cycles": 13632.0
+  },
+  "k10_gemm": {
+    "kernel": "k10_gemm",
+    "ok": true,
+    "output_dir": "/workspace/torch-helion/results/mamba/loom/k10_gemm",
+    "best_variant": "_k10_gemm__x8_y1y8__d0i1_d1i1_d2i0__f01__dim_x_level0_bc8_dim_y_level1_bc8_n",
+    "solver_units": 469.0,
+    "block_sizes": {
+      "is_double_buffer": 1,
+      "tile_k": 256,
+      "tile_n": 128,
+      "tile_t": 64
+    },
+    "n_variants": 208,
+    "error": null,
+    "log_path": "/workspace/torch-helion/results/mamba/loom/k10_gemm.loom.log",
+    "wall_seconds": 13.154197216033936,
+    "cycles": 30016.0
+  },
+  "k11_gemm": {
+    "kernel": "k11_gemm",
+    "ok": true,
+    "output_dir": "/workspace/torch-helion/results/mamba/loom/k11_gemm",
+    "best_variant": "_k11_gemm__x8_y1y8__d0i0_d1i0_d2i1__f01__dim_y_level1_bc8_dim_x_level0_bc8_dim_x_level0_bc8_dim_x_level0_bc8_dim_x_level0_bc8_n_n_n_n",
+    "solver_units": 1785.0,
+    "block_sizes": {
+      "is_double_buffer": 1,
+      "tile_k": 256,
+      "tile_n": 128,
+      "tile_t": 64
+    },
+    "n_variants": 208,
+    "error": null,
+    "log_path": "/workspace/torch-helion/results/mamba/loom/k11_gemm.loom.log",
+    "wall_seconds": 48.89975571632385,
+    "cycles": 114240.0
+  },
+  "k12_ssd": {
+    "kernel": "k12_ssd",
+    "ok": true,
+    "output_dir": "/workspace/torch-helion/results/mamba/loom/k12_ssd",
+    "best_variant": "_k12_ssd__x1x8_y4y2__d0i2_d1i2_d2i1_d3i0__f012__n_n_n_n_n_dim_y_level0_bc4_dim_x_level1_bc8_dim_y_level0_bc4_dim_y_level0_bc4_dim_y_level0_bc4_n",
+    "solver_units": 2296.0,
+    "block_sizes": {
+      "is_double_buffer": 1,
+      "tile_b": 1,
+      "tile_h": 1,
+      "tile_m": 64,
+      "tile_n": 128
+    },
+    "n_variants": 393,
+    "error": null,
+    "log_path": "/workspace/torch-helion/results/mamba/loom/k12_ssd.loom.log",
+    "wall_seconds": 29.407967567443848,
+    "cycles": 146944.0
+  },
+  "k13_gemm": {
+    "kernel": "k13_gemm",
+    "ok": true,
+    "output_dir": "/workspace/torch-helion/results/mamba/loom/k13_gemm",
+    "best_variant": "_k13_gemm__x8_y1y8__d0i1_d1i1_d2i0__f01__dim_x_level0_bc8_dim_y_level1_bc8_n_n",
+    "solver_units": 642.0,
+    "block_sizes": {
+      "is_double_buffer": 1,
+      "tile_k": 512,
+      "tile_n": 64,
+      "tile_t": 64
+    },
+    "n_variants": 208,
+    "error": null,
+    "log_path": "/workspace/torch-helion/results/mamba/loom/k13_gemm.loom.log",
+    "wall_seconds": 18.365183353424072,
+    "cycles": 41088.0
+  },
+  "k14_gemm": {
+    "kernel": "k14_gemm",
+    "ok": true,
+    "output_dir": "/workspace/torch-helion/results/mamba/loom/k14_gemm",
+    "best_variant": "_k14_gemm__x8_y1y8__d0i1_d1i1_d2i0__f01__dim_x_level0_bc8_n_n_n",
+    "solver_units": 281.0,
+    "block_sizes": {
+      "is_double_buffer": 1,
+      "tile_k": 256,
+      "tile_n": 64,
+      "tile_t": 64
+    },
+    "n_variants": 104,
+    "error": null,
+    "log_path": "/workspace/torch-helion/results/mamba/loom/k14_gemm.loom.log",
+    "wall_seconds": 10.529433488845825,
+    "cycles": 17984.0
+  }
+}

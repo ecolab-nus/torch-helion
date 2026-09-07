@@ -1,0 +1,676 @@
+<title>torch-helion Atlas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    --bg: #F3F5F4; --panel: #FBFCFB; --ink: #1B2428; --muted: #5F6E73; --rule: #CDD6D4; --rule-soft: #E2E8E6;
+    --amber: #C2731F; --amber-soft: #F5E4D0; --teal: #1E7C8C; --teal-soft: #D8ECEF; --violet: #7B6BA8; --violet-soft: #E6E1F1;
+    --ok: #2E8B57; --code-bg: #EEF2F1; --sel: #FFF3E2;
+    --display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+    --body: "IBM Plex Sans", "Segoe UI", Helvetica, Arial, sans-serif;
+    --mono: "IBM Plex Mono", "SFMono-Regular", Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #10171A; --panel: #171F23; --ink: #E4EBEC; --muted: #98A7AB; --rule: #2E3C41; --rule-soft: #222D31;
+      --amber: #E39A45; --amber-soft: #3A2A16; --teal: #4FB3C3; --teal-soft: #14313A; --violet: #A99AD1; --violet-soft: #2A2540;
+      --ok: #5DBF8A; --code-bg: #0C1215; --sel: #2C2113;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10171A; --panel: #171F23; --ink: #E4EBEC; --muted: #98A7AB; --rule: #2E3C41; --rule-soft: #222D31;
+    --amber: #E39A45; --amber-soft: #3A2A16; --teal: #4FB3C3; --teal-soft: #14313A; --violet: #A99AD1; --violet-soft: #2A2540;
+    --ok: #5DBF8A; --code-bg: #0C1215; --sel: #2C2113;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 15px; line-height: 1.55; }
+  a { color: var(--teal); }
+  .shell { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 40px; max-width: 1240px; margin: 0 auto; padding: 32px 28px 96px; }
+  nav.toc { position: sticky; top: 24px; align-self: start; font-size: 13px; }
+  nav.toc .brand { font-family: var(--display); font-weight: 700; font-size: 18px; letter-spacing: -0.01em; margin-bottom: 18px; }
+  nav.toc ol { list-style: none; margin: 0; padding: 0; border-left: 1px solid var(--rule); }
+  nav.toc li a { display: block; padding: 5px 0 5px 14px; color: var(--muted); text-decoration: none; border-left: 2px solid transparent; margin-left: -1px; }
+  nav.toc li a:hover, nav.toc li a:focus-visible { color: var(--ink); border-left-color: var(--amber); outline: none; }
+  nav.toc .foot { margin-top: 22px; color: var(--muted); font-family: var(--mono); font-size: 11px; line-height: 1.5; }
+  main { min-width: 0; }
+  header.hero { border-bottom: 1px solid var(--rule); padding-bottom: 28px; margin-bottom: 40px; }
+  .eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  h1 { font-family: var(--display); font-size: 44px; font-weight: 700; line-height: 1.05; letter-spacing: -0.02em; margin: 8px 0 14px; text-wrap: balance; }
+  .lede { max-width: 68ch; font-size: 17px; color: var(--ink); margin: 0 0 22px; }
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0; border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; }
+  .stats div { padding: 12px 14px; border-right: 1px solid var(--rule); background: var(--panel); }
+  .stats div:last-child { border-right: 0; }
+  .stats b { display: block; font-family: var(--mono); font-size: 20px; font-weight: 500; font-variant-numeric: tabular-nums; }
+  .stats span { font-size: 12px; color: var(--muted); }
+  section { margin-bottom: 56px; }
+  h2 { font-family: var(--display); font-size: 28px; font-weight: 700; letter-spacing: -0.015em; margin: 0 0 6px; text-wrap: balance; }
+  h3 { font-family: var(--display); font-size: 18px; font-weight: 700; margin: 26px 0 8px; }
+  p, ul { max-width: 68ch; }
+  .prose p { margin: 0 0 12px; }
+  code, pre { font-family: var(--mono); }
+  code { font-size: 0.92em; background: var(--code-bg); padding: 1px 5px; border-radius: 3px; }
+  pre { background: var(--code-bg); border: 1px solid var(--rule-soft); border-radius: 6px; padding: 14px 16px; font-size: 12.5px; line-height: 1.5; overflow-x: auto; margin: 0; }
+  pre .kw { color: var(--amber); } pre .fn { color: var(--teal); } pre .cm { color: var(--muted); }
+  figure { margin: 18px 0 0; }
+  figure svg { max-width: 100%; height: auto; display: block; }
+  figcaption { font-size: 13px; color: var(--muted); margin-top: 10px; max-width: 76ch; }
+  .panel { background: var(--panel); border: 1px solid var(--rule); border-radius: 8px; }
+  .toolbar { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; padding: 10px 14px; border-bottom: 1px solid var(--rule); font-size: 13px; }
+  .toolbar .grp { display: flex; gap: 6px; align-items: center; }
+  .seg { display: inline-flex; border: 1px solid var(--rule); border-radius: 5px; overflow: hidden; }
+  .seg button { background: transparent; border: 0; padding: 5px 12px; font: inherit; font-size: 13px; color: var(--muted); cursor: pointer; }
+  .seg button[aria-pressed="true"] { background: var(--amber-soft); color: var(--ink); }
+  .seg button:focus-visible, .chk:focus-visible, button.k:focus-visible { outline: 2px solid var(--teal); outline-offset: 1px; }
+  label.chk { display: inline-flex; gap: 6px; align-items: center; cursor: pointer; }
+  .legend { display: flex; gap: 14px; margin-left: auto; font-family: var(--mono); font-size: 11px; color: var(--muted); }
+  .legend i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; vertical-align: -2px; margin-right: 4px; border: 1px solid var(--rule); }
+  .explorer { display: grid; grid-template-columns: minmax(0, 1fr) 300px; }
+  .canvas { overflow: auto; max-height: 620px; position: relative; }
+  .canvas svg { display: block; }
+  .inspector { border-left: 1px solid var(--rule); padding: 14px 16px; font-size: 13px; overflow: auto; max-height: 620px; }
+  .inspector h4 { margin: 0 0 8px; font-family: var(--mono); font-weight: 500; font-size: 14px; }
+  .inspector dl { display: grid; grid-template-columns: 74px 1fr; gap: 4px 10px; margin: 0; }
+  .inspector dt { color: var(--muted); font-size: 12px; }
+  .inspector dd { margin: 0; font-family: var(--mono); font-size: 12px; word-break: break-word; }
+  .inspector .hint { color: var(--muted); }
+  .node { cursor: pointer; }
+  .node rect { fill: var(--panel); stroke: var(--ink); stroke-width: 1.2; }
+  .node.kind-input rect { fill: var(--teal-soft); stroke: var(--teal); }
+  .node.kind-const rect, .node.kind-param rect { fill: var(--violet-soft); stroke: var(--violet); }
+  .node.anchor rect { fill: var(--amber-soft); stroke: var(--amber); stroke-width: 1.6; }
+  .node.kind-layout rect { stroke-dasharray: 3 2; stroke: var(--muted); }
+  .node.selected rect { stroke-width: 2.6; }
+  .node text { font-family: var(--mono); font-size: 11px; fill: var(--ink); pointer-events: none; }
+  .node text.shape { font-size: 9.5px; fill: var(--muted); }
+  .node text.consts { font-size: 9px; fill: var(--violet); }
+  .edge { fill: none; stroke: var(--muted); stroke-width: 1; opacity: 0.75; }
+  .edge.hi { stroke: var(--amber); stroke-width: 2; opacity: 1; }
+  table.grid { border-collapse: collapse; width: 100%; font-size: 13px; }
+  table.grid th, table.grid td { text-align: left; padding: 7px 10px; border-bottom: 1px solid var(--rule-soft); vertical-align: top; }
+  table.grid th { font-family: var(--mono); font-weight: 500; font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+  table.grid td.num { font-family: var(--mono); font-variant-numeric: tabular-nums; text-align: right; }
+  table.grid th.num { text-align: right; }
+  table.grid code { background: transparent; padding: 0; }
+  .tablewrap { overflow-x: auto; }
+  .schema { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+  .schema .card { border: 1px solid var(--rule); border-radius: 6px; padding: 12px 14px; background: var(--panel); }
+  .schema .card h4 { margin: 0 0 8px; font-family: var(--mono); font-size: 13px; font-weight: 500; }
+  .schema .card dl { margin: 0; display: grid; grid-template-columns: 96px 1fr; gap: 3px 10px; font-size: 12.5px; }
+  .schema dt { font-family: var(--mono); color: var(--amber); }
+  .schema dd { margin: 0; color: var(--ink); }
+  .kernels { display: grid; grid-template-columns: 360px minmax(0, 1fr); gap: 0; }
+  .kernels .flow { padding: 16px; border-right: 1px solid var(--rule); overflow: auto; }
+  .kdetail { padding: 16px 18px; min-width: 0; }
+  .kdetail h4 { margin: 0 0 4px; font-family: var(--display); font-size: 20px; }
+  .kdetail .sub { color: var(--muted); font-size: 13px; margin-bottom: 12px; }
+  .kdetail h5 { margin: 16px 0 6px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
+  .ssa { font-family: var(--mono); font-size: 12px; line-height: 1.6; }
+  .ssa .n { color: var(--ink); } .ssa .o { color: var(--amber); } .ssa .a { color: var(--muted); }
+  .kbox { cursor: pointer; }
+  .kbox rect { fill: var(--amber-soft); stroke: var(--amber); stroke-width: 1.4; }
+  .kbox.selected rect { stroke-width: 2.8; }
+  .kbox text { font-family: var(--mono); font-size: 11.5px; fill: var(--ink); pointer-events: none; }
+  .kbox text.sub { font-size: 9.5px; fill: var(--muted); }
+  .tedge { fill: none; stroke: var(--teal); stroke-width: 1.4; }
+  .tlabel { font-family: var(--mono); font-size: 9.5px; fill: var(--teal); }
+  .pchip rect { fill: var(--violet-soft); stroke: var(--violet); }
+  .pchip text { font-family: var(--mono); font-size: 9px; fill: var(--ink); }
+  .pipe text { font-family: var(--mono); font-size: 11px; fill: currentColor; }
+  .pipe text.stage { font-family: var(--display); font-size: 13px; font-weight: 700; }
+  .pipe text.file { fill: var(--muted); font-size: 10px; }
+  .pipe .box { fill: var(--panel); stroke: currentColor; stroke-width: 1.2; }
+  .pipe .box.ir { fill: var(--teal-soft); stroke: var(--teal); }
+  .pipe .box.kern { fill: var(--amber-soft); stroke: var(--amber); }
+  .pipe .arrow { stroke: currentColor; stroke-width: 1.2; fill: none; }
+  .pipe .side { stroke: var(--muted); stroke-dasharray: 3 3; }
+  .bars text { font-family: var(--mono); font-size: 11px; fill: currentColor; }
+  .bars .axis { stroke: var(--rule); }
+  .bars .tick { fill: var(--muted); font-size: 10px; }
+  .bars .an { fill: var(--rule); } .bars .lm { fill: var(--amber); }
+  .rules td:first-child { font-weight: 600; }
+  .callout { border-left: 3px solid var(--amber); padding: 6px 14px; margin: 14px 0; background: var(--panel); max-width: 68ch; font-size: 14px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0 0; }
+  .chip { font-family: var(--mono); font-size: 11.5px; padding: 2px 8px; border-radius: 4px; border: 1px solid var(--rule); background: var(--panel); }
+  .chip.reg { border-color: var(--teal); } .chip.mac { border-color: var(--amber); } .chip.lay { border-style: dashed; }
+  .srcsel { display: flex; gap: 6px; margin: 10px 0 8px; }
+  button.k { font: inherit; font-family: var(--mono); font-size: 12px; padding: 4px 10px; border: 1px solid var(--rule); background: var(--panel); border-radius: 4px; cursor: pointer; color: var(--ink); }
+  button.k[aria-pressed="true"] { background: var(--amber-soft); border-color: var(--amber); }
+  @media (max-width: 900px) { .shell { grid-template-columns: 1fr; } nav.toc { position: static; } .explorer, .kernels { grid-template-columns: 1fr; } .inspector, .kernels .flow { border-left: 0; border-right: 0; border-top: 1px solid var(--rule); } h1 { font-size: 34px; } }
+  @media (prefers-reduced-motion: no-preference) { .node rect, .kbox rect { transition: stroke-width 120ms ease; } }
+</style>
+
+<div class="shell">
+<nav class="toc" aria-label="Sections">
+  <div class="brand">torch-helion</div>
+  <ol>
+    <li><a href="#pipeline">Pipeline</a></li>
+    <li><a href="#opgraph">OpGraph</a></li>
+    <li><a href="#optimizer">Optimizer passes</a></li>
+    <li><a href="#opir">OpIR</a></li>
+    <li><a href="#kernels">Generated kernels</a></li>
+    <li><a href="#cost">Cost model vs Loom</a></li>
+    <li><a href="#contract">Loom kernel contract</a></li>
+  </ol>
+  <div class="foot">run: results/llama_block<br>hw: 2d_mesh_torus.mlir<br>B=2 S=256 D=256 H=4 F=512</div>
+</nav>
+
+<main>
+<header class="hero">
+  <div class="eyebrow">PyTorch model → Loom 1.0 kernels</div>
+  <h1>torch-helion Atlas</h1>
+  <p class="lede">A map of the framework that cuts a PyTorch model into Helion kernels Loom can compile one at a time. Every example below is real data from compiling the reference Llama block: the captured graph, the canonical OpGraph, the planned OpIR, the emitted kernels, and Loom's own numbers for each of them.</p>
+  <div class="stats" aria-label="Key figures of the llama_block run">
+    <div><b id="st-kernels">5</b><span>kernels emitted</span></div>
+    <div><b id="st-cands">104</b><span>partition candidates costed</span></div>
+    <div><b id="st-est">158,651</b><span>estimated cycles (analytic)</span></div>
+    <div><b id="st-loom">101,184</b><span>Σ Loom optimal cycles</span></div>
+    <div><b id="st-err">4.9e-4</b><span>max rel. error vs PyTorch</span></div>
+  </div>
+</header>
+
+<section id="pipeline" class="prose">
+  <h2>Pipeline</h2>
+  <p>Loom compiles a single kernel with one parallel grid and one reduction loop. torch-helion's job is to reach that shape from a whole model: capture it, normalise the graph until only Loom's registered operators remain, decide where the kernel boundaries go, and emit each kernel exactly the way Loom's frontend expects. Each arrow below writes a file under <code>results/&lt;run&gt;/</code>.</p>
+  <figure>
+    <svg class="pipe" viewBox="0 0 1120 300" role="img" aria-label="Six stages from PyTorch module to Loom kernels: capture produces the raw OpGraph, the optimizer passes produce the canonical OpGraph, partition and planning with the cost model produce the OpIR, codegen emits Helion kernels, and validation plus the optional Loom backend check every kernel.">
+      <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="currentColor"></path></marker></defs>
+      <!-- row of stages -->
+      <g>
+        <rect class="box" x="20" y="60" width="150" height="64" rx="6"></rect>
+        <text class="stage" x="95" y="86" text-anchor="middle">nn.Module</text>
+        <text x="95" y="106" text-anchor="middle">models/llama_block.py</text>
+        <line class="arrow" x1="170" y1="92" x2="222" y2="92" marker-end="url(#ar)"></line>
+        <text x="196" y="80" text-anchor="middle">torch.export</text>
+
+        <rect class="box ir" x="224" y="60" width="150" height="64" rx="6"></rect>
+        <text class="stage" x="299" y="86" text-anchor="middle">OpGraph (raw)</text>
+        <text x="299" y="106" text-anchor="middle">1:1 with ATen · 100 nodes</text>
+        <text class="file" x="299" y="146" text-anchor="middle">02_opgraph_raw.json</text>
+        <line class="arrow" x1="374" y1="92" x2="426" y2="92" marker-end="url(#ar)"></line>
+        <text x="400" y="80" text-anchor="middle">14 passes</text>
+
+        <rect class="box ir" x="428" y="60" width="150" height="64" rx="6"></rect>
+        <text class="stage" x="503" y="86" text-anchor="middle">OpGraph (canonical)</text>
+        <text x="503" y="106" text-anchor="middle">registered ops · 58 nodes</text>
+        <text class="file" x="503" y="146" text-anchor="middle">03_opgraph_canonical.json</text>
+        <line class="arrow" x1="578" y1="92" x2="630" y2="92" marker-end="url(#ar)"></line>
+        <text x="604" y="80" text-anchor="middle">partition + plan</text>
+
+        <rect class="box ir" x="632" y="60" width="150" height="64" rx="6"></rect>
+        <text class="stage" x="707" y="86" text-anchor="middle">OpIR (Program)</text>
+        <text x="707" y="106" text-anchor="middle">5 KernelSpecs · tiles · cost</text>
+        <text class="file" x="707" y="146" text-anchor="middle">06_opir.json</text>
+        <line class="arrow" x1="782" y1="92" x2="834" y2="92" marker-end="url(#ar)"></line>
+        <text x="808" y="80" text-anchor="middle">codegen</text>
+
+        <rect class="box kern" x="836" y="60" width="150" height="64" rx="6"></rect>
+        <text class="stage" x="911" y="86" text-anchor="middle">Helion kernels</text>
+        <text x="911" y="106" text-anchor="middle">LoomKernel + config JSON</text>
+        <text class="file" x="911" y="146" text-anchor="middle">kernels/k*.py</text>
+        <line class="arrow" x1="986" y1="92" x2="1038" y2="92" marker-end="url(#ar)"></line>
+        <text x="1012" y="80" text-anchor="middle">per kernel</text>
+
+        <rect class="box" x="1040" y="48" width="70" height="88" rx="6"></rect>
+        <text class="stage" x="1075" y="76" text-anchor="middle">Loom</text>
+        <text x="1075" y="94" text-anchor="middle">frontend</text>
+        <text x="1075" y="108" text-anchor="middle">explore</text>
+        <text x="1075" y="122" text-anchor="middle">solve</text>
+      </g>
+      <!-- cost model feeding the planner -->
+      <g>
+        <rect class="box" x="560" y="200" width="200" height="56" rx="6"></rect>
+        <text class="stage" x="660" y="224" text-anchor="middle">cost_models</text>
+        <text x="660" y="243" text-anchor="middle">perf YAML · tile solver · Loom backend</text>
+        <path class="arrow" d="M 604 200 C 604 170, 604 160, 604 128" marker-end="url(#ar)"></path>
+        <text x="546" y="170" text-anchor="end">cycles per candidate</text>
+        <path class="arrow side" d="M 760 228 C 900 228, 1040 220, 1075 140" marker-end="url(#ar)"></path>
+        <text class="file" x="900" y="216" text-anchor="middle">verify_with_loom: T_total, block sizes</text>
+        <text class="file" x="660" y="278" text-anchor="middle">04_hw_spec.json · 05_plan/ · 09_cost_report.md · 10_loom_results.json</text>
+      </g>
+      <!-- reference interpreter -->
+      <g>
+        <rect class="box" x="224" y="200" width="200" height="56" rx="6"></rect>
+        <text class="stage" x="324" y="224" text-anchor="middle">reference interpreter</text>
+        <text x="324" y="243" text-anchor="middle">runs the OpIR with plain torch</text>
+        <path class="arrow side" d="M 424 228 C 520 228, 640 190, 690 128" marker-end="url(#ar)"></path>
+        <path class="arrow side" d="M 224 228 C 150 228, 95 200, 95 128" marker-end="url(#ar)"></path>
+        <text class="file" x="324" y="278" text-anchor="middle">08_reference_check.json · max rel err 4.9e-4</text>
+      </g>
+    </svg>
+    <figcaption>Two IRs sit between the model and the kernels. The OpGraph stays a graph of tensors and operators; the OpIR is already organised as kernels. Everything to the right of the OpIR is checked twice: numerically by the interpreter, structurally by Loom.</figcaption>
+  </figure>
+</section>
+
+<section id="opgraph" class="prose">
+  <h2>OpGraph</h2>
+  <p>An OpGraph is an ordered DAG in which every node produces exactly one tensor with a concrete shape and dtype. It is built literally from the exported ATen graph, then rewritten by the optimizer until it contains only operators the hardware spec knows, plus two macro nodes (<code>row_sumsq</code>, <code>attention</code>) that map onto kernel templates.</p>
+  <div class="schema">
+    <div class="card"><h4>OpNode</h4><dl>
+      <dt>name</dt><dd>unique id; kept across passes so users stay valid</dd>
+      <dt>op</dt><dd>operator from the vocabulary below</dd>
+      <dt>kind</dt><dd><code>input</code> · <code>param</code> · <code>const</code> · <code>compute</code> · <code>layout</code></dd>
+      <dt>inputs</dt><dd>producer names, in operand order</dd>
+      <dt>type</dt><dd>shape tuple + dtype (fp16 activations)</dd>
+      <dt>attrs</dt><dd>scalars, dims, eps, attention geometry</dd>
+    </dl></div>
+    <div class="card"><h4>OpGraph</h4><dl>
+      <dt>nodes</dt><dd>insertion-ordered, always topological</dd>
+      <dt>inputs</dt><dd>model inputs (<code>x [B·S, D]</code>)</dd>
+      <dt>outputs</dt><dd>graph results</dd>
+      <dt>params</dt><dd>concrete tensors of <code>param</code>/<code>const</code> nodes, so weights can be folded offline</dd>
+      <dt>metadata</dt><dd>original input/output shapes, dtype</dd>
+    </dl></div>
+  </div>
+  <h3>Op vocabulary</h3>
+  <p>Solid teal: registered in the Loom hardware spec and therefore allowed inside a kernel body. Amber: macro patterns the optimizer recognises. Dashed: layout ops from ATen that never survive canonicalisation.</p>
+  <div class="chips">
+    <span class="chip reg">matmul</span><span class="chip reg">batch_matmul</span><span class="chip reg">add</span><span class="chip reg">sub</span><span class="chip reg">mul</span><span class="chip reg">div</span><span class="chip reg">max</span><span class="chip reg">powf</span><span class="chip reg">exp</span><span class="chip reg">log</span><span class="chip reg">row_sum</span><span class="chip reg">row_max</span><span class="chip reg">broadcast</span>
+    <span class="chip mac">rotate_half</span><span class="chip mac">rope</span><span class="chip mac">rmsnorm</span><span class="chip mac">softmax</span><span class="chip mac">attention</span><span class="chip mac">row_sumsq</span>
+    <span class="chip">neg → mul(−1)</span><span class="chip">rsqrt → powf(−0.5)</span><span class="chip">sigmoid → 1/(1+exp(−x))</span><span class="chip">silu</span><span class="chip">row_mean</span>
+    <span class="chip lay">view</span><span class="chip lay">permute</span><span class="chip lay">expand</span><span class="chip lay">clone</span><span class="chip lay">slice</span><span class="chip lay">cat</span><span class="chip lay">cast</span>
+  </div>
+
+  <h3>Example: the Llama block, raw and canonical</h3>
+  <p>The same model before and after the passes. Click a node to inspect it; constants are hidden by default and listed on the node that consumes them.</p>
+  <div class="panel">
+    <div class="toolbar">
+      <div class="grp"><span class="seg" role="group" aria-label="Graph version"><button id="g-raw" aria-pressed="false">raw (100)</button><button id="g-can" aria-pressed="true">canonical (58)</button></span></div>
+      <label class="chk"><input type="checkbox" id="g-consts"> show constants</label>
+      <div class="legend"><span><i style="background:var(--teal-soft);border-color:var(--teal)"></i>input</span><span><i style="background:var(--amber-soft);border-color:var(--amber)"></i>anchor (matmul / attention)</span><span><i></i>compute</span><span><i style="background:var(--violet-soft);border-color:var(--violet)"></i>const</span><span><i style="border-style:dashed"></i>layout</span></div>
+    </div>
+    <div class="explorer">
+      <div class="canvas" id="g-canvas"></div>
+      <aside class="inspector" id="g-inspector"><span class="hint">Select a node.</span></aside>
+    </div>
+  </div>
+
+  <h3>What a pass does to the graph</h3>
+  <p>RMSNorm is the pass with the most algebra. In the raw graph it is six elementwise nodes ending in a per-feature gain, and its output feeds three GEMMs. The lowering commutes the row scale through the GEMMs, folds the gain into each weight, and leaves the sum of squares as a reduction over the GEMM's own K axis, where the kernel can accumulate it in the same loop.</p>
+  <figure>
+    <svg viewBox="0 0 1120 250" role="img" aria-label="Before: x feeds pow, mean, add eps, rsqrt, mul, mul gain, then a GEMM with W. After: x feeds a GEMM with diag(g) W and a row_sumsq; the sum feeds mul 1/K, add eps, powf -0.5, broadcast, and a final mul with the GEMM output.">
+      <defs><marker id="ar2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="currentColor"></path></marker></defs>
+      <g class="pipe">
+        <text class="stage" x="20" y="28">raw</text>
+        <g transform="translate(20,44)">
+          <rect class="box ir" x="0" y="0" width="60" height="30" rx="5"></rect><text x="30" y="19" text-anchor="middle">x</text>
+          <rect class="box" x="90" y="0" width="70" height="30" rx="5"></rect><text x="125" y="19" text-anchor="middle">powf 2</text>
+          <rect class="box" x="190" y="0" width="80" height="30" rx="5"></rect><text x="230" y="19" text-anchor="middle">row_mean</text>
+          <rect class="box" x="300" y="0" width="70" height="30" rx="5"></rect><text x="335" y="19" text-anchor="middle">add ε</text>
+          <rect class="box" x="400" y="0" width="70" height="30" rx="5"></rect><text x="435" y="19" text-anchor="middle">rsqrt</text>
+          <rect class="box" x="500" y="0" width="70" height="30" rx="5"></rect><text x="535" y="19" text-anchor="middle">mul</text>
+          <rect class="box" x="600" y="0" width="80" height="30" rx="5"></rect><text x="640" y="19" text-anchor="middle">mul g[D]</text>
+          <rect class="box kern" x="710" y="0" width="90" height="30" rx="5"></rect><text x="755" y="19" text-anchor="middle">matmul W</text>
+          <line class="arrow" x1="60" y1="15" x2="88" y2="15" marker-end="url(#ar2)"></line>
+          <line class="arrow" x1="160" y1="15" x2="188" y2="15" marker-end="url(#ar2)"></line>
+          <line class="arrow" x1="270" y1="15" x2="298" y2="15" marker-end="url(#ar2)"></line>
+          <line class="arrow" x1="370" y1="15" x2="398" y2="15" marker-end="url(#ar2)"></line>
+          <line class="arrow" x1="470" y1="15" x2="498" y2="15" marker-end="url(#ar2)"></line>
+          <line class="arrow" x1="570" y1="15" x2="598" y2="15" marker-end="url(#ar2)"></line>
+          <line class="arrow" x1="680" y1="15" x2="708" y2="15" marker-end="url(#ar2)"></line>
+          <path class="arrow" d="M 30 30 C 30 60, 535 60, 535 30" marker-end="url(#ar2)"></path>
+          <text class="file" x="900" y="19">g[D] is rank-1: not allowed in L1 (C5)</text>
+          <text class="file" x="900" y="37">row_mean needs the full row before the GEMM: a second loop (C2)</text>
+        </g>
+        <text class="stage" x="20" y="150">canonical (after lower_rmsnorm)</text>
+        <g transform="translate(20,166)">
+          <rect class="box ir" x="0" y="0" width="60" height="30" rx="5"></rect><text x="30" y="19" text-anchor="middle">x</text>
+          <rect class="box kern" x="110" y="0" width="150" height="30" rx="5"></rect><text x="185" y="19" text-anchor="middle">matmul diag(g)·W</text>
+          <rect class="box kern" x="110" y="46" width="110" height="30" rx="5"></rect><text x="165" y="65" text-anchor="middle">row_sumsq</text>
+          <rect class="box" x="250" y="46" width="80" height="30" rx="5"></rect><text x="290" y="65" text-anchor="middle">mul 1/K</text>
+          <rect class="box" x="360" y="46" width="70" height="30" rx="5"></rect><text x="395" y="65" text-anchor="middle">add ε</text>
+          <rect class="box" x="460" y="46" width="90" height="30" rx="5"></rect><text x="505" y="65" text-anchor="middle">powf −0.5</text>
+          <rect class="box" x="580" y="46" width="90" height="30" rx="5"></rect><text x="625" y="65" text-anchor="middle">broadcast</text>
+          <rect class="box" x="700" y="0" width="60" height="30" rx="5"></rect><text x="730" y="19" text-anchor="middle">mul</text>
+          <line class="arrow" x1="60" y1="15" x2="108" y2="15" marker-end="url(#ar2)"></line>
+          <path class="arrow" d="M 30 30 C 30 61, 60 61, 108 61" marker-end="url(#ar2)"></path>
+          <line class="arrow" x1="220" y1="61" x2="248" y2="61" marker-end="url(#ar2)"></line>
+          <line class="arrow" x1="330" y1="61" x2="358" y2="61" marker-end="url(#ar2)"></line>
+          <line class="arrow" x1="430" y1="61" x2="458" y2="61" marker-end="url(#ar2)"></line>
+          <line class="arrow" x1="550" y1="61" x2="578" y2="61" marker-end="url(#ar2)"></line>
+          <path class="arrow" d="M 670 61 C 690 61, 700 40, 712 30" marker-end="url(#ar2)"></path>
+          <line class="arrow" x1="260" y1="15" x2="698" y2="15" marker-end="url(#ar2)"></line>
+          <text class="file" x="800" y="19">both reductions share one K loop → one kernel (C3)</text>
+          <text class="file" x="800" y="37">the [T,1] column chain is replicated per kernel</text>
+          <text class="file" x="800" y="65">(x·r·g) @ W = r ⊙ (x @ diag(g)W)</text>
+        </g>
+      </g>
+    </svg>
+    <figcaption>One RMSNorm before and after <code>lower_rmsnorm</code>. Three sibling GEMMs consume the same normalised tensor in the Llama block; each receives its own folded weight and the same row-scale column.</figcaption>
+  </figure>
+</section>
+
+<section id="optimizer" class="prose">
+  <h2>Optimizer passes</h2>
+  <p>The passes run in a fixed order and each one is checked numerically: the graph is re-evaluated after every pass and compared with the raw graph. Rewrite counts and drift from the <code>llama_block</code> run:</p>
+  <div class="tablewrap"><table class="grid" id="pass-table"><thead><tr><th>#</th><th>pass</th><th>effect</th><th class="num">rewrites</th><th class="num">nodes after</th><th class="num">max rel err</th></tr></thead><tbody></tbody></table></div>
+  <div class="callout">After canonicalisation every activation is a token-major 2D tensor, every weight is a <code>[K, N]</code> constant, and the only non-registered nodes are <code>row_sumsq</code> and <code>attention</code>. That is the contract the partitioner relies on.</div>
+  <h3>Partition and plan</h3>
+  <p>Kernels are anchored by reductions: a group of GEMMs sharing their LHS, or one attention op. Everything else is pulled into the epilogue of the kernel that owns its inputs; values that cross a kernel boundary become DRAM tensors. The only structural freedom is which sibling GEMMs share a kernel, so the planner enumerates set partitions of every sibling group, checks legality, and costs each candidate.</p>
+  <figure>
+    <svg class="bars" id="plan-chart" viewBox="0 0 760 150" role="img" aria-label="Estimated cycles of the best six partition candidates; the five-kernel candidate is cheapest at 158,651 cycles."></svg>
+    <figcaption id="plan-caption"></figcaption>
+  </figure>
+</section>
+
+<section id="opir" class="prose">
+  <h2>OpIR</h2>
+  <p>The OpIR is a <code>Program</code>: an ordered list of <code>KernelSpec</code>s plus a tensor table. A kernel spec is a complete description of one Helion kernel; codegen renders it without further analysis and the interpreter executes it with plain PyTorch.</p>
+  <div class="schema">
+    <div class="card"><h4>KernelSpec (kind = gemm)</h4><dl>
+      <dt>args</dt><dd>kernel arguments with roles <code>lhs</code>, <code>rhs</code>, <code>extra</code> and an optional free view</dd>
+      <dt>grid</dt><dd><code>{rows: T, cols: N}</code> → <code>hl.tile([T, N])</code></dd>
+      <dt>k_extent</dt><dd>the single reduction loop <code>hl.tile(K)</code></dd>
+      <dt>gemms</dt><dd>accumulator ↔ rhs pairs sharing the LHS</dd>
+      <dt>sumsq</dt><dd>accumulate Σ lhs² in the same loop (RMSNorm fold)</dd>
+      <dt>epilogue</dt><dd>SSA list of <code>BodyOp</code>s over registered ops</dd>
+      <dt>outputs</dt><dd>tensor ← epilogue value, stored at the output tile</dd>
+      <dt>tiles · cost</dt><dd>planner's tile choice and the estimate behind it</dd>
+    </dl></div>
+    <div class="card"><h4>KernelSpec (kind = attention)</h4><dl>
+      <dt>args</dt><dd><code>q</code>, <code>k</code>, <code>v</code> as <code>[B, S, H, d]</code> views of <code>[T, D]</code> tensors</dd>
+      <dt>attrs</dt><dd>batch, seq, heads, head_dim, scale</dd>
+      <dt>constexprs</dt><dd><code>scale</code> passed as <code>hl.constexpr</code></dd>
+      <dt>template</dt><dd>flash attention with <code>tile_b = tile_h = 1</code>, online softmax carried in <code>m_i</code>, <code>l_i</code>, <code>acc</code></dd>
+    </dl></div>
+    <div class="card"><h4>Program</h4><dl>
+      <dt>kernels</dt><dd>execution order (topological over tensors)</dd>
+      <dt>tensors</dt><dd>name → shape, dtype for every value that crosses a kernel</dd>
+      <dt>params</dt><dd>constants the kernels read (folded weights, RoPE tables)</dd>
+      <dt>inputs · outputs</dt><dd>model boundary</dd>
+    </dl></div>
+  </div>
+
+  <h3>Example: the five kernels of the Llama block</h3>
+  <p>Amber boxes are kernels, teal edges are tensors moving through DRAM between them, violet chips are the constants each kernel reads. Select a kernel to see its spec.</p>
+  <div class="panel kernels">
+    <div class="flow" id="k-flow"></div>
+    <div class="kdetail" id="k-detail"></div>
+  </div>
+</section>
+
+<section id="kernels" class="prose">
+  <h2>Generated kernels</h2>
+  <p>Each spec becomes a file shaped like the kernels shipped with Loom: a Helion function, a <code>LoomKernel</code> subclass with fixed argument shapes and <code>bind_args()</code>, and the standard <code>__main__</code> block, so every file is a Loom CLI entry point. The kernel body below is rendered straight from the OpIR.</p>
+  <div class="srcsel" role="group" aria-label="Kernel source"><button class="k" data-src="k2_gemm" aria-pressed="true">k2_gemm</button><button class="k" data-src="k0_gemm" aria-pressed="false">k0_gemm</button><button class="k" data-src="k1_attention" aria-pressed="false">k1_attention</button></div>
+  <pre id="src"></pre>
+  <figcaption id="src-caption"></figcaption>
+</section>
+
+<section id="cost" class="prose">
+  <h2>Cost model vs Loom</h2>
+  <p>The planner uses an analytic estimator that mirrors Loom's ETG aggregation with the per-function costs from the hardware perf YAMLs: per grid tile, the loop runs <code>iters × max(load, compute)</code> when double buffering fits in L1, plus epilogue and stores, times the number of waves over the 64-core mesh. After planning, every kernel was also pushed through Loom's full pipeline (frontend, exploration, ETG resolution, CP-SAT solve, materialisation).</p>
+  <figure>
+    <svg class="bars" id="cost-chart" viewBox="0 0 760 240" role="img" aria-label="Analytic estimate versus Loom optimal cycles per kernel; the estimate is 1.2 to 1.7 times higher but ranks the kernels identically."></svg>
+    <figcaption>Grey: analytic estimate used for planning. Amber: Loom's optimal <code>T_total</code> (solver units × 64 cycles). The estimate is consistently pessimistic but preserves the ranking, and its tile choice matched Loom's block sizes for k0, k1 and k3.</figcaption>
+  </figure>
+  <div class="tablewrap"><table class="grid" id="cost-table"><thead><tr><th>kernel</th><th>planned tiles</th><th class="num">est. cycles</th><th class="num">Loom cycles</th><th>Loom block sizes</th><th class="num">variants</th><th>frontend</th><th>exploration</th></tr></thead><tbody></tbody></table></div>
+</section>
+
+<section id="contract" class="prose">
+  <h2>Loom kernel contract</h2>
+  <p>The README lists six architectural constraints (one grid, one loop-carried loop, shared loops for shared kernels, registered ops only, 32-aligned rank-2 operands, constexpr scalars). Making real kernels pass Loom's exploration exposed six more rules; the emitter encodes all of them.</p>
+  <div class="tablewrap"><table class="grid rules"><thead><tr><th>rule</th><th>what the emitter does</th><th>why</th></tr></thead><tbody>
+    <tr><td>Scalars are tiles</td><td><code>hl.full([tile_t, tile_n], c)</code> instead of a 0-d scalar</td><td>a 0-d operand becomes a one-input <code>linalg.generic</code> whose key is not registered</td></tr>
+    <tr><td>No duplicated operand</td><td><code>a * (a * ones)</code>, <code>a + a</code> → <code>a * two</code></td><td>Helion's device IR drops the second identical operand and CSEs identical loads</td></tr>
+    <tr><td>No elementwise producer into a reduction</td><td>Σx² accumulated with <code>hl.dot(sq, ones)</code>; epilogue reductions read accumulators</td><td>Loom fuses the producer into the reduction, giving a mixed generic that only <code>add</code>/<code>max</code> bodies satisfy</td></tr>
+    <tr><td>No exponent floats</td><td><code>1e-5</code> is emitted as <code>0.01 * 0.001</code></td><td>the frontend prints Python <code>repr</code> into MLIR</td></tr>
+    <tr><td>Symbolic loop bound, static views</td><td>attention takes 4D tensors and <code>hl.specialize</code>s the head dim</td><td>an <code>int</code> bound yields no loop-carried <code>scf.for</code>; in-kernel reshapes get dynamic memrefs and a <code>tensor.cast</code></td></tr>
+    <tr><td>Weights carry everything rank-1</td><td>gains and the RoPE rotation folded into <code>[K, N]</code> constants offline</td><td>rank-1 operands are not allowed in L1 (C5)</td></tr>
+  </tbody></table></div>
+</section>
+</main>
+</div>
+
+<script id="atlas-data" type="application/json">{"raw": {"inputs": ["x"], "outputs": ["add_5"], "nodes": [{"name": "input_norm_weight", "op": "param", "kind": "param", "inputs": [], "shape": [256], "attrs": {}}, {"name": "attn_q_proj_weight", "op": "param", "kind": "param", "inputs": [], "shape": [256, 256], "attrs": {}}, {"name": "attn_k_proj_weight", "op": "param", "kind": "param", "inputs": [], "shape": [256, 256], "attrs": {}}, {"name": "attn_v_proj_weight", "op": "param", "kind": "param", "inputs": [], "shape": [256, 256], "attrs": {}}, {"name": "attn_o_proj_weight", "op": "param", "kind": "param", "inputs": [], "shape": [256, 256], "attrs": {}}, {"name": "post_norm_weight", "op": "param", "kind": "param", "inputs": [], "shape": [256], "attrs": {}}, {"name": "mlp_gate_proj_weight", "op": "param", "kind": "param", "inputs": [], "shape": [512, 256], "attrs": {}}, {"name": "mlp_up_proj_weight", "op": "param", "kind": "param", "inputs": [], "shape": [512, 256], "attrs": {}}, {"name": "mlp_down_proj_weight", "op": "param", "kind": "param", "inputs": [], "shape": [256, 512], "attrs": {}}, {"name": "rope_cos", "op": "param", "kind": "param", "inputs": [], "shape": [256, 64], "attrs": {}}, {"name": "rope_sin", "op": "param", "kind": "param", "inputs": [], "shape": [256, 64], "attrs": {}}, {"name": "x", "op": "input", "kind": "input", "inputs": [], "shape": [2, 256, 256], "attrs": {}}, {"name": "pow_1", "op": "powf", "kind": "compute", "inputs": ["x"], "shape": [2, 256, 256], "attrs": {"scalar": 2.0}}, {"name": "mean", "op": "row_mean", "kind": "compute", "inputs": ["pow_1"], "shape": [2, 256, 1], "attrs": {"keepdim": true}}, {"name": "add", "op": "add", "kind": "compute", "inputs": ["mean"], "shape": [2, 256, 1], "attrs": {"scalar": 1e-05}}, {"name": "rsqrt", "op": "rsqrt", "kind": "compute", "inputs": ["add"], "shape": [2, 256, 1], "attrs": {}}, {"name": "mul", "op": "mul", "kind": "compute", "inputs": ["x", "rsqrt"], "shape": [2, 256, 256], "attrs": {}}, {"name": "mul_1", "op": "mul", "kind": "compute", "inputs": ["mul", "input_norm_weight"], "shape": [2, 256, 256], "attrs": {}}, {"name": "permute", "op": "permute", "kind": "layout", "inputs": ["attn_q_proj_weight"], "shape": [256, 256], "attrs": {"dims": [1, 0]}}, {"name": "view", "op": "view", "kind": "layout", "inputs": ["mul_1"], "shape": [512, 256], "attrs": {"shape": [512, 256]}}, {"name": "mm", "op": "matmul", "kind": "compute", "inputs": ["view", "permute"], "shape": [512, 256], "attrs": {}}, {"name": "view_1", "op": "view", "kind": "layout", "inputs": ["mm"], "shape": [2, 256, 256], "attrs": {"shape": [2, 256, 256]}}, {"name": "view_2", "op": "view", "kind": "layout", "inputs": ["view_1"], "shape": [2, 256, 4, 64], "attrs": {"shape": [2, 256, 4, 64]}}, {"name": "permute_1", "op": "permute", "kind": "layout", "inputs": ["view_2"], "shape": [2, 4, 256, 64], "attrs": {"dims": [0, 2, 1, 3]}}, {"name": "permute_2", "op": "permute", "kind": "layout", "inputs": ["attn_k_proj_weight"], "shape": [256, 256], "attrs": {"dims": [1, 0]}}, {"name": "view_3", "op": "view", "kind": "layout", "inputs": ["mul_1"], "shape": [512, 256], "attrs": {"shape": [512, 256]}}, {"name": "mm_1", "op": "matmul", "kind": "compute", "inputs": ["view_3", "permute_2"], "shape": [512, 256], "attrs": {}}, {"name": "view_4", "op": "view", "kind": "layout", "inputs": ["mm_1"], "shape": [2, 256, 256], "attrs": {"shape": [2, 256, 256]}}, {"name": "view_5", "op": "view", "kind": "layout", "inputs": ["view_4"], "shape": [2, 256, 4, 64], "attrs": {"shape": [2, 256, 4, 64]}}, {"name": "permute_3", "op": "permute", "kind": "layout", "inputs": ["view_5"], "shape": [2, 4, 256, 64], "attrs": {"dims": [0, 2, 1, 3]}}, {"name": "permute_4", "op": "permute", "kind": "layout", "inputs": ["attn_v_proj_weight"], "shape": [256, 256], "attrs": {"dims": [1, 0]}}, {"name": "view_6", "op": "view", "kind": "layout", "inputs": ["mul_1"], "shape": [512, 256], "attrs": {"shape": [512, 256]}}, {"name": "mm_2", "op": "matmul", "kind": "compute", "inputs": ["view_6", "permute_4"], "shape": [512, 256], "attrs": {}}, {"name": "view_7", "op": "view", "kind": "layout", "inputs": ["mm_2"], "shape": [2, 256, 256], "attrs": {"shape": [2, 256, 256]}}, {"name": "view_8", "op": "view", "kind": "layout", "inputs": ["view_7"], "shape": [2, 256, 4, 64], "attrs": {"shape": [2, 256, 4, 64]}}, {"name": "permute_5", "op": "permute", "kind": "layout", "inputs": ["view_8"], "shape": [2, 4, 256, 64], "attrs": {"dims": [0, 2, 1, 3]}}, {"name": "mul_2", "op": "mul", "kind": "compute", "inputs": ["permute_1", "rope_cos"], "shape": [2, 4, 256, 64], "attrs": {}}, {"name": "slice_1", "op": "slice", "kind": "layout", "inputs": ["permute_1"], "shape": [2, 4, 256, 32], "attrs": {"dim": 3, "start": 0, "end": 32}}, {"name": "slice_2", "op": "slice", "kind": "layout", "inputs": ["permute_1"], "shape": [2, 4, 256, 32], "attrs": {"dim": 3, "start": 32, "end": 64}}, {"name": "neg", "op": "neg", "kind": "compute", "inputs": ["slice_2"], "shape": [2, 4, 256, 32], "attrs": {}}, {"name": "cat", "op": "cat", "kind": "layout", "inputs": ["neg", "slice_1"], "shape": [2, 4, 256, 64], "attrs": {"dim": 3}}, {"name": "mul_3", "op": "mul", "kind": "compute", "inputs": ["cat", "rope_sin"], "shape": [2, 4, 256, 64], "attrs": {}}, {"name": "add_1", "op": "add", "kind": "compute", "inputs": ["mul_2", "mul_3"], "shape": [2, 4, 256, 64], "attrs": {}}, {"name": "mul_4", "op": "mul", "kind": "compute", "inputs": ["permute_3", "rope_cos"], "shape": [2, 4, 256, 64], "attrs": {}}, {"name": "slice_3", "op": "slice", "kind": "layout", "inputs": ["permute_3"], "shape": [2, 4, 256, 32], "attrs": {"dim": 3, "start": 0, "end": 32}}, {"name": "slice_4", "op": "slice", "kind": "layout", "inputs": ["permute_3"], "shape": [2, 4, 256, 32], "attrs": {"dim": 3, "start": 32, "end": 64}}, {"name": "neg_1", "op": "neg", "kind": "compute", "inputs": ["slice_4"], "shape": [2, 4, 256, 32], "attrs": {}}, {"name": "cat_1", "op": "cat", "kind": "layout", "inputs": ["neg_1", "slice_3"], "shape": [2, 4, 256, 64], "attrs": {"dim": 3}}, {"name": "mul_5", "op": "mul", "kind": "compute", "inputs": ["cat_1", "rope_sin"], "shape": [2, 4, 256, 64], "attrs": {}}, {"name": "add_2", "op": "add", "kind": "compute", "inputs": ["mul_4", "mul_5"], "shape": [2, 4, 256, 64], "attrs": {}}, {"name": "permute_6", "op": "permute", "kind": "layout", "inputs": ["add_2"], "shape": [2, 4, 64, 256], "attrs": {"dims": [0, 1, 3, 2]}}, {"name": "expand", "op": "expand", "kind": "layout", "inputs": ["add_1"], "shape": [2, 4, 256, 64], "attrs": {"shape": [2, 4, 256, 64]}}, {"name": "clone", "op": "clone", "kind": "layout", "inputs": ["expand"], "shape": [2, 4, 256, 64], "attrs": {}}, {"name": "view_9", "op": "view", "kind": "layout", "inputs": ["clone"], "shape": [8, 256, 64], "attrs": {"shape": [8, 256, 64]}}, {"name": "expand_1", "op": "expand", "kind": "layout", "inputs": ["permute_6"], "shape": [2, 4, 64, 256], "attrs": {"shape": [2, 4, 64, 256]}}, {"name": "clone_1", "op": "clone", "kind": "layout", "inputs": ["expand_1"], "shape": [2, 4, 64, 256], "attrs": {}}, {"name": "view_10", "op": "view", "kind": "layout", "inputs": ["clone_1"], "shape": [8, 64, 256], "attrs": {"shape": [8, 64, 256]}}, {"name": "bmm", "op": "batch_matmul", "kind": "compute", "inputs": ["view_9", "view_10"], "shape": [8, 256, 256], "attrs": {}}, {"name": "view_11", "op": "view", "kind": "layout", "inputs": ["bmm"], "shape": [2, 4, 256, 256], "attrs": {"shape": [2, 4, 256, 256]}}, {"name": "mul_6", "op": "mul", "kind": "compute", "inputs": ["view_11"], "shape": [2, 4, 256, 256], "attrs": {"scalar": 0.125}}, {"name": "_softmax", "op": "softmax", "kind": "compute", "inputs": ["mul_6"], "shape": [2, 4, 256, 256], "attrs": {}}, {"name": "expand_2", "op": "expand", "kind": "layout", "inputs": ["_softmax"], "shape": [2, 4, 256, 256], "attrs": {"shape": [2, 4, 256, 256]}}, {"name": "view_12", "op": "view", "kind": "layout", "inputs": ["expand_2"], "shape": [8, 256, 256], "attrs": {"shape": [8, 256, 256]}}, {"name": "expand_3", "op": "expand", "kind": "layout", "inputs": ["permute_5"], "shape": [2, 4, 256, 64], "attrs": {"shape": [2, 4, 256, 64]}}, {"name": "clone_2", "op": "clone", "kind": "layout", "inputs": ["expand_3"], "shape": [2, 4, 256, 64], "attrs": {}}, {"name": "view_13", "op": "view", "kind": "layout", "inputs": ["clone_2"], "shape": [8, 256, 64], "attrs": {"shape": [8, 256, 64]}}, {"name": "bmm_1", "op": "batch_matmul", "kind": "compute", "inputs": ["view_12", "view_13"], "shape": [8, 256, 64], "attrs": {}}, {"name": "view_14", "op": "view", "kind": "layout", "inputs": ["bmm_1"], "shape": [2, 4, 256, 64], "attrs": {"shape": [2, 4, 256, 64]}}, {"name": "permute_7", "op": "permute", "kind": "layout", "inputs": ["view_14"], "shape": [2, 256, 4, 64], "attrs": {"dims": [0, 2, 1, 3]}}, {"name": "clone_3", "op": "clone", "kind": "layout", "inputs": ["permute_7"], "shape": [2, 256, 4, 64], "attrs": {}}, {"name": "view_15", "op": "view", "kind": "layout", "inputs": ["clone_3"], "shape": [2, 256, 256], "attrs": {"shape": [2, 256, 256]}}, {"name": "permute_8", "op": "permute", "kind": "layout", "inputs": ["attn_o_proj_weight"], "shape": [256, 256], "attrs": {"dims": [1, 0]}}, {"name": "view_16", "op": "view", "kind": "layout", "inputs": ["view_15"], "shape": [512, 256], "attrs": {"shape": [512, 256]}}, {"name": "mm_3", "op": "matmul", "kind": "compute", "inputs": ["view_16", "permute_8"], "shape": [512, 256], "attrs": {}}, {"name": "view_17", "op": "view", "kind": "layout", "inputs": ["mm_3"], "shape": [2, 256, 256], "attrs": {"shape": [2, 256, 256]}}, {"name": "add_3", "op": "add", "kind": "compute", "inputs": ["x", "view_17"], "shape": [2, 256, 256], "attrs": {}}, {"name": "pow_2", "op": "powf", "kind": "compute", "inputs": ["add_3"], "shape": [2, 256, 256], "attrs": {"scalar": 2.0}}, {"name": "mean_1", "op": "row_mean", "kind": "compute", "inputs": ["pow_2"], "shape": [2, 256, 1], "attrs": {"keepdim": true}}, {"name": "add_4", "op": "add", "kind": "compute", "inputs": ["mean_1"], "shape": [2, 256, 1], "attrs": {"scalar": 1e-05}}, {"name": "rsqrt_1", "op": "rsqrt", "kind": "compute", "inputs": ["add_4"], "shape": [2, 256, 1], "attrs": {}}, {"name": "mul_7", "op": "mul", "kind": "compute", "inputs": ["add_3", "rsqrt_1"], "shape": [2, 256, 256], "attrs": {}}, {"name": "mul_8", "op": "mul", "kind": "compute", "inputs": ["mul_7", "post_norm_weight"], "shape": [2, 256, 256], "attrs": {}}, {"name": "permute_9", "op": "permute", "kind": "layout", "inputs": ["mlp_gate_proj_weight"], "shape": [256, 512], "attrs": {"dims": [1, 0]}}, {"name": "view_18", "op": "view", "kind": "layout", "inputs": ["mul_8"], "shape": [512, 256], "attrs": {"shape": [512, 256]}}, {"name": "mm_4", "op": "matmul", "kind": "compute", "inputs": ["view_18", "permute_9"], "shape": [512, 512], "attrs": {}}, {"name": "view_19", "op": "view", "kind": "layout", "inputs": ["mm_4"], "shape": [2, 256, 512], "attrs": {"shape": [2, 256, 512]}}, {"name": "_to_copy", "op": "cast", "kind": "layout", "inputs": ["view_19"], "shape": [2, 256, 512], "attrs": {"dtype": "float32"}}, {"name": "sigmoid", "op": "sigmoid", "kind": "compute", "inputs": ["_to_copy"], "shape": [2, 256, 512], "attrs": {}}, {"name": "mul_9", "op": "mul", "kind": "compute", "inputs": ["_to_copy", "sigmoid"], "shape": [2, 256, 512], "attrs": {}}, {"name": "_to_copy_1", "op": "cast", "kind": "layout", "inputs": ["mul_9"], "shape": [2, 256, 512], "attrs": {"dtype": "float16"}}, {"name": "permute_10", "op": "permute", "kind": "layout", "inputs": ["mlp_up_proj_weight"], "shape": [256, 512], "attrs": {"dims": [1, 0]}}, {"name": "view_20", "op": "view", "kind": "layout", "inputs": ["mul_8"], "shape": [512, 256], "attrs": {"shape": [512, 256]}}, {"name": "mm_5", "op": "matmul", "kind": "compute", "inputs": ["view_20", "permute_10"], "shape": [512, 512], "attrs": {}}, {"name": "view_21", "op": "view", "kind": "layout", "inputs": ["mm_5"], "shape": [2, 256, 512], "attrs": {"shape": [2, 256, 512]}}, {"name": "mul_10", "op": "mul", "kind": "compute", "inputs": ["_to_copy_1", "view_21"], "shape": [2, 256, 512], "attrs": {}}, {"name": "permute_11", "op": "permute", "kind": "layout", "inputs": ["mlp_down_proj_weight"], "shape": [512, 256], "attrs": {"dims": [1, 0]}}, {"name": "view_22", "op": "view", "kind": "layout", "inputs": ["mul_10"], "shape": [512, 512], "attrs": {"shape": [512, 512]}}, {"name": "mm_6", "op": "matmul", "kind": "compute", "inputs": ["view_22", "permute_11"], "shape": [512, 256], "attrs": {}}, {"name": "view_23", "op": "view", "kind": "layout", "inputs": ["mm_6"], "shape": [2, 256, 256], "attrs": {"shape": [2, 256, 256]}}, {"name": "add_5", "op": "add", "kind": "compute", "inputs": ["add_3", "view_23"], "shape": [2, 256, 256], "attrs": {}}]}, "canonical": {"inputs": ["x"], "outputs": ["add_5"], "nodes": [{"name": "x", "op": "input", "kind": "input", "inputs": [], "shape": [512, 256], "attrs": {}}, {"name": "permute_norm_40", "op": "const", "kind": "const", "inputs": [], "shape": [256, 256], "attrs": {}}, {"name": "matmul_41", "op": "matmul", "kind": "compute", "inputs": ["x", "permute_norm_40"], "shape": [512, 256], "attrs": {}}, {"name": "row_sumsq_36", "op": "row_sumsq", "kind": "compute", "inputs": ["x"], "shape": [512, 1], "attrs": {}}, {"name": "mul_37", "op": "mul", "kind": "compute", "inputs": ["row_sumsq_36"], "shape": [512, 1], "attrs": {"scalar": 0.00390625}}, {"name": "add_38", "op": "add", "kind": "compute", "inputs": ["mul_37"], "shape": [512, 1], "attrs": {"scalar": 1e-05}}, {"name": "powf_39", "op": "powf", "kind": "compute", "inputs": ["add_38"], "shape": [512, 1], "attrs": {"scalar": -0.5}}, {"name": "broadcast_42", "op": "broadcast", "kind": "compute", "inputs": ["powf_39"], "shape": [512, 256], "attrs": {"dim": 1, "shape": [512, 256]}}, {"name": "mm", "op": "mul", "kind": "compute", "inputs": ["matmul_41", "broadcast_42"], "shape": [512, 256], "attrs": {}}, {"name": "permute_2_norm_46", "op": "const", "kind": "const", "inputs": [], "shape": [256, 256], "attrs": {}}, {"name": "matmul_47", "op": "matmul", "kind": "compute", "inputs": ["x", "permute_2_norm_46"], "shape": [512, 256], "attrs": {}}, {"name": "broadcast_48", "op": "broadcast", "kind": "compute", "inputs": ["powf_39"], "shape": [512, 256], "attrs": {"dim": 1, "shape": [512, 256]}}, {"name": "mm_1", "op": "mul", "kind": "compute", "inputs": ["matmul_47", "broadcast_48"], "shape": [512, 256], "attrs": {}}, {"name": "permute_4_norm_52", "op": "const", "kind": "const", "inputs": [], "shape": [256, 256], "attrs": {}}, {"name": "matmul_53", "op": "matmul", "kind": "compute", "inputs": ["x", "permute_4_norm_52"], "shape": [512, 256], "attrs": {}}, {"name": "broadcast_54", "op": "broadcast", "kind": "compute", "inputs": ["powf_39"], "shape": [512, 256], "attrs": {"dim": 1, "shape": [512, 256]}}, {"name": "mm_2", "op": "mul", "kind": "compute", "inputs": ["matmul_53", "broadcast_54"], "shape": [512, 256], "attrs": {}}, {"name": "rope_cos_1", "op": "const", "kind": "const", "inputs": [], "shape": [512, 256], "attrs": {}}, {"name": "mul_11", "op": "mul", "kind": "compute", "inputs": ["mm", "rope_cos_1"], "shape": [512, 256], "attrs": {}}, {"name": "permute_rot_3_norm_43", "op": "const", "kind": "const", "inputs": [], "shape": [256, 256], "attrs": {}}, {"name": "matmul_44", "op": "matmul", "kind": "compute", "inputs": ["x", "permute_rot_3_norm_43"], "shape": [512, 256], "attrs": {}}, {"name": "broadcast_45", "op": "broadcast", "kind": "compute", "inputs": ["powf_39"], "shape": [512, 256], "attrs": {"dim": 1, "shape": [512, 256]}}, {"name": "matmul_4", "op": "mul", "kind": "compute", "inputs": ["matmul_44", "broadcast_45"], "shape": [512, 256], "attrs": {}}, {"name": "rope_sin_2", "op": "const", "kind": "const", "inputs": [], "shape": [512, 256], "attrs": {}}, {"name": "mul_12", "op": "mul", "kind": "compute", "inputs": ["matmul_4", "rope_sin_2"], "shape": [512, 256], "attrs": {}}, {"name": "add_13", "op": "add", "kind": "compute", "inputs": ["mul_11", "mul_12"], "shape": [512, 256], "attrs": {}}, {"name": "mul_30", "op": "mul", "kind": "compute", "inputs": ["mm_1", "rope_cos_1"], "shape": [512, 256], "attrs": {}}, {"name": "permute_2_rot_28_norm_49", "op": "const", "kind": "const", "inputs": [], "shape": [256, 256], "attrs": {}}, {"name": "matmul_50", "op": "matmul", "kind": "compute", "inputs": ["x", "permute_2_rot_28_norm_49"], "shape": [512, 256], "attrs": {}}, {"name": "broadcast_51", "op": "broadcast", "kind": "compute", "inputs": ["powf_39"], "shape": [512, 256], "attrs": {"dim": 1, "shape": [512, 256]}}, {"name": "matmul_29", "op": "mul", "kind": "compute", "inputs": ["matmul_50", "broadcast_51"], "shape": [512, 256], "attrs": {}}, {"name": "mul_31", "op": "mul", "kind": "compute", "inputs": ["matmul_29", "rope_sin_2"], "shape": [512, 256], "attrs": {}}, {"name": "add_32", "op": "add", "kind": "compute", "inputs": ["mul_30", "mul_31"], "shape": [512, 256], "attrs": {}}, {"name": "permute_7", "op": "attention", "kind": "compute", "inputs": ["add_13", "add_32", "mm_2"], "shape": [512, 256], "attrs": {"batch": 2, "seq": 256, "heads": 4, "head_dim": 64, "scale": 0.125}}, {"name": "permute_8", "op": "const", "kind": "const", "inputs": [], "shape": [256, 256], "attrs": {}}, {"name": "mm_3", "op": "matmul", "kind": "compute", "inputs": ["permute_7", "permute_8"], "shape": [512, 256], "attrs": {}}, {"name": "add_3", "op": "add", "kind": "compute", "inputs": ["x", "mm_3"], "shape": [512, 256], "attrs": {}}, {"name": "permute_9_norm_60", "op": "const", "kind": "const", "inputs": [], "shape": [256, 512], "attrs": {}}, {"name": "matmul_61", "op": "matmul", "kind": "compute", "inputs": ["add_3", "permute_9_norm_60"], "shape": [512, 512], "attrs": {}}, {"name": "row_sumsq_56", "op": "row_sumsq", "kind": "compute", "inputs": ["add_3"], "shape": [512, 1], "attrs": {}}, {"name": "mul_57", "op": "mul", "kind": "compute", "inputs": ["row_sumsq_56"], "shape": [512, 1], "attrs": {"scalar": 0.00390625}}, {"name": "add_58", "op": "add", "kind": "compute", "inputs": ["mul_57"], "shape": [512, 1], "attrs": {"scalar": 1e-05}}, {"name": "powf_59", "op": "powf", "kind": "compute", "inputs": ["add_58"], "shape": [512, 1], "attrs": {"scalar": -0.5}}, {"name": "broadcast_62", "op": "broadcast", "kind": "compute", "inputs": ["powf_59"], "shape": [512, 512], "attrs": {"dim": 1, "shape": [512, 512]}}, {"name": "mm_4", "op": "mul", "kind": "compute", "inputs": ["matmul_61", "broadcast_62"], "shape": [512, 512], "attrs": {}}, {"name": "mul_66", "op": "mul", "kind": "compute", "inputs": ["mm_4"], "shape": [512, 512], "attrs": {"scalar": -1.0}}, {"name": "exp_67", "op": "exp", "kind": "compute", "inputs": ["mul_66"], "shape": [512, 512], "attrs": {}}, {"name": "add_68", "op": "add", "kind": "compute", "inputs": ["exp_67"], "shape": [512, 512], "attrs": {"scalar": 1.0}}, {"name": "sigmoid", "op": "div", "kind": "compute", "inputs": ["add_68"], "shape": [512, 512], "attrs": {"scalar": 1.0, "scalar_first": true}}, {"name": "mul_9", "op": "mul", "kind": "compute", "inputs": ["mm_4", "sigmoid"], "shape": [512, 512], "attrs": {}}, {"name": "permute_10_norm_63", "op": "const", "kind": "const", "inputs": [], "shape": [256, 512], "attrs": {}}, {"name": "matmul_64", "op": "matmul", "kind": "compute", "inputs": ["add_3", "permute_10_norm_63"], "shape": [512, 512], "attrs": {}}, {"name": "broadcast_65", "op": "broadcast", "kind": "compute", "inputs": ["powf_59"], "shape": [512, 512], "attrs": {"dim": 1, "shape": [512, 512]}}, {"name": "mm_5", "op": "mul", "kind": "compute", "inputs": ["matmul_64", "broadcast_65"], "shape": [512, 512], "attrs": {}}, {"name": "mul_10", "op": "mul", "kind": "compute", "inputs": ["mul_9", "mm_5"], "shape": [512, 512], "attrs": {}}, {"name": "permute_11", "op": "const", "kind": "const", "inputs": [], "shape": [512, 256], "attrs": {}}, {"name": "mm_6", "op": "matmul", "kind": "compute", "inputs": ["mul_10", "permute_11"], "shape": [512, 256], "attrs": {}}, {"name": "add_5", "op": "add", "kind": "compute", "inputs": ["add_3", "mm_6"], "shape": [512, 256], "attrs": {}}]}, "pass_log": [{"pass": "fold_constants", "rewrites": 7, "nodes": 100, "max_rel_err": 0.0}, {"pass": "match_rotate_half", "rewrites": 2, "nodes": 100, "max_rel_err": 0.0}, {"pass": "match_rope", "rewrites": 2, "nodes": 100, "max_rel_err": 0.0}, {"pass": "lower_rope", "rewrites": 2, "nodes": 118, "max_rel_err": 0.0}, {"pass": "match_rmsnorm", "rewrites": 2, "nodes": 118, "max_rel_err": 0.0}, {"pass": "lower_rmsnorm", "rewrites": 2, "nodes": 149, "max_rel_err": 9.177823812933639e-06}, {"pass": "match_attention", "rewrites": 1, "nodes": 149, "max_rel_err": 9.177823812933639e-06}, {"pass": "fold_constants_2", "rewrites": 0, "nodes": 149, "max_rel_err": 9.177823812933639e-06}, {"pass": "cleanup_1", "rewrites": 80, "nodes": 69, "max_rel_err": 9.177823812933639e-06}, {"pass": "flatten_to_2d", "rewrites": 12, "nodes": 57, "max_rel_err": 9.177823812933639e-06}, {"pass": "rewrite_unregistered", "rewrites": 1, "nodes": 60, "max_rel_err": 9.177823812933639e-06}, {"pass": "insert_broadcasts", "rewrites": 0, "nodes": 60, "max_rel_err": 9.177823812933639e-06}, {"pass": "fold_constants_3", "rewrites": 0, "nodes": 60, "max_rel_err": 9.177823812933639e-06}, {"pass": "dedupe_constants", "rewrites": 2, "nodes": 60, "max_rel_err": 9.177823812933639e-06}, {"pass": "cleanup_2", "rewrites": 2, "nodes": 58, "max_rel_err": 9.177823812933639e-06}], "tensors": {"x": {"shape": [512, 256], "dtype": "float16"}, "permute_norm_40": {"shape": [256, 256], "dtype": "float16"}, "matmul_41": {"shape": [512, 256], "dtype": "float16"}, "row_sumsq_36": {"shape": [512, 1], "dtype": "float16"}, "mul_37": {"shape": [512, 1], "dtype": "float16"}, "add_38": {"shape": [512, 1], "dtype": "float16"}, "powf_39": {"shape": [512, 1], "dtype": "float16"}, "broadcast_42": {"shape": [512, 256], "dtype": "float16"}, "mm": {"shape": [512, 256], "dtype": "float16"}, "permute_2_norm_46": {"shape": [256, 256], "dtype": "float16"}, "matmul_47": {"shape": [512, 256], "dtype": "float16"}, "broadcast_48": {"shape": [512, 256], "dtype": "float16"}, "mm_1": {"shape": [512, 256], "dtype": "float16"}, "permute_4_norm_52": {"shape": [256, 256], "dtype": "float16"}, "matmul_53": {"shape": [512, 256], "dtype": "float16"}, "broadcast_54": {"shape": [512, 256], "dtype": "float16"}, "mm_2": {"shape": [512, 256], "dtype": "float16"}, "rope_cos_1": {"shape": [512, 256], "dtype": "float16"}, "mul_11": {"shape": [512, 256], "dtype": "float16"}, "permute_rot_3_norm_43": {"shape": [256, 256], "dtype": "float16"}, "matmul_44": {"shape": [512, 256], "dtype": "float16"}, "broadcast_45": {"shape": [512, 256], "dtype": "float16"}, "matmul_4": {"shape": [512, 256], "dtype": "float16"}, "rope_sin_2": {"shape": [512, 256], "dtype": "float16"}, "mul_12": {"shape": [512, 256], "dtype": "float16"}, "add_13": {"shape": [512, 256], "dtype": "float16"}, "mul_30": {"shape": [512, 256], "dtype": "float16"}, "permute_2_rot_28_norm_49": {"shape": [256, 256], "dtype": "float16"}, "matmul_50": {"shape": [512, 256], "dtype": "float16"}, "broadcast_51": {"shape": [512, 256], "dtype": "float16"}, "matmul_29": {"shape": [512, 256], "dtype": "float16"}, "mul_31": {"shape": [512, 256], "dtype": "float16"}, "add_32": {"shape": [512, 256], "dtype": "float16"}, "permute_7": {"shape": [512, 256], "dtype": "float16"}, "permute_8": {"shape": [256, 256], "dtype": "float16"}, "mm_3": {"shape": [512, 256], "dtype": "float16"}, "add_3": {"shape": [512, 256], "dtype": "float16"}, "permute_9_norm_60": {"shape": [256, 512], "dtype": "float16"}, "matmul_61": {"shape": [512, 512], "dtype": "float16"}, "row_sumsq_56": {"shape": [512, 1], "dtype": "float16"}, "mul_57": {"shape": [512, 1], "dtype": "float16"}, "add_58": {"shape": [512, 1], "dtype": "float16"}, "powf_59": {"shape": [512, 1], "dtype": "float16"}, "broadcast_62": {"shape": [512, 512], "dtype": "float16"}, "mm_4": {"shape": [512, 512], "dtype": "float16"}, "mul_66": {"shape": [512, 512], "dtype": "float16"}, "exp_67": {"shape": [512, 512], "dtype": "float16"}, "add_68": {"shape": [512, 512], "dtype": "float16"}, "sigmoid": {"shape": [512, 512], "dtype": "float16"}, "mul_9": {"shape": [512, 512], "dtype": "float16"}, "permute_10_norm_63": {"shape": [256, 512], "dtype": "float16"}, "matmul_64": {"shape": [512, 512], "dtype": "float16"}, "broadcast_65": {"shape": [512, 512], "dtype": "float16"}, "mm_5": {"shape": [512, 512], "dtype": "float16"}, "mul_10": {"shape": [512, 512], "dtype": "float16"}, "permute_11": {"shape": [512, 256], "dtype": "float16"}, "mm_6": {"shape": [512, 256], "dtype": "float16"}, "add_5": {"shape": [512, 256], "dtype": "float16"}}, "program": {"inputs": ["x"], "outputs": ["add_5"], "params": ["permute_10_norm_63", "permute_11", "permute_2_norm_46", "permute_2_rot_28_norm_49", "permute_4_norm_52", "permute_8", "permute_9_norm_60", "permute_norm_40", "permute_rot_3_norm_43", "rope_cos_1", "rope_sin_2"]}, "kernels": [{"name": "k0_gemm", "kind": "gemm", "args": [{"name": "lhs", "tensor": "x", "role": "lhs", "view": null}, {"name": "w0", "tensor": "permute_norm_40", "role": "rhs", "view": null}, {"name": "w1", "tensor": "permute_2_norm_46", "role": "rhs", "view": null}, {"name": "w2", "tensor": "permute_4_norm_52", "role": "rhs", "view": null}, {"name": "w3", "tensor": "permute_rot_3_norm_43", "role": "rhs", "view": null}, {"name": "w4", "tensor": "permute_2_rot_28_norm_49", "role": "rhs", "view": null}, {"name": "in0", "tensor": "rope_cos_1", "role": "extra", "view": null}, {"name": "in1", "tensor": "rope_sin_2", "role": "extra", "view": null}], "outputs": [{"tensor": "mm_2", "value": "mm_2"}, {"tensor": "add_13", "value": "add_13"}, {"tensor": "add_32", "value": "add_32"}], "lhs": "lhs", "k_extent": 256, "grid": {"rows": 512, "cols": 256}, "gemms": [{"acc": "acc_matmul_41", "rhs": "w0"}, {"acc": "acc_matmul_47", "rhs": "w1"}, {"acc": "acc_matmul_53", "rhs": "w2"}, {"acc": "acc_matmul_44", "rhs": "w3"}, {"acc": "acc_matmul_50", "rhs": "w4"}], "sumsq": true, "epilogue": [{"name": "mul_37__col", "op": "mul", "inputs": ["sumsq"], "attrs": {"scalar": 0.00390625}}, {"name": "add_38__col", "op": "add", "inputs": ["mul_37__col"], "attrs": {"scalar": 1e-05}}, {"name": "powf_39__col", "op": "powf", "inputs": ["add_38__col"], "attrs": {"scalar": -0.5}}, {"name": "broadcast_42__k0_gemm", "op": "broadcast", "inputs": ["powf_39__col"], "attrs": {"dim": 1, "shape": [512, 256]}}, {"name": "mm", "op": "mul", "inputs": ["acc_matmul_41", "broadcast_42__k0_gemm"], "attrs": {}}, {"name": "mm_1", "op": "mul", "inputs": ["acc_matmul_47", "broadcast_42__k0_gemm"], "attrs": {}}, {"name": "mm_2", "op": "mul", "inputs": ["acc_matmul_53", "broadcast_42__k0_gemm"], "attrs": {}}, {"name": "mul_11", "op": "mul", "inputs": ["mm", "in0"], "attrs": {}}, {"name": "matmul_4", "op": "mul", "inputs": ["acc_matmul_44", "broadcast_42__k0_gemm"], "attrs": {}}, {"name": "mul_12", "op": "mul", "inputs": ["matmul_4", "in1"], "attrs": {}}, {"name": "add_13", "op": "add", "inputs": ["mul_11", "mul_12"], "attrs": {}}, {"name": "mul_30", "op": "mul", "inputs": ["mm_1", "in0"], "attrs": {}}, {"name": "matmul_29", "op": "mul", "inputs": ["acc_matmul_50", "broadcast_42__k0_gemm"], "attrs": {}}, {"name": "mul_31", "op": "mul", "inputs": ["matmul_29", "in1"], "attrs": {}}, {"name": "add_32", "op": "add", "inputs": ["mul_30", "mul_31"], "attrs": {}}], "attrs": {}, "constexprs": {}, "tiles": {"tile_t": 64, "tile_n": 32, "tile_k": 256}, "cycles": 57409.32007315775, "breakdown": {"waves": 1, "loop_iters": 1, "t_load_iter": 12932.053333333333, "t_compute_iter": 41325.79888268156, "t_epilogue": 1707.547857142857, "t_store": 1443.92, "l1_bytes": 368640, "double_buffer": true, "orientation": "t_on_x", "grid_tiles": 64, "dram_read_bytes": 1441792.0, "dram_write_bytes": 786432}, "loom": {"cycles": 33792.0, "block_sizes": {"is_double_buffer": 0, "tile_k": 256, "tile_n": 32, "tile_t": 64}, "n_variants": 104, "best_variant": "_k0_gemm__x1x8_y8__d0i0_d1i0_d2i1__f01__dim_x_level1_bc8_dim_y_level0_bc8_dim_y_level0_bc8_dim_y_level0_bc8_dim_y_level0_bc8_dim_y_level0_bc8_n_n_n_n_n"}, "validation": {"frontend": true, "exploration": true, "variants": 104}}, {"name": "k1_attention", "kind": "attention", "args": [{"name": "q", "tensor": "add_13", "role": "q", "view": [2, 256, 4, 64]}, {"name": "k", "tensor": "add_32", "role": "k", "view": [2, 256, 4, 64]}, {"name": "v", "tensor": "mm_2", "role": "v", "view": [2, 256, 4, 64]}], "outputs": [{"tensor": "permute_7", "value": "out"}], "lhs": null, "k_extent": 0, "grid": {}, "gemms": [], "sumsq": false, "epilogue": [], "attrs": {"batch": 2, "seq": 256, "heads": 4, "head_dim": 64, "scale": 0.125}, "constexprs": {"scale": 0.125}, "tiles": {"tile_m": 32, "tile_n": 128}, "cycles": 23845.96579209896, "breakdown": {"waves": 1, "loop_iters": 2, "t_load_iter": 3857.12, "t_compute_iter": 9171.28289604948, "t_epilogue": 342.3333333333333, "t_store": 481.3066666666667, "l1_bytes": 98560, "double_buffer": true, "orientation": "bh_on_mesh", "grid_tiles": 64, "dram_read_bytes": 4456448, "dram_write_bytes": 262144}, "loom": {"cycles": 19072.0, "block_sizes": {"is_double_buffer": 1, "tile_b": 1, "tile_h": 1, "tile_m": 32, "tile_n": 128}, "n_variants": 393, "best_variant": "_k1_attention__x8_y1y4y2__d0i2_d1i2_d2i1_d3i0__f012__n_dim_x_level0_bc8_dim_x_level0_bc8_n"}, "validation": {"frontend": true, "exploration": true, "variants": 393}}, {"name": "k2_gemm", "kind": "gemm", "args": [{"name": "lhs", "tensor": "permute_7", "role": "lhs", "view": null}, {"name": "w0", "tensor": "permute_8", "role": "rhs", "view": null}, {"name": "in0", "tensor": "x", "role": "extra", "view": null}], "outputs": [{"tensor": "add_3", "value": "add_3"}], "lhs": "lhs", "k_extent": 256, "grid": {"rows": 512, "cols": 256}, "gemms": [{"acc": "acc_mm_3", "rhs": "w0"}], "sumsq": false, "epilogue": [{"name": "add_3", "op": "add", "inputs": ["in0", "acc_mm_3"], "attrs": {}}], "attrs": {}, "constexprs": {}, "tiles": {"tile_t": 32, "tile_n": 64, "tile_k": 128}, "cycles": 12249.286480446928, "breakdown": {"waves": 1, "loop_iters": 2, "t_load_iter": 3036.3733333333334, "t_compute_iter": 3952.983240223464, "t_epilogue": 825.64, "t_store": 481.3066666666667, "l1_bytes": 65536, "double_buffer": true, "orientation": "t_on_x", "grid_tiles": 64, "dram_read_bytes": 655360.0, "dram_write_bytes": 262144}, "loom": {"cycles": 10176.0, "block_sizes": {"is_double_buffer": 1, "tile_k": 128, "tile_n": 32, "tile_t": 64}, "n_variants": 208, "best_variant": "_k2_gemm__x8_y1y8__d0i1_d1i1_d2i0__f01__dim_x_level0_bc8_dim_y_level1_bc8_n_n"}, "validation": {"frontend": true, "exploration": true, "variants": 208}}, {"name": "k3_gemm", "kind": "gemm", "args": [{"name": "lhs", "tensor": "add_3", "role": "lhs", "view": null}, {"name": "w0", "tensor": "permute_9_norm_60", "role": "rhs", "view": null}, {"name": "w1", "tensor": "permute_10_norm_63", "role": "rhs", "view": null}], "outputs": [{"tensor": "mul_10", "value": "mul_10"}], "lhs": "lhs", "k_extent": 256, "grid": {"rows": 512, "cols": 512}, "gemms": [{"acc": "acc_matmul_61", "rhs": "w0"}, {"acc": "acc_matmul_64", "rhs": "w1"}], "sumsq": true, "epilogue": [{"name": "mul_57__col", "op": "mul", "inputs": ["sumsq"], "attrs": {"scalar": 0.00390625}}, {"name": "add_58__col", "op": "add", "inputs": ["mul_57__col"], "attrs": {"scalar": 1e-05}}, {"name": "powf_59__col", "op": "powf", "inputs": ["add_58__col"], "attrs": {"scalar": -0.5}}, {"name": "broadcast_62__k3_gemm", "op": "broadcast", "inputs": ["powf_59__col"], "attrs": {"dim": 1, "shape": [512, 512]}}, {"name": "mm_4", "op": "mul", "inputs": ["acc_matmul_61", "broadcast_62__k3_gemm"], "attrs": {}}, {"name": "mul_66", "op": "mul", "inputs": ["mm_4"], "attrs": {"scalar": -1.0}}, {"name": "exp_67", "op": "exp", "inputs": ["mul_66"], "attrs": {}}, {"name": "add_68", "op": "add", "inputs": ["exp_67"], "attrs": {"scalar": 1.0}}, {"name": "sigmoid", "op": "div", "inputs": ["add_68"], "attrs": {"scalar": 1.0, "scalar_first": true}}, {"name": "mul_9", "op": "mul", "inputs": ["mm_4", "sigmoid"], "attrs": {}}, {"name": "mm_5", "op": "mul", "inputs": ["acc_matmul_64", "broadcast_62__k3_gemm"], "attrs": {}}, {"name": "mul_10", "op": "mul", "inputs": ["mul_9", "mm_5"], "attrs": {}}], "attrs": {}, "constexprs": {}, "tiles": {"tile_t": 64, "tile_n": 64, "tile_k": 256}, "cycles": 34991.08348895983, "breakdown": {"waves": 1, "loop_iters": 1, "t_load_iter": 10425.493333333334, "t_compute_iter": 22727.89944134078, "t_epilogue": 1329.0773809523807, "t_store": 508.61333333333334, "l1_bytes": 331776, "double_buffer": true, "orientation": "t_on_x", "grid_tiles": 64, "dram_read_bytes": 786432.0, "dram_write_bytes": 524288}, "loom": {"cycles": 23552.0, "block_sizes": {"is_double_buffer": 0, "tile_k": 256, "tile_n": 64, "tile_t": 64}, "n_variants": 104, "best_variant": "_k3_gemm__x8_y1y8__d0i0_d1i0_d2i1__f01__dim_y_level1_bc8_dim_x_level0_bc8_dim_x_level0_bc8_n"}, "validation": {"frontend": true, "exploration": true, "variants": 104}}, {"name": "k4_gemm", "kind": "gemm", "args": [{"name": "lhs", "tensor": "mul_10", "role": "lhs", "view": null}, {"name": "w0", "tensor": "permute_11", "role": "rhs", "view": null}, {"name": "in0", "tensor": "add_3", "role": "extra", "view": null}], "outputs": [{"tensor": "add_5", "value": "add_5"}], "lhs": "lhs", "k_extent": 512, "grid": {"rows": 512, "cols": 256}, "gemms": [{"acc": "acc_mm_6", "rhs": "w0"}], "sumsq": false, "epilogue": [{"name": "add_5", "op": "add", "inputs": ["in0", "acc_mm_6"], "attrs": {}}], "attrs": {}, "constexprs": {}, "tiles": {"tile_t": 32, "tile_n": 64, "tile_k": 128}, "cycles": 20155.252960893857, "breakdown": {"waves": 1, "loop_iters": 4, "t_load_iter": 3036.3733333333334, "t_compute_iter": 3952.983240223464, "t_epilogue": 825.64, "t_store": 481.3066666666667, "l1_bytes": 65536, "double_buffer": true, "orientation": "t_on_x", "grid_tiles": 64, "dram_read_bytes": 1048576.0, "dram_write_bytes": 262144}, "loom": {"cycles": 14592.0, "block_sizes": {"is_double_buffer": 1, "tile_k": 256, "tile_n": 32, "tile_t": 64}, "n_variants": 208, "best_variant": "_k4_gemm__x8_y1y8__d0i1_d1i1_d2i0__f01__dim_x_level0_bc8_dim_y_level1_bc8_n_n"}, "validation": {"frontend": true, "exploration": true, "variants": 208}}], "plan": {"candidates": 104, "legal": 98, "total_cycles": 158650.90879555733, "top": [{"index": 103, "kernels": 5, "cycles": 158650.90879555733}, {"index": 93, "kernels": 6, "cycles": 169811.32253790903}, {"index": 102, "kernels": 6, "cycles": 171935.14194267092}, {"index": 45, "kernels": 6, "cycles": 171937.90920457567}, {"index": 73, "kernels": 6, "cycles": 171937.90920457567}, {"index": 99, "kernels": 6, "cycles": 171937.9092045757}], "worst": 219205.8963168396}, "reference": {"max_rel_err": 0.00048671147669665515, "per_output": [0.00048671147669665515], "tolerance": 0.02, "ok": true}, "hw": {"path": "/workspace/torch-helion/third_party/loom/third_party/loom-mlar/tests/2d_mesh/2d_mesh_torus.mlir", "mesh": [8, 8], "cores": 64, "l1_bytes": 1398784, "dram_bytes": 12884901888, "functions": ["batch_matmul_RR_f16", "batch_matmul_RS_f16", "batch_matmul_SR_f16", "batch_matmul_SS_f16", "dram_to_l1_R_bcst", "dram_to_l1_R_f16", "dram_to_l1_S_bcst", "dram_to_l1_S_f16", "elementwise_add_f16", "elementwise_mul_f16", "l1_gather", "l1_to_dram_f16", "matmul_RR_f16", "matmul_RS_f16", "matmul_SR_f16", "matmul_SS_f16", "vec_add_f16", "vec_cmpf_ogt_f16", "vec_div_f16", "vec_exp_f16", "vec_log_f16", "vec_max1_f16", "vec_max_f16", "vec_mul_f16", "vec_powf_f16", "vec_select_f16", "vec_sub_f16", "vec_sum_f16", "vec_vmax_f16", "vec_vsum_f16"]}, "intermediates": {"mul_10": 524288, "add_32": 262144, "permute_7": 262144, "mm_2": 262144, "add_13": 262144, "add_3": 262144}, "sources": {"k2_gemm": "def _k2_gemm(lhs: torch.Tensor, w0: torch.Tensor, in0: torch.Tensor) -> tuple[torch.Tensor, ...]:\n    t, k = lhs.size()\n    _, n = w0.size()\n    out_add_3 = torch.empty([t, n], dtype=torch.float16, device=lhs.device)\n    for tile_t, tile_n in hl.tile([t, n]):\n        acc_mm_3 = hl.zeros([tile_t, tile_n], dtype=torch.float16)\n        for tile_k in hl.tile(k):\n            xt = lhs[tile_t, tile_k]\n            acc_mm_3 = hl.dot(xt, w0[tile_k, tile_n], acc=acc_mm_3)\n        ld_2 = in0[tile_t, tile_n]\n        add_3_1 = ld_2 + acc_mm_3\n        out_add_3[tile_t, tile_n] = add_3_1\n    return out_add_3,", "k1_attention": "def _k1_attention(q: torch.Tensor, k: torch.Tensor, v: torch.Tensor, scale: hl.constexpr) -> torch.Tensor:\n    batch = q.size(0)\n    seq = q.size(1)\n    heads = q.size(2)\n    hd = hl.specialize(q.size(3))\n    out_permute_7 = torch.empty_like(q)\n    q4 = q.permute(0, 2, 1, 3)\n    k4 = k.permute(0, 2, 3, 1)\n    v4 = v.permute(0, 2, 1, 3)\n    o4 = out_permute_7.permute(0, 2, 1, 3)\n    for tile_b, tile_h, tile_m in hl.tile([batch, heads, seq], block_size=[1, 1, None]):\n        m_i = hl.full([tile_m, 1], float(\"-inf\"), dtype=torch.float16)\n        l_i = torch.full_like(m_i, 1.0)\n        acc = hl.zeros([tile_m, hd], dtype=torch.float16)\n        qt = q4[tile_b.begin, tile_h.begin, tile_m, :]\n        for tile_n in hl.tile(seq):\n            kt = k4[tile_b.begin, tile_h.begin, :, tile_n]\n            sc = hl.full([tile_m, tile_n], scale, dtype=torch.float16)\n            qk = torch.matmul(qt, kt) * sc\n            m_ij = torch.maximum(m_i, torch.amax(qk, -1, keepdim=True))\n            qk = qk - broadcast(m_ij, 1, [m_ij.size(0), tile_n])\n            p = torch.exp(qk)\n            alpha = torch.exp(m_i - m_ij)\n            vt = v4[tile_b.begin, tile_h.begin, tile_n, :]\n            acc = acc * broadcast(alpha, 1, [alpha.size(0), hd])\n            acc = acc + torch.matmul(p, vt)\n            l_i = l_i * alpha + torch.sum(p, -1, keepdim=True)\n            m_i = m_ij\n        acc = acc / broadcast(l_i, 1, [l_i.size(0), hd])\n        o4[tile_b.begin, tile_h.begin, tile_m, :] = acc\n    return out_permute_7", "k0_gemm": "def _k0_gemm(lhs: torch.Tensor, w0: torch.Tensor, w1: torch.Tensor, w2: torch.Tensor, w3: torch.Tensor, w4: torch.Tensor, in0: torch.Tensor, in1: torch.Tensor) -> tuple[torch.Tensor, ...]:\n    t, k = lhs.size()\n    _, n = w0.size()\n    out_mm_2 = torch.empty([t, n], dtype=torch.float16, device=lhs.device)\n    out_add_13 = torch.empty([t, n], dtype=torch.float16, device=lhs.device)\n    out_add_32 = torch.empty([t, n], dtype=torch.float16, device=lhs.device)\n    for tile_t, tile_n in hl.tile([t, n]):\n        acc_matmul_41 = hl.zeros([tile_t, tile_n], dtype=torch.float16)\n        acc_matmul_47 = hl.zeros([tile_t, tile_n], dtype=torch.float16)\n        acc_matmul_53 = hl.zeros([tile_t, tile_n], dtype=torch.float16)\n        acc_matmul_44 = hl.zeros([tile_t, tile_n], dtype=torch.float16)\n        acc_matmul_50 = hl.zeros([tile_t, tile_n], dtype=torch.float16)\n        ss = hl.zeros([tile_t, 32], dtype=torch.float16)\n        for tile_k in hl.tile(k):\n            xt = lhs[tile_t, tile_k]\n            acc_matmul_41 = hl.dot(xt, w0[tile_k, tile_n], acc=acc_matmul_41)\n            acc_matmul_47 = hl.dot(xt, w1[tile_k, tile_n], acc=acc_matmul_47)\n            acc_matmul_53 = hl.dot(xt, w2[tile_k, tile_n], acc=acc_matmul_53)\n            acc_matmul_44 = hl.dot(xt, w3[tile_k, tile_n], acc=acc_matmul_44)\n            acc_matmul_50 = hl.dot(xt, w4[tile_k, tile_n], acc=acc_matmul_50)\n            half = hl.full([tile_t, tile_k], 0.5, dtype=torch.float16)\n            sq = xt * (xt * half)\n            ones = hl.full([tile_k, 32], 1.0, dtype=torch.float16)\n            ss = hl.dot(sq, ones, acc=ss)\n        ss_col = torch.amax(ss, -1, keepdim=True)\n        c_1 = hl.full([tile_t, 1], 2.0, dtype=torch.float16)\n        sumsq = ss_col * c_1\n        c_3 = hl.full([tile_t, 1], 0.00390625, dtype=torch.float16)\n        mul_37__col_2 = sumsq * c_3\n        c_5 = hl.full([tile_t, 1], 0.01, dtype=torch.float16)\n        c_6 = hl.full([tile_t, 1], 0.001, dtype=torch.float16)\n        c_7 = c_5 * c_6\n        add_38__col_4 = mul_37__col_2 + c_7\n        c_9 = hl.full([tile_t, 1], -0.5, dtype=torch.float16)\n        powf_39__col_8 = torch.pow(add_38__col_4, c_9)\n        broadcast_42__k0_gemm_10 = broadcast(powf_39__col_8, 1, [powf_39__col_8.size(0), tile_n])\n        mm_11 = acc_matmul_41 * broadcast_42__k0_gemm_10\n        mm_1_12 = acc_matmul_47 * broadcast_42__k0_gemm_10\n        mm_2_13 = acc_matmul_53 * broadcast_42__k0_gemm_10\n        ld_15 = in0[tile_t, tile_n]\n        mul_11_14 = mm_11 * ld_15\n        matmul_4_16 = acc_matmul_44 * broadcast_42__k0_gemm_10\n        ld_18 = in1[tile_t, tile_n]\n        mul_12_17 = matmul_4_16 * ld_18\n        add_13_19 = mul_11_14 + mul_12_17\n        mul_30_20 = mm_1_12 * ld_15\n        matmul_29_21 = acc_matmul_50 * broadcast_42__k0_gemm_10\n        mul_31_22 = matmul_29_21 * ld_18\n        add_32_23 = mul_30_20 + mul_31_22\n        out_mm_2[tile_t, tile_n] = mm_2_13\n        out_add_13[tile_t, tile_n] = add_13_19\n        out_add_32[tile_t, tile_n] = add_32_23\n    return out_mm_2, out_add_13, out_add_32"}}</script>
+<script>
+(function () {
+  const DATA = JSON.parse(document.getElementById('atlas-data').textContent);
+  const fmt = n => n == null ? '–' : Math.round(n).toLocaleString('en-US');
+  const ANCHORS = new Set(['matmul', 'batch_matmul', 'attention']);
+  const svgNS = 'http://www.w3.org/2000/svg';
+  const el = (tag, attrs, parent) => { const e = document.createElementNS(svgNS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; };
+  const esc = s => String(s).replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+  const shp = s => '[' + s.join(', ') + ']';
+
+  // header stats
+  const loomTotal = DATA.kernels.reduce((a, k) => a + (k.loom.cycles || 0), 0);
+  document.getElementById('st-kernels').textContent = DATA.kernels.length;
+  document.getElementById('st-cands').textContent = DATA.plan.candidates;
+  document.getElementById('st-est').textContent = fmt(DATA.plan.total_cycles);
+  document.getElementById('st-loom').textContent = fmt(loomTotal);
+  document.getElementById('st-err').textContent = DATA.reference.max_rel_err.toExponential(1);
+
+  // ---------------- OpGraph explorer ----------------
+  const canvas = document.getElementById('g-canvas');
+  const inspector = document.getElementById('g-inspector');
+  let mode = 'canonical', showConsts = false, selected = null;
+
+  function layout(graph) {
+    const all = graph.nodes;
+    const byName = Object.fromEntries(all.map(n => [n.name, n]));
+    const visible = all.filter(n => showConsts || (n.kind !== 'const' && n.kind !== 'param'));
+    const vis = new Set(visible.map(n => n.name));
+    const layer = {};
+    for (const n of visible) {
+      const preds = n.inputs.filter(i => vis.has(i));
+      layer[n.name] = preds.length ? Math.max(...preds.map(p => layer[p])) + 1 : 0;
+    }
+    const rows = {};
+    for (const n of visible) (rows[layer[n.name]] = rows[layer[n.name]] || []).push(n);
+    const pos = {};
+    const colW = 156, rowH = 70;
+    const nLayers = Object.keys(rows).length;
+    let maxCols = 1;
+    for (let l = 0; l < nLayers; l++) {
+      const row = rows[l];
+      if (l > 0) {
+        row.forEach(n => { const ps = n.inputs.filter(i => vis.has(i) && pos[i]); n._bc = ps.length ? ps.reduce((a, p) => a + pos[p].x, 0) / ps.length : 1e9; });
+        row.sort((a, b) => a._bc - b._bc);
+      }
+      maxCols = Math.max(maxCols, row.length);
+      row.forEach((n, i) => { pos[n.name] = { x: 30 + i * colW, y: 30 + l * rowH, n }; });
+    }
+    // centre rows narrower than the widest
+    const totalW = 30 + maxCols * colW;
+    for (let l = 0; l < nLayers; l++) { const row = rows[l]; const off = ((maxCols - row.length) * colW) / 2; row.forEach(n => pos[n.name].x += off); }
+    return { pos, vis, byName, width: totalW + 10, height: 30 + nLayers * rowH + 10 };
+  }
+
+  function constInputs(n, byName) { return n.inputs.filter(i => byName[i] && (byName[i].kind === 'const' || byName[i].kind === 'param')); }
+
+  function drawGraph() {
+    const graph = DATA[mode];
+    const L = layout(graph);
+    canvas.innerHTML = '';
+    const svg = el('svg', { viewBox: `0 0 ${L.width} ${L.height}`, width: L.width, height: L.height, role: 'img', 'aria-label': `${mode} OpGraph of the Llama block, ${graph.nodes.length} nodes` }, canvas);
+    const defs = el('defs', {}, svg);
+    const m = el('marker', { id: 'garrow', viewBox: '0 0 10 10', refX: '10', refY: '5', markerWidth: '6', markerHeight: '6', orient: 'auto' }, defs);
+    el('path', { d: 'M0 0 L10 5 L0 10 z', fill: 'currentColor' }, m).style.color = 'var(--muted)';
+    const edges = el('g', {}, svg);
+    const nodes = el('g', {}, svg);
+    const W = 126, H = 40;
+    for (const name in L.pos) {
+      const { x, y, n } = L.pos[name];
+      for (const i of n.inputs) {
+        if (!L.vis.has(i)) continue;
+        const s = L.pos[i];
+        const d = `M ${s.x + W / 2} ${s.y + H} C ${s.x + W / 2} ${s.y + H + 28}, ${x + W / 2} ${y - 28}, ${x + W / 2} ${y}`;
+        el('path', { d, class: 'edge', 'data-from': i, 'data-to': name, 'marker-end': 'url(#garrow)' }, edges);
+      }
+    }
+    for (const name in L.pos) {
+      const { x, y, n } = L.pos[name];
+      const cls = ['node', 'kind-' + n.kind, ANCHORS.has(n.op) ? 'anchor' : '', selected === name ? 'selected' : ''].join(' ');
+      const g = el('g', { class: cls, transform: `translate(${x},${y})`, tabindex: '0', role: 'button', 'aria-label': `${n.name}: ${n.op} ${shp(n.shape)}` }, nodes);
+      el('rect', { width: W, height: H, rx: 5 }, g);
+      const label = n.kind === 'compute' || n.kind === 'layout' ? `${n.op}` : n.name;
+      const t = el('text', { x: 8, y: 16 }, g); t.textContent = label.length > 18 ? label.slice(0, 17) + '…' : label;
+      const sub = el('text', { x: 8, y: 31, class: 'shape' }, g);
+      let subtxt = shp(n.shape);
+      if (n.attrs && n.attrs.scalar !== undefined) subtxt += `  ·${n.attrs.scalar_first ? ' s⊕x' : ' ' + n.attrs.scalar}`;
+      sub.textContent = subtxt;
+      const cs = constInputs(n, L.byName);
+      if (!showConsts && cs.length) { const c = el('text', { x: W - 6, y: 16, class: 'consts', 'text-anchor': 'end' }, g); c.textContent = cs.length === 1 ? 'w' : cs.length + 'w'; }
+      const pick = () => { selected = name; drawGraph(); inspect(n, L.byName, graph); };
+      g.addEventListener('click', pick);
+      g.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(); } });
+    }
+    if (selected) for (const p of edges.querySelectorAll('path')) if (p.dataset.from === selected || p.dataset.to === selected) p.classList.add('hi');
+  }
+
+  function inspect(n, byName, graph) {
+    const users = graph.nodes.filter(u => u.inputs.includes(n.name)).map(u => u.name);
+    const ins = n.inputs.map(i => `${i} <span class="hint">${byName[i] ? shp(byName[i].shape) : ''}</span>`).join('<br>') || '<span class="hint">none</span>';
+    const attrs = Object.keys(n.attrs || {}).length ? esc(JSON.stringify(n.attrs)) : '<span class="hint">{}</span>';
+    inspector.innerHTML = `<h4>${esc(n.name)}</h4><dl><dt>op</dt><dd>${esc(n.op)}</dd><dt>kind</dt><dd>${esc(n.kind)}</dd><dt>type</dt><dd>float16${shp(n.shape)}</dd><dt>inputs</dt><dd>${ins}</dd><dt>attrs</dt><dd>${attrs}</dd><dt>users</dt><dd>${users.map(esc).join('<br>') || '<span class="hint">graph output</span>'}</dd></dl>`;
+  }
+  document.getElementById('g-raw').addEventListener('click', () => { mode = 'raw'; selected = null; setSeg(); drawGraph(); inspector.innerHTML = '<span class="hint">Raw graph: one node per ATen op, layout ops dashed.</span>'; });
+  document.getElementById('g-can').addEventListener('click', () => { mode = 'canonical'; selected = null; setSeg(); drawGraph(); inspector.innerHTML = '<span class="hint">Canonical graph: registered ops, 2D activations, folded weights.</span>'; });
+  document.getElementById('g-consts').addEventListener('change', e => { showConsts = e.target.checked; drawGraph(); });
+  function setSeg() { document.getElementById('g-raw').setAttribute('aria-pressed', mode === 'raw'); document.getElementById('g-can').setAttribute('aria-pressed', mode === 'canonical'); }
+  drawGraph();
+  const att = DATA.canonical.nodes.find(n => n.op === 'attention');
+  if (att) { selected = att.name; drawGraph(); inspect(att, Object.fromEntries(DATA.canonical.nodes.map(n => [n.name, n])), DATA.canonical); }
+
+  // ---------------- pass table ----------------
+  const EFFECT = { fold_constants: 'parameter-only sub-graphs evaluated offline', match_rotate_half: 'cat(neg(slice), slice) → rotate_half', match_rope: 'x·cos + rotate_half(x)·sin → rope', lower_rope: 'rope on matmul(h, W) → second GEMM with W·R, 2D tables', match_rmsnorm: 'x·rsqrt(mean(x²)+ε)·g → rmsnorm', lower_rmsnorm: 'row scale commuted through the GEMMs, gain folded', match_attention: 'bmm / softmax / bmm cluster → attention', fold_constants_2: 'fold again after lowering', cleanup_1: 'dead-code elimination', flatten_to_2d: 'identity reshapes removed, 2D activations', rewrite_unregistered: 'neg / rsqrt / sigmoid / silu / row_mean → registered ops', insert_broadcasts: 'explicit broadcast for [T,1] × [T,N]', fold_constants_3: 'fold scalars on constants', dedupe_constants: 'identical tensors merged (RoPE tables)', cleanup_2: 'DCE + topological order' };
+  const tb = document.querySelector('#pass-table tbody');
+  DATA.pass_log.forEach((p, i) => { const tr = document.createElement('tr'); tr.innerHTML = `<td class="num">${i + 1}</td><td><code>${esc(p.pass)}</code></td><td>${EFFECT[p.pass] || ''}</td><td class="num">${p.rewrites}</td><td class="num">${p.nodes}</td><td class="num">${p.max_rel_err != null ? p.max_rel_err.toExponential(1) : '–'}</td>`; tb.appendChild(tr); });
+
+  // ---------------- plan chart ----------------
+  (function () {
+    const svg = document.getElementById('plan-chart');
+    const top = DATA.plan.top;
+    const max = DATA.plan.worst;
+    const x0 = 140, x1 = 700, rowH = 20, y0 = 14;
+    const sx = v => x0 + (v / max) * (x1 - x0);
+    top.forEach((c, i) => {
+      const y = y0 + i * rowH;
+      const r = el('rect', { x: x0, y: y, width: sx(c.cycles) - x0, height: 14, class: i === 0 ? 'lm' : 'an', rx: 2 }, svg);
+      const t = el('text', { x: x0 - 8, y: y + 11, 'text-anchor': 'end' }, svg); t.textContent = `#${c.index} · ${c.kernels} kernels`;
+      const v = el('text', { x: sx(c.cycles) + 6, y: y + 11 }, svg); v.textContent = fmt(c.cycles);
+    });
+    const y = y0 + top.length * rowH + 4;
+    el('line', { x1: x0, x2: x1, y1: y, y2: y, class: 'axis' }, svg);
+    [0, 0.5, 1].forEach(f => { const t = el('text', { x: sx(max * f), y: y + 14, 'text-anchor': 'middle', class: 'tick' }, svg); t.textContent = fmt(max * f); });
+    document.getElementById('plan-caption').textContent = `The six cheapest of ${DATA.plan.legal} legal candidates (${DATA.plan.candidates} enumerated, ${DATA.plan.candidates - DATA.plan.legal} rejected by the legality check). Merging all five Q/K/V/rotated-Q/rotated-K GEMMs into one kernel wins by ${fmt(top[1].cycles - top[0].cycles)} cycles over the best six-kernel split; the worst legal plan costs ${fmt(max)}.`;
+  })();
+
+  // ---------------- OpIR kernel flow ----------------
+  const flow = document.getElementById('k-flow');
+  const detail = document.getElementById('k-detail');
+  let selK = 0;
+  const kernels = DATA.kernels;
+  const shapeOf = t => DATA.tensors[t] ? shp(DATA.tensors[t].shape) : '';
+  function drawFlow() {
+    flow.innerHTML = '';
+    const KW = 150, KH = 48, gap = 96, x = 120, y0 = 40;
+    const H = y0 + kernels.length * (KH + gap);
+    const svg = el('svg', { viewBox: `0 0 330 ${H}`, width: 330, height: H, role: 'img', 'aria-label': 'Kernel dataflow of the Llama block program' }, flow);
+    const defs = el('defs', {}, svg);
+    const m = el('marker', { id: 'karrow', viewBox: '0 0 10 10', refX: '10', refY: '5', markerWidth: '7', markerHeight: '7', orient: 'auto' }, defs);
+    el('path', { d: 'M0 0 L10 5 L0 10 z', fill: 'currentColor' }, m).style.color = 'var(--teal)';
+    const ky = i => y0 + i * (KH + gap);
+    const producer = {}; kernels.forEach((k, i) => k.outputs.forEach(o => producer[o.tensor] = i));
+    // input x
+    const xin = el('g', { class: 'tlabel' }, svg); const t0 = el('text', { x: x + KW / 2, y: 18, 'text-anchor': 'middle' }, xin); t0.textContent = 'x ' + shapeOf('x');
+    // edges
+    kernels.forEach((k, i) => {
+      const seen = new Set();
+      k.args.forEach(a => {
+        if (DATA.program.params.includes(a.tensor)) return;
+        if (seen.has(a.tensor)) return; seen.add(a.tensor);
+        const src = producer[a.tensor];
+        const yTop = ky(i);
+        if (src === undefined) { // model input
+          if (i === 0) el('line', { x1: x + KW / 2, y1: 22, x2: x + KW / 2, y2: yTop, class: 'tedge', 'marker-end': 'url(#karrow)' }, svg);
+          else { const d = `M ${x + KW / 2 + 40} 22 C ${x + KW + 60} 22, ${x + KW + 60} ${yTop - 30}, ${x + KW - 20} ${yTop}`; el('path', { d, class: 'tedge', 'marker-end': 'url(#karrow)' }, svg); const l = el('text', { x: x + KW + 46, y: (22 + yTop) / 2, class: 'tlabel' }, svg); l.textContent = 'x'; }
+          return;
+        }
+        const yBot = ky(src) + KH;
+        const direct = src === i - 1;
+        // count how many edges start from src to offset labels
+        if (direct) {
+          const off = (Array.from(seen).length - 1) * 34 - 34;
+          const xx = x + KW / 2 + off;
+          el('line', { x1: xx, y1: yBot, x2: xx, y2: yTop, class: 'tedge', 'marker-end': 'url(#karrow)' }, svg);
+          const l = el('text', { x: xx + 5, y: yBot + 30 + (seen.size % 2) * 12, class: 'tlabel' }, svg); l.textContent = a.tensor; 
+          const l2 = el('text', { x: xx + 5, y: yBot + 42 + (seen.size % 2) * 12, class: 'tlabel' }, svg); l2.textContent = shapeOf(a.tensor);
+        } else {
+          const d = `M ${x + KW} ${yBot - KH / 2} C ${x + KW + 70} ${yBot - KH / 2}, ${x + KW + 70} ${yTop - 16}, ${x + KW - 16} ${yTop}`;
+          el('path', { d, class: 'tedge', 'marker-end': 'url(#karrow)' }, svg);
+          const l = el('text', { x: x + KW + 52, y: (yBot + yTop) / 2 - 2, class: 'tlabel' }, svg); l.textContent = a.tensor;
+          const l2 = el('text', { x: x + KW + 52, y: (yBot + yTop) / 2 + 10, class: 'tlabel' }, svg); l2.textContent = shapeOf(a.tensor);
+        }
+      });
+    });
+    // kernels + param chips
+    kernels.forEach((k, i) => {
+      const y = ky(i);
+      const g = el('g', { class: 'kbox' + (selK === i ? ' selected' : ''), transform: `translate(${x},${y})`, tabindex: '0', role: 'button', 'aria-label': k.name }, svg);
+      el('rect', { width: KW, height: KH, rx: 6 }, g);
+      const t = el('text', { x: 10, y: 20 }, g); t.textContent = k.name;
+      const s = el('text', { x: 10, y: 36, class: 'sub' }, g);
+      s.textContent = k.kind === 'gemm' ? `${k.gemms.length} GEMM${k.gemms.length > 1 ? 's' : ''}${k.sumsq ? ' + Σx²' : ''} · K=${k.k_extent}` : `flash attention · H=${k.attrs.heads}`;
+      const params = k.args.filter(a => DATA.program.params.includes(a.tensor));
+      params.forEach((a, j) => {
+        const pg = el('g', { class: 'pchip', transform: `translate(${x - 104}, ${y - 6 + j * 15})` }, svg);
+        el('rect', { width: 88, height: 12, rx: 3 }, pg);
+        const pt = el('text', { x: 4, y: 9 }, pg); pt.textContent = (a.name + ' ' + shapeOf(a.tensor)).slice(0, 17);
+      });
+      if (params.length) el('line', { x1: x - 16, y1: y + KH / 2, x2: x, y2: y + KH / 2, class: 'tedge', style: 'stroke: var(--violet)' }, svg);
+      const pick = () => { selK = i; drawFlow(); showKernel(k); };
+      g.addEventListener('click', pick);
+      g.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(); } });
+    });
+    const out = kernels[kernels.length - 1];
+    const yo = ky(kernels.length - 1) + KH;
+    el('line', { x1: x + KW / 2, y1: yo, x2: x + KW / 2, y2: yo + 40, class: 'tedge', 'marker-end': 'url(#karrow)' }, svg);
+    const lo = el('text', { x: x + KW / 2 + 6, y: yo + 34, class: 'tlabel' }, svg); lo.textContent = `${out.outputs[0].tensor} ${shapeOf(out.outputs[0].tensor)} → output`;
+  }
+  function showKernel(k) {
+    const roles = k.args.map(a => `<tr><td><code>${esc(a.name)}</code></td><td>${esc(a.role)}</td><td><code>${esc(a.tensor)}</code></td><td class="num">${shapeOf(a.tensor)}${a.view ? ' → ' + shp(a.view) : ''}</td></tr>`).join('');
+    const outs = k.outputs.map(o => `<tr><td><code>${esc(o.tensor)}</code></td><td class="num">${shapeOf(o.tensor)}</td><td>← <code>${esc(o.value)}</code></td></tr>`).join('');
+    let body = '';
+    if (k.kind === 'gemm') {
+      body += `<h5>grid and loop</h5><div class="ssa">for tile_t, tile_n in hl.tile([${k.grid.rows}, ${k.grid.cols}]) · for tile_k in hl.tile(${k.k_extent})</div>`;
+      body += `<h5>accumulators</h5><div class="ssa">${k.gemms.map(g => `<span class="n">${esc(g.acc)}</span> = <span class="o">hl.dot</span>(lhs[tile_t, tile_k], ${esc(g.rhs)}[tile_k, tile_n])`).join('<br>')}${k.sumsq ? '<br><span class="n">ss</span> = <span class="o">hl.dot</span>(lhs² · ½, ones[tile_k, 32])  <span class="a">// RMSNorm fold</span>' : ''}</div>`;
+      body += `<h5>epilogue (${k.epilogue.length} ops)</h5><div class="ssa">${k.epilogue.map(op => `<span class="n">${esc(op.name)}</span> = <span class="o">${esc(op.op)}</span>(${op.inputs.map(esc).join(', ')})${Object.keys(op.attrs).length ? ` <span class="a">${esc(JSON.stringify(op.attrs))}</span>` : ''}`).join('<br>')}</div>`;
+    } else {
+      body += `<h5>attrs</h5><div class="ssa">${esc(JSON.stringify(k.attrs))}</div><h5>template</h5><div class="ssa">for tile_b, tile_h, tile_m in hl.tile([${k.attrs.batch}, ${k.attrs.heads}, ${k.attrs.seq}], block_size=[1, 1, None]) · for tile_n in hl.tile(seq)<br>online softmax: m_i, l_i, acc carried through the loop</div>`;
+    }
+    const bd = k.breakdown;
+    body += `<h5>plan</h5><div class="tablewrap"><table class="grid"><tbody><tr><td>tiles</td><td class="num">${esc(JSON.stringify(k.tiles))}</td></tr><tr><td>analytic estimate</td><td class="num">${fmt(k.cycles)} cycles · ${bd.waves} wave(s) · ${bd.loop_iters} loop iters · load ${fmt(bd.t_load_iter)} / compute ${fmt(bd.t_compute_iter)} per iter · L1 ${fmt(bd.l1_bytes)} B${bd.double_buffer ? ' · double-buffered' : ''}</td></tr><tr><td>Loom</td><td class="num">${fmt(k.loom.cycles)} cycles · blocks ${esc(JSON.stringify(k.loom.block_sizes))} · ${k.loom.n_variants} variants</td></tr><tr><td>validation</td><td class="num">frontend ${k.validation.frontend ? 'ok' : 'FAIL'} · exploration ${k.validation.exploration ? 'ok' : 'FAIL'}</td></tr></tbody></table></div>`;
+    detail.innerHTML = `<h4>${esc(k.name)}</h4><div class="sub">kind = ${esc(k.kind)}</div><h5>args</h5><div class="tablewrap"><table class="grid"><thead><tr><th>arg</th><th>role</th><th>tensor</th><th class="num">shape</th></tr></thead><tbody>${roles}</tbody></table></div><h5>outputs</h5><div class="tablewrap"><table class="grid"><tbody>${outs}</tbody></table></div>${body}`;
+  }
+  drawFlow(); showKernel(kernels[0]);
+
+  // ---------------- sources ----------------
+  const CAP = { k2_gemm: 'k2_gemm: the output projection with the residual add in the epilogue. One accumulator, one extra input loaded at the output tile.', k0_gemm: 'k0_gemm: RMSNorm + Q/K/V + RoPE. Five accumulators share the LHS; Σx² rides in the same loop through hl.dot against a ones matrix; ε is emitted as 0.01 · 0.001.', k1_attention: 'k1_attention: the flash-attention template over [B, S, H, d] views; tile_b and tile_h are pinned to 1 so every tile is 2D.' };
+  function hl(src) { return esc(src).replace(/\b(def|for|in|return|None)\b/g, '<span class="kw">$1</span>').replace(/\b(hl\.\w+|torch\.\w+|broadcast)\b/g, '<span class="fn">$1</span>').replace(/(#[^\n]*)/g, '<span class="cm">$1</span>'); }
+  function showSrc(name) { document.getElementById('src').innerHTML = hl(DATA.sources[name]); document.getElementById('src-caption').textContent = CAP[name]; document.querySelectorAll('.srcsel button').forEach(b => b.setAttribute('aria-pressed', b.dataset.src === name)); }
+  document.querySelectorAll('.srcsel button').forEach(b => b.addEventListener('click', () => showSrc(b.dataset.src)));
+  showSrc('k2_gemm');
+
+  // ---------------- cost chart + table ----------------
+  (function () {
+    const svg = document.getElementById('cost-chart');
+    const x0 = 120, x1 = 660, y0 = 16, rowH = 40;
+    const max = Math.max(...kernels.map(k => Math.max(k.cycles, k.loom.cycles || 0)));
+    const sx = v => x0 + (v / max) * (x1 - x0);
+    kernels.forEach((k, i) => {
+      const y = y0 + i * rowH;
+      el('rect', { x: x0, y: y, width: sx(k.cycles) - x0, height: 12, class: 'an', rx: 2 }, svg);
+      el('rect', { x: x0, y: y + 14, width: sx(k.loom.cycles) - x0, height: 12, class: 'lm', rx: 2 }, svg);
+      const t = el('text', { x: x0 - 8, y: y + 18, 'text-anchor': 'end' }, svg); t.textContent = k.name;
+      const a = el('text', { x: sx(k.cycles) + 6, y: y + 10, class: 'tick' }, svg); a.textContent = fmt(k.cycles);
+      const l = el('text', { x: sx(k.loom.cycles) + 6, y: y + 24 }, svg); l.textContent = fmt(k.loom.cycles) + ' ×' + (k.cycles / k.loom.cycles).toFixed(2);
+    });
+    const y = y0 + kernels.length * rowH + 2;
+    el('line', { x1: x0, x2: x1, y1: y, y2: y, class: 'axis' }, svg);
+    [0, 0.25, 0.5, 0.75, 1].forEach(f => { const t = el('text', { x: sx(max * f), y: y + 14, 'text-anchor': 'middle', class: 'tick' }, svg); t.textContent = fmt(max * f); });
+    const tb = document.querySelector('#cost-table tbody');
+    kernels.forEach(k => { const tr = document.createElement('tr'); tr.innerHTML = `<td><code>${esc(k.name)}</code></td><td><code>${esc(JSON.stringify(k.tiles))}</code></td><td class="num">${fmt(k.cycles)}</td><td class="num">${fmt(k.loom.cycles)}</td><td><code>${esc(JSON.stringify(k.loom.block_sizes))}</code></td><td class="num">${k.loom.n_variants}</td><td>${k.validation.frontend ? 'ok' : 'FAIL'}</td><td>${k.validation.exploration ? 'ok' : 'FAIL'}</td></tr>`; tb.appendChild(tr); });
+  })();
+})();
+</script>

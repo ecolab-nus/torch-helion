@@ -1,0 +1,6 @@
+Program llama_block: 5 kernels, inputs=['x'], outputs=['add_5']
+  [gemm] k0_gemm(lhs<-x, w0<-permute_norm_40, w1<-permute_2_norm_48, w2<-permute_4_norm_56, w3<-permute_rot_3_norm_44, w4<-permute_2_rot_28_norm_52, in0<-rope_cos_1, in1<-rope_sin_2) -> mul_59, add_13, add_32 gemms=5 sumsq=True epilogue=19 est=57,409cyc tiles={'tile_t': 64, 'tile_n': 32, 'tile_k': 256}
+  [attention] k1_attention(q<-add_13, k<-add_32, v<-mul_59) -> permute_7 attrs={'batch': 2, 'seq': 256, 'heads': 4, 'head_dim': 64, 'scale': 0.125} est=23,846cyc tiles={'tile_m': 32, 'tile_n': 128}
+  [gemm] k2_gemm(lhs<-permute_7, w0<-permute_8, in0<-x) -> add_3 gemms=1 sumsq=False epilogue=1 est=12,249cyc tiles={'tile_t': 32, 'tile_n': 64, 'tile_k': 128}
+  [gemm] k3_gemm(lhs<-add_3, w0<-permute_9_norm_65, w1<-permute_10_norm_69) -> mul_10 gemms=2 sumsq=True epilogue=13 est=34,991cyc tiles={'tile_t': 64, 'tile_n': 64, 'tile_k': 256}
+  [gemm] k4_gemm(lhs<-mul_10, w0<-permute_11, in0<-add_3) -> add_5 gemms=1 sumsq=False epilogue=1 est=20,155cyc tiles={'tile_t': 32, 'tile_n': 64, 'tile_k': 128}

@@ -1,0 +1,122 @@
+[
+  {
+    "pass": "fold_constants",
+    "rewrites": 7,
+    "nodes": 100,
+    "max_rel_err": 0.0
+  },
+  {
+    "pass": "match_softplus",
+    "rewrites": 0,
+    "nodes": 100,
+    "max_rel_err": 0.0
+  },
+  {
+    "pass": "match_rotate_half",
+    "rewrites": 2,
+    "nodes": 100,
+    "max_rel_err": 0.0
+  },
+  {
+    "pass": "match_rope",
+    "rewrites": 2,
+    "nodes": 100,
+    "max_rel_err": 0.0
+  },
+  {
+    "pass": "lower_rope",
+    "rewrites": 2,
+    "nodes": 118,
+    "max_rel_err": 0.0
+  },
+  {
+    "pass": "match_rmsnorm",
+    "rewrites": 2,
+    "nodes": 118,
+    "max_rel_err": 0.0
+  },
+  {
+    "pass": "push_slice_into_gemm",
+    "rewrites": 0,
+    "nodes": 118,
+    "max_rel_err": 0.0
+  },
+  {
+    "pass": "lower_rmsnorm",
+    "rewrites": 2,
+    "nodes": 156,
+    "max_rel_err": 9.177823812933639e-06
+  },
+  {
+    "pass": "match_attention",
+    "rewrites": 1,
+    "nodes": 156,
+    "max_rel_err": 9.177823812933639e-06
+  },
+  {
+    "pass": "match_ssd",
+    "rewrites": 0,
+    "nodes": 156,
+    "max_rel_err": 9.177823812933639e-06
+  },
+  {
+    "pass": "lower_cumsum",
+    "rewrites": 0,
+    "nodes": 156,
+    "max_rel_err": 9.177823812933639e-06
+  },
+  {
+    "pass": "fold_constants_2",
+    "rewrites": 0,
+    "nodes": 156,
+    "max_rel_err": 9.177823812933639e-06
+  },
+  {
+    "pass": "cleanup_1",
+    "rewrites": 81,
+    "nodes": 75,
+    "max_rel_err": 9.177823812933639e-06
+  },
+  {
+    "pass": "flatten_to_2d",
+    "rewrites": 18,
+    "nodes": 57,
+    "max_rel_err": 9.177823812933639e-06
+  },
+  {
+    "pass": "materialize_const_operands",
+    "rewrites": 0,
+    "nodes": 57,
+    "max_rel_err": 9.177823812933639e-06
+  },
+  {
+    "pass": "rewrite_unregistered",
+    "rewrites": 1,
+    "nodes": 60,
+    "max_rel_err": 9.177823812933639e-06
+  },
+  {
+    "pass": "insert_broadcasts",
+    "rewrites": 0,
+    "nodes": 60,
+    "max_rel_err": 9.177823812933639e-06
+  },
+  {
+    "pass": "fold_constants_3",
+    "rewrites": 0,
+    "nodes": 60,
+    "max_rel_err": 9.177823812933639e-06
+  },
+  {
+    "pass": "dedupe_constants",
+    "rewrites": 2,
+    "nodes": 60,
+    "max_rel_err": 9.177823812933639e-06
+  },
+  {
+    "pass": "cleanup_2",
+    "rewrites": 2,
+    "nodes": 58,
+    "max_rel_err": 9.177823812933639e-06
+  }
+]

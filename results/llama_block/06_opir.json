@@ -1,0 +1,1552 @@
+{
+  "name": "llama_block",
+  "inputs": [
+    "x"
+  ],
+  "outputs": [
+    "add_5"
+  ],
+  "tensors": {
+    "x": {
+      "shape": [
+        512,
+        256
+      ],
+      "dtype": "float16"
+    },
+    "permute_norm_40": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float16"
+    },
+    "matmul_41": {
+      "shape": [
+        512,
+        256
+      ],
+      "dtype": "float16"
+    },
+    "row_sumsq_36": {
+      "shape": [
+        512,
+        1
+      ],
+      "dtype": "float16"
+    },
+    "mul_37": {
+      "shape": [
+        512,
+        1
+      ],
+      "dtype": "float16"
+    },
+    "add_38": {
+      "shape": [
+        512,
+        1
+      ],
+      "dtype": "float16"
+    },
+    "powf_39": {
+      "shape": [
+        512,
+        1
+      ],
+      "dtype": "float16"
+    },
+    "broadcast_42": {
+      "shape": [
+        512,
+        256
+      ],
+      "dtype": "float16"
+    },
+    "mul_43": {
+      "shape": [
+        512,
+        256
+      ],
+      "dtype": "float16"
+    },
+    "permute_2_norm_48": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float16"
+    },
+    "matmul_49": {
+      "shape": [
+        512,
+        256
+      ],
+      "dtype": "float16"
+    },
+    "broadcast_50": {
+      "shape": [
+        512,
+        256
+      ],
+      "dtype": "float16"
+    },
+    "mul_51": {
+      "shape": [
+        512,
+        256
+      ],
+      "dtype": "float16"
+    },
+    "permute_4_norm_56": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float16"
+    },
+    "matmul_57": {
+      "shape": [
+        512,
+        256
+      ],
+      "dtype": "float16"
+    },
+    "broadcast_58": {
+      "shape": [
+        512,
+        256
+      ],
+      "dtype": "float16"
+    },
+    "mul_59": {
+      "shape": [
+        512,
+        256
+      ],
+      "dtype": "float16"
+    },
+    "rope_cos_1": {
+      "shape": [
+        512,
+        256
+      ],
+      "dtype": "float16"
+    },
+    "mul_11": {
+      "shape": [
+        512,
+        256
+      ],
+      "dtype": "float16"
+    },
+    "permute_rot_3_norm_44": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float16"
+    },
+    "matmul_45": {
+      "shape": [
+        512,
+        256
+      ],
+      "dtype": "float16"
+    },
+    "broadcast_46": {
+      "shape": [
+        512,
+        256
+      ],
+      "dtype": "float16"
+    },
+    "mul_47": {
+      "shape": [
+        512,
+        256
+      ],
+      "dtype": "float16"
+    },
+    "rope_sin_2": {
+      "shape": [
+        512,
+        256
+      ],
+      "dtype": "float16"
+    },
+    "mul_12": {
+      "shape": [
+        512,
+        256
+      ],
+      "dtype": "float16"
+    },
+    "add_13": {
+      "shape": [
+        512,
+        256
+      ],
+      "dtype": "float16"
+    },
+    "mul_30": {
+      "shape": [
+        512,
+        256
+      ],
+      "dtype": "float16"
+    },
+    "permute_2_rot_28_norm_52": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float16"
+    },
+    "matmul_53": {
+      "shape": [
+        512,
+        256
+      ],
+      "dtype": "float16"
+    },
+    "broadcast_54": {
+      "shape": [
+        512,
+        256
+      ],
+      "dtype": "float16"
+    },
+    "mul_55": {
+      "shape": [
+        512,
+        256
+      ],
+      "dtype": "float16"
+    },
+    "mul_31": {
+      "shape": [
+        512,
+        256
+      ],
+      "dtype": "float16"
+    },
+    "add_32": {
+      "shape": [
+        512,
+        256
+      ],
+      "dtype": "float16"
+    },
+    "permute_7": {
+      "shape": [
+        512,
+        256
+      ],
+      "dtype": "float16"
+    },
+    "permute_8": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float16"
+    },
+    "mm_3": {
+      "shape": [
+        512,
+        256
+      ],
+      "dtype": "float16"
+    },
+    "add_3": {
+      "shape": [
+        512,
+        256
+      ],
+      "dtype": "float16"
+    },
+    "permute_9_norm_65": {
+      "shape": [
+        256,
+        512
+      ],
+      "dtype": "float16"
+    },
+    "matmul_66": {
+      "shape": [
+        512,
+        512
+      ],
+      "dtype": "float16"
+    },
+    "row_sumsq_61": {
+      "shape": [
+        512,
+        1
+      ],
+      "dtype": "float16"
+    },
+    "mul_62": {
+      "shape": [
+        512,
+        1
+      ],
+      "dtype": "float16"
+    },
+    "add_63": {
+      "shape": [
+        512,
+        1
+      ],
+      "dtype": "float16"
+    },
+    "powf_64": {
+      "shape": [
+        512,
+        1
+      ],
+      "dtype": "float16"
+    },
+    "broadcast_67": {
+      "shape": [
+        512,
+        512
+      ],
+      "dtype": "float16"
+    },
+    "mul_68": {
+      "shape": [
+        512,
+        512
+      ],
+      "dtype": "float16"
+    },
+    "mul_73": {
+      "shape": [
+        512,
+        512
+      ],
+      "dtype": "float16"
+    },
+    "exp_74": {
+      "shape": [
+        512,
+        512
+      ],
+      "dtype": "float16"
+    },
+    "add_75": {
+      "shape": [
+        512,
+        512
+      ],
+      "dtype": "float16"
+    },
+    "sigmoid": {
+      "shape": [
+        512,
+        512
+      ],
+      "dtype": "float16"
+    },
+    "mul_9": {
+      "shape": [
+        512,
+        512
+      ],
+      "dtype": "float16"
+    },
+    "permute_10_norm_69": {
+      "shape": [
+        256,
+        512
+      ],
+      "dtype": "float16"
+    },
+    "matmul_70": {
+      "shape": [
+        512,
+        512
+      ],
+      "dtype": "float16"
+    },
+    "broadcast_71": {
+      "shape": [
+        512,
+        512
+      ],
+      "dtype": "float16"
+    },
+    "mul_72": {
+      "shape": [
+        512,
+        512
+      ],
+      "dtype": "float16"
+    },
+    "mul_10": {
+      "shape": [
+        512,
+        512
+      ],
+      "dtype": "float16"
+    },
+    "permute_11": {
+      "shape": [
+        512,
+        256
+      ],
+      "dtype": "float16"
+    },
+    "mm_6": {
+      "shape": [
+        512,
+        256
+      ],
+      "dtype": "float16"
+    },
+    "add_5": {
+      "shape": [
+        512,
+        256
+      ],
+      "dtype": "float16"
+    }
+  },
+  "params": [
+    "permute_10_norm_69",
+    "permute_11",
+    "permute_2_norm_48",
+    "permute_2_rot_28_norm_52",
+    "permute_4_norm_56",
+    "permute_8",
+    "permute_9_norm_65",
+    "permute_norm_40",
+    "permute_rot_3_norm_44",
+    "rope_cos_1",
+    "rope_sin_2"
+  ],
+  "kernels": [
+    {
+      "name": "k0_gemm",
+      "kind": "gemm",
+      "args": [
+        {
+          "name": "lhs",
+          "tensor": "x",
+          "role": "lhs",
+          "view": null
+        },
+        {
+          "name": "w0",
+          "tensor": "permute_norm_40",
+          "role": "rhs",
+          "view": null
+        },
+        {
+          "name": "w1",
+          "tensor": "permute_2_norm_48",
+          "role": "rhs",
+          "view": null
+        },
+        {
+          "name": "w2",
+          "tensor": "permute_4_norm_56",
+          "role": "rhs",
+          "view": null
+        },
+        {
+          "name": "w3",
+          "tensor": "permute_rot_3_norm_44",
+          "role": "rhs",
+          "view": null
+        },
+        {
+          "name": "w4",
+          "tensor": "permute_2_rot_28_norm_52",
+          "role": "rhs",
+          "view": null
+        },
+        {
+          "name": "in0",
+          "tensor": "rope_cos_1",
+          "role": "extra",
+          "view": null
+        },
+        {
+          "name": "in1",
+          "tensor": "rope_sin_2",
+          "role": "extra",
+          "view": null
+        }
+      ],
+      "outputs": [
+        {
+          "tensor": "mul_59",
+          "value": "mul_59"
+        },
+        {
+          "tensor": "add_13",
+          "value": "add_13"
+        },
+        {
+          "tensor": "add_32",
+          "value": "add_32"
+        }
+      ],
+      "lhs": "lhs",
+      "k_extent": 256,
+      "grid": {
+        "rows": 512,
+        "cols": 256
+      },
+      "gemms": [
+        {
+          "acc": "acc_matmul_41",
+          "rhs": "w0"
+        },
+        {
+          "acc": "acc_matmul_49",
+          "rhs": "w1"
+        },
+        {
+          "acc": "acc_matmul_57",
+          "rhs": "w2"
+        },
+        {
+          "acc": "acc_matmul_45",
+          "rhs": "w3"
+        },
+        {
+          "acc": "acc_matmul_53",
+          "rhs": "w4"
+        }
+      ],
+      "sumsq": true,
+      "epilogue": [
+        {
+          "name": "mul_37__col",
+          "op": "mul",
+          "inputs": [
+            "sumsq"
+          ],
+          "attrs": {
+            "scalar": 0.00390625
+          }
+        },
+        {
+          "name": "add_38__col",
+          "op": "add",
+          "inputs": [
+            "mul_37__col"
+          ],
+          "attrs": {
+            "scalar": 1e-05
+          }
+        },
+        {
+          "name": "powf_39__col",
+          "op": "powf",
+          "inputs": [
+            "add_38__col"
+          ],
+          "attrs": {
+            "scalar": -0.5
+          }
+        },
+        {
+          "name": "broadcast_42",
+          "op": "broadcast",
+          "inputs": [
+            "powf_39__col"
+          ],
+          "attrs": {
+            "dim": 1,
+            "shape": [
+              512,
+              256
+            ]
+          }
+        },
+        {
+          "name": "mul_43",
+          "op": "mul",
+          "inputs": [
+            "acc_matmul_41",
+            "broadcast_42"
+          ],
+          "attrs": {}
+        },
+        {
+          "name": "broadcast_50",
+          "op": "broadcast",
+          "inputs": [
+            "powf_39__col"
+          ],
+          "attrs": {
+            "dim": 1,
+            "shape": [
+              512,
+              256
+            ]
+          }
+        },
+        {
+          "name": "mul_51",
+          "op": "mul",
+          "inputs": [
+            "acc_matmul_49",
+            "broadcast_50"
+          ],
+          "attrs": {}
+        },
+        {
+          "name": "broadcast_58",
+          "op": "broadcast",
+          "inputs": [
+            "powf_39__col"
+          ],
+          "attrs": {
+            "dim": 1,
+            "shape": [
+              512,
+              256
+            ]
+          }
+        },
+        {
+          "name": "mul_59",
+          "op": "mul",
+          "inputs": [
+            "acc_matmul_57",
+            "broadcast_58"
+          ],
+          "attrs": {}
+        },
+        {
+          "name": "mul_11",
+          "op": "mul",
+          "inputs": [
+            "mul_43",
+            "in0"
+          ],
+          "attrs": {}
+        },
+        {
+          "name": "broadcast_46",
+          "op": "broadcast",
+          "inputs": [
+            "powf_39__col"
+          ],
+          "attrs": {
+            "dim": 1,
+            "shape": [
+              512,
+              256
+            ]
+          }
+        },
+        {
+          "name": "mul_47",
+          "op": "mul",
+          "inputs": [
+            "acc_matmul_45",
+            "broadcast_46"
+          ],
+          "attrs": {}
+        },
+        {
+          "name": "mul_12",
+          "op": "mul",
+          "inputs": [
+            "mul_47",
+            "in1"
+          ],
+          "attrs": {}
+        },
+        {
+          "name": "add_13",
+          "op": "add",
+          "inputs": [
+            "mul_11",
+            "mul_12"
+          ],
+          "attrs": {}
+        },
+        {
+          "name": "mul_30",
+          "op": "mul",
+          "inputs": [
+            "mul_51",
+            "in0"
+          ],
+          "attrs": {}
+        },
+        {
+          "name": "broadcast_54",
+          "op": "broadcast",
+          "inputs": [
+            "powf_39__col"
+          ],
+          "attrs": {
+            "dim": 1,
+            "shape": [
+              512,
+              256
+            ]
+          }
+        },
+        {
+          "name": "mul_55",
+          "op": "mul",
+          "inputs": [
+            "acc_matmul_53",
+            "broadcast_54"
+          ],
+          "attrs": {}
+        },
+        {
+          "name": "mul_31",
+          "op": "mul",
+          "inputs": [
+            "mul_55",
+            "in1"
+          ],
+          "attrs": {}
+        },
+        {
+          "name": "add_32",
+          "op": "add",
+          "inputs": [
+            "mul_30",
+            "mul_31"
+          ],
+          "attrs": {}
+        }
+      ],
+      "attrs": {},
+      "constexprs": {},
+      "tiles": {
+        "tile_t": 64,
+        "tile_n": 32,
+        "tile_k": 256
+      },
+      "cost": {
+        "cycles": 57409.32007315775,
+        "breakdown": {
+          "cycles": 57409.32007315775,
+          "tiles": {
+            "tile_t": 64,
+            "tile_n": 32,
+            "tile_k": 256
+          },
+          "grid_tiles": 64,
+          "waves": 1,
+          "per_tile": 57409.32007315775,
+          "loop_iters": 1,
+          "t_load_iter": 12932.053333333333,
+          "t_compute_iter": 41325.79888268156,
+          "t_prologue": 0.0,
+          "t_epilogue": 1707.547857142857,
+          "t_store": 1443.92,
+          "double_buffer": true,
+          "l1_bytes": 368640,
+          "dram_read_bytes": 1441792.0,
+          "dram_write_bytes": 786432,
+          "orientation": "t_on_x",
+          "details": {
+            "n_gemm": 5,
+            "sumsq": true,
+            "extras": 2,
+            "outputs": 3
+          }
+        },
+        "evaluated": 80,
+        "feasible": 69,
+        "alternatives": [
+          {
+            "tiles": {
+              "tile_t": 64,
+              "tile_n": 32,
+              "tile_k": 256
+            },
+            "cycles": 57409.32007315775
+          },
+          {
+            "tiles": {
+              "tile_t": 64,
+              "tile_n": 32,
+              "tile_k": 128
+            },
+            "cycles": 58121.29340649108
+          },
+          {
+            "tiles": {
+              "tile_t": 32,
+              "tile_n": 64,
+              "tile_k": 128
+            },
+            "cycles": 59881.24614458632
+          },
+          {
+            "tiles": {
+              "tile_t": 32,
+              "tile_n": 64,
+              "tile_k": 256
+            },
+            "cycles": 62493.85947791965
+          },
+          {
+            "tiles": {
+              "tile_t": 32,
+              "tile_n": 64,
+              "tile_k": 64
+            },
+            "cycles": 67025.93947791966
+          }
+        ]
+      },
+      "notes": []
+    },
+    {
+      "name": "k1_attention",
+      "kind": "attention",
+      "args": [
+        {
+          "name": "q",
+          "tensor": "add_13",
+          "role": "q",
+          "view": [
+            2,
+            256,
+            4,
+            64
+          ]
+        },
+        {
+          "name": "k",
+          "tensor": "add_32",
+          "role": "k",
+          "view": [
+            2,
+            256,
+            4,
+            64
+          ]
+        },
+        {
+          "name": "v",
+          "tensor": "mul_59",
+          "role": "v",
+          "view": [
+            2,
+            256,
+            4,
+            64
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "tensor": "permute_7",
+          "value": "out"
+        }
+      ],
+      "lhs": null,
+      "k_extent": 0,
+      "grid": {},
+      "gemms": [],
+      "sumsq": false,
+      "epilogue": [],
+      "attrs": {
+        "batch": 2,
+        "seq": 256,
+        "heads": 4,
+        "head_dim": 64,
+        "scale": 0.125
+      },
+      "constexprs": {},
+      "tiles": {
+        "tile_m": 32,
+        "tile_n": 128
+      },
+      "cost": {
+        "cycles": 23845.96579209896,
+        "breakdown": {
+          "cycles": 23845.96579209896,
+          "tiles": {
+            "tile_m": 32,
+            "tile_n": 128
+          },
+          "grid_tiles": 64,
+          "waves": 1,
+          "per_tile": 23845.96579209896,
+          "loop_iters": 2,
+          "t_load_iter": 3857.12,
+          "t_compute_iter": 9171.28289604948,
+          "t_prologue": 822.64,
+          "t_epilogue": 342.3333333333333,
+          "t_store": 481.3066666666667,
+          "double_buffer": true,
+          "l1_bytes": 98560,
+          "dram_read_bytes": 4456448,
+          "dram_write_bytes": 262144,
+          "orientation": "bh_on_mesh",
+          "details": {
+            "batch": 2,
+            "heads": 4,
+            "seq": 256,
+            "head_dim": 64
+          }
+        },
+        "evaluated": 16,
+        "feasible": 16,
+        "alternatives": [
+          {
+            "tiles": {
+              "tile_m": 32,
+              "tile_n": 128
+            },
+            "cycles": 23845.96579209896
+          },
+          {
+            "tiles": {
+              "tile_m": 32,
+              "tile_n": 256
+            },
+            "cycles": 24277.9289934158
+          },
+          {
+            "tiles": {
+              "tile_m": 32,
+              "tile_n": 64
+            },
+            "cycles": 27405.719389465285
+          },
+          {
+            "tiles": {
+              "tile_m": 64,
+              "tile_n": 128
+            },
+            "cycles": 34114.861863527534
+          },
+          {
+            "tiles": {
+              "tile_m": 64,
+              "tile_n": 256
+            },
+            "cycles": 34970.651506384675
+          }
+        ]
+      },
+      "notes": []
+    },
+    {
+      "name": "k2_gemm",
+      "kind": "gemm",
+      "args": [
+        {
+          "name": "lhs",
+          "tensor": "permute_7",
+          "role": "lhs",
+          "view": null
+        },
+        {
+          "name": "w0",
+          "tensor": "permute_8",
+          "role": "rhs",
+          "view": null
+        },
+        {
+          "name": "in0",
+          "tensor": "x",
+          "role": "extra",
+          "view": null
+        }
+      ],
+      "outputs": [
+        {
+          "tensor": "add_3",
+          "value": "add_3"
+        }
+      ],
+      "lhs": "lhs",
+      "k_extent": 256,
+      "grid": {
+        "rows": 512,
+        "cols": 256
+      },
+      "gemms": [
+        {
+          "acc": "acc_mm_3",
+          "rhs": "w0"
+        }
+      ],
+      "sumsq": false,
+      "epilogue": [
+        {
+          "name": "add_3",
+          "op": "add",
+          "inputs": [
+            "in0",
+            "acc_mm_3"
+          ],
+          "attrs": {}
+        }
+      ],
+      "attrs": {},
+      "constexprs": {},
+      "tiles": {
+        "tile_t": 32,
+        "tile_n": 64,
+        "tile_k": 128
+      },
+      "cost": {
+        "cycles": 12249.286480446928,
+        "breakdown": {
+          "cycles": 12249.286480446928,
+          "tiles": {
+            "tile_t": 32,
+            "tile_n": 64,
+            "tile_k": 128
+          },
+          "grid_tiles": 64,
+          "waves": 1,
+          "per_tile": 12249.286480446928,
+          "loop_iters": 2,
+          "t_load_iter": 3036.3733333333334,
+          "t_compute_iter": 3952.983240223464,
+          "t_prologue": 0.0,
+          "t_epilogue": 825.64,
+          "t_store": 481.3066666666667,
+          "double_buffer": true,
+          "l1_bytes": 65536,
+          "dram_read_bytes": 655360.0,
+          "dram_write_bytes": 262144,
+          "orientation": "t_on_x",
+          "details": {
+            "n_gemm": 1,
+            "sumsq": false,
+            "extras": 1,
+            "outputs": 1
+          }
+        },
+        "evaluated": 80,
+        "feasible": 79,
+        "alternatives": [
+          {
+            "tiles": {
+              "tile_t": 32,
+              "tile_n": 64,
+              "tile_k": 128
+            },
+            "cycles": 12249.286480446928
+          },
+          {
+            "tiles": {
+              "tile_t": 64,
+              "tile_n": 32,
+              "tile_k": 128
+            },
+            "cycles": 12249.286480446928
+          },
+          {
+            "tiles": {
+              "tile_t": 32,
+              "tile_n": 64,
+              "tile_k": 64
+            },
+            "cycles": 13123.099813780262
+          },
+          {
+            "tiles": {
+              "tile_t": 64,
+              "tile_n": 32,
+              "tile_k": 64
+            },
+            "cycles": 13123.099813780262
+          },
+          {
+            "tiles": {
+              "tile_t": 32,
+              "tile_n": 64,
+              "tile_k": 256
+            },
+            "cycles": 13573.659813780261
+          }
+        ]
+      },
+      "notes": []
+    },
+    {
+      "name": "k3_gemm",
+      "kind": "gemm",
+      "args": [
+        {
+          "name": "lhs",
+          "tensor": "add_3",
+          "role": "lhs",
+          "view": null
+        },
+        {
+          "name": "w0",
+          "tensor": "permute_9_norm_65",
+          "role": "rhs",
+          "view": null
+        },
+        {
+          "name": "w1",
+          "tensor": "permute_10_norm_69",
+          "role": "rhs",
+          "view": null
+        }
+      ],
+      "outputs": [
+        {
+          "tensor": "mul_10",
+          "value": "mul_10"
+        }
+      ],
+      "lhs": "lhs",
+      "k_extent": 256,
+      "grid": {
+        "rows": 512,
+        "cols": 512
+      },
+      "gemms": [
+        {
+          "acc": "acc_matmul_66",
+          "rhs": "w0"
+        },
+        {
+          "acc": "acc_matmul_70",
+          "rhs": "w1"
+        }
+      ],
+      "sumsq": true,
+      "epilogue": [
+        {
+          "name": "mul_62__col",
+          "op": "mul",
+          "inputs": [
+            "sumsq"
+          ],
+          "attrs": {
+            "scalar": 0.00390625
+          }
+        },
+        {
+          "name": "add_63__col",
+          "op": "add",
+          "inputs": [
+            "mul_62__col"
+          ],
+          "attrs": {
+            "scalar": 1e-05
+          }
+        },
+        {
+          "name": "powf_64__col",
+          "op": "powf",
+          "inputs": [
+            "add_63__col"
+          ],
+          "attrs": {
+            "scalar": -0.5
+          }
+        },
+        {
+          "name": "broadcast_67",
+          "op": "broadcast",
+          "inputs": [
+            "powf_64__col"
+          ],
+          "attrs": {
+            "dim": 1,
+            "shape": [
+              512,
+              512
+            ]
+          }
+        },
+        {
+          "name": "mul_68",
+          "op": "mul",
+          "inputs": [
+            "acc_matmul_66",
+            "broadcast_67"
+          ],
+          "attrs": {}
+        },
+        {
+          "name": "mul_73",
+          "op": "mul",
+          "inputs": [
+            "mul_68"
+          ],
+          "attrs": {
+            "scalar": -1.0
+          }
+        },
+        {
+          "name": "exp_74",
+          "op": "exp",
+          "inputs": [
+            "mul_73"
+          ],
+          "attrs": {}
+        },
+        {
+          "name": "add_75",
+          "op": "add",
+          "inputs": [
+            "exp_74"
+          ],
+          "attrs": {
+            "scalar": 1.0
+          }
+        },
+        {
+          "name": "sigmoid",
+          "op": "div",
+          "inputs": [
+            "add_75"
+          ],
+          "attrs": {
+            "scalar": 1.0,
+            "scalar_first": true
+          }
+        },
+        {
+          "name": "mul_9",
+          "op": "mul",
+          "inputs": [
+            "mul_68",
+            "sigmoid"
+          ],
+          "attrs": {}
+        },
+        {
+          "name": "broadcast_71",
+          "op": "broadcast",
+          "inputs": [
+            "powf_64__col"
+          ],
+          "attrs": {
+            "dim": 1,
+            "shape": [
+              512,
+              512
+            ]
+          }
+        },
+        {
+          "name": "mul_72",
+          "op": "mul",
+          "inputs": [
+            "acc_matmul_70",
+            "broadcast_71"
+          ],
+          "attrs": {}
+        },
+        {
+          "name": "mul_10",
+          "op": "mul",
+          "inputs": [
+            "mul_9",
+            "mul_72"
+          ],
+          "attrs": {}
+        }
+      ],
+      "attrs": {},
+      "constexprs": {},
+      "tiles": {
+        "tile_t": 64,
+        "tile_n": 64,
+        "tile_k": 256
+      },
+      "cost": {
+        "cycles": 34991.08348895983,
+        "breakdown": {
+          "cycles": 34991.08348895983,
+          "tiles": {
+            "tile_t": 64,
+            "tile_n": 64,
+            "tile_k": 256
+          },
+          "grid_tiles": 64,
+          "waves": 1,
+          "per_tile": 34991.08348895983,
+          "loop_iters": 1,
+          "t_load_iter": 10425.493333333334,
+          "t_compute_iter": 22727.89944134078,
+          "t_prologue": 0.0,
+          "t_epilogue": 1329.0773809523807,
+          "t_store": 508.61333333333334,
+          "double_buffer": true,
+          "l1_bytes": 331776,
+          "dram_read_bytes": 786432.0,
+          "dram_write_bytes": 524288,
+          "orientation": "t_on_x",
+          "details": {
+            "n_gemm": 2,
+            "sumsq": true,
+            "extras": 0,
+            "outputs": 1
+          }
+        },
+        "evaluated": 100,
+        "feasible": 92,
+        "alternatives": [
+          {
+            "tiles": {
+              "tile_t": 64,
+              "tile_n": 64,
+              "tile_k": 256
+            },
+            "cycles": 34991.08348895983
+          },
+          {
+            "tiles": {
+              "tile_t": 64,
+              "tile_n": 64,
+              "tile_k": 128
+            },
+            "cycles": 35416.33682229317
+          },
+          {
+            "tiles": {
+              "tile_t": 128,
+              "tile_n": 32,
+              "tile_k": 256
+            },
+            "cycles": 36072.35134610269
+          },
+          {
+            "tiles": {
+              "tile_t": 32,
+              "tile_n": 128,
+              "tile_k": 128
+            },
+            "cycles": 36439.00956038841
+          },
+          {
+            "tiles": {
+              "tile_t": 128,
+              "tile_n": 32,
+              "tile_k": 128
+            },
+            "cycles": 37521.60467943602
+          }
+        ]
+      },
+      "notes": []
+    },
+    {
+      "name": "k4_gemm",
+      "kind": "gemm",
+      "args": [
+        {
+          "name": "lhs",
+          "tensor": "mul_10",
+          "role": "lhs",
+          "view": null
+        },
+        {
+          "name": "w0",
+          "tensor": "permute_11",
+          "role": "rhs",
+          "view": null
+        },
+        {
+          "name": "in0",
+          "tensor": "add_3",
+          "role": "extra",
+          "view": null
+        }
+      ],
+      "outputs": [
+        {
+          "tensor": "add_5",
+          "value": "add_5"
+        }
+      ],
+      "lhs": "lhs",
+      "k_extent": 512,
+      "grid": {
+        "rows": 512,
+        "cols": 256
+      },
+      "gemms": [
+        {
+          "acc": "acc_mm_6",
+          "rhs": "w0"
+        }
+      ],
+      "sumsq": false,
+      "epilogue": [
+        {
+          "name": "add_5",
+          "op": "add",
+          "inputs": [
+            "in0",
+            "acc_mm_6"
+          ],
+          "attrs": {}
+        }
+      ],
+      "attrs": {},
+      "constexprs": {},
+      "tiles": {
+        "tile_t": 32,
+        "tile_n": 64,
+        "tile_k": 128
+      },
+      "cost": {
+        "cycles": 20155.252960893857,
+        "breakdown": {
+          "cycles": 20155.252960893857,
+          "tiles": {
+            "tile_t": 32,
+            "tile_n": 64,
+            "tile_k": 128
+          },
+          "grid_tiles": 64,
+          "waves": 1,
+          "per_tile": 20155.252960893857,
+          "loop_iters": 4,
+          "t_load_iter": 3036.3733333333334,
+          "t_compute_iter": 3952.983240223464,
+          "t_prologue": 0.0,
+          "t_epilogue": 825.64,
+          "t_store": 481.3066666666667,
+          "double_buffer": true,
+          "l1_bytes": 65536,
+          "dram_read_bytes": 1048576.0,
+          "dram_write_bytes": 262144,
+          "orientation": "t_on_x",
+          "details": {
+            "n_gemm": 1,
+            "sumsq": false,
+            "extras": 1,
+            "outputs": 1
+          }
+        },
+        "evaluated": 100,
+        "feasible": 98,
+        "alternatives": [
+          {
+            "tiles": {
+              "tile_t": 32,
+              "tile_n": 64,
+              "tile_k": 128
+            },
+            "cycles": 20155.252960893857
+          },
+          {
+            "tiles": {
+              "tile_t": 64,
+              "tile_n": 32,
+              "tile_k": 128
+            },
+            "cycles": 20155.252960893857
+          },
+          {
+            "tiles": {
+              "tile_t": 32,
+              "tile_n": 64,
+              "tile_k": 256
+            },
+            "cycles": 20455.62629422719
+          },
+          {
+            "tiles": {
+              "tile_t": 64,
+              "tile_n": 32,
+              "tile_k": 256
+            },
+            "cycles": 20455.62629422719
+          },
+          {
+            "tiles": {
+              "tile_t": 32,
+              "tile_n": 64,
+              "tile_k": 64
+            },
+            "cycles": 23077.066294227192
+          }
+        ]
+      },
+      "notes": []
+    }
+  ],
+  "metadata": {
+    "fx_op_histogram": {
+      "aten._softmax.default": 1,
+      "aten._to_copy.default": 2,
+      "aten.add.Tensor": 6,
+      "aten.bmm.default": 2,
+      "aten.cat.default": 2,
+      "aten.clone.default": 4,
+      "aten.expand.default": 4,
+      "aten.mean.dim": 2,
+      "aten.mm.default": 7,
+      "aten.mul.Tensor": 11,
+      "aten.neg.default": 2,
+      "aten.permute.default": 12,
+      "aten.pow.Tensor_Scalar": 2,
+      "aten.rsqrt.default": 2,
+      "aten.sigmoid.default": 1,
+      "aten.slice.Tensor": 4,
+      "aten.view.default": 24
+    },
+    "output_shapes_raw": {
+      "add_5": [
+        2,
+        256,
+        256
+      ]
+    },
+    "input_shapes": {
+      "x": [
+        2,
+        256,
+        256
+      ]
+    },
+    "output_shapes": {
+      "add_5": [
+        2,
+        256,
+        256
+      ]
+    },
+    "dtype": "float16",
+    "grouping": {
+      "matmul_41": 0,
+      "matmul_49": 0,
+      "matmul_57": 0,
+      "matmul_45": 0,
+      "matmul_53": 0,
+      "mm_3": 1,
+      "matmul_66": 2,
+      "matmul_70": 2,
+      "mm_6": 3
+    },
+    "plan": {
+      "candidates": 104,
+      "legal": 104,
+      "total_cycles": 158650.90879555733,
+      "kernel_cycles": {
+        "k0_gemm": 57409.32007315775,
+        "k1_attention": 23845.96579209896,
+        "k2_gemm": 12249.286480446928,
+        "k3_gemm": 34991.08348895983,
+        "k4_gemm": 20155.252960893857
+      },
+      "launch_overhead": 2000.0
+    }
+  }
+}

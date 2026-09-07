@@ -1,0 +1,19 @@
+{
+  "aten._softmax.default": 1,
+  "aten._to_copy.default": 2,
+  "aten.add.Tensor": 6,
+  "aten.bmm.default": 2,
+  "aten.cat.default": 2,
+  "aten.clone.default": 4,
+  "aten.expand.default": 4,
+  "aten.mean.dim": 2,
+  "aten.mm.default": 7,
+  "aten.mul.Tensor": 11,
+  "aten.neg.default": 2,
+  "aten.permute.default": 12,
+  "aten.pow.Tensor_Scalar": 2,
+  "aten.rsqrt.default": 2,
+  "aten.sigmoid.default": 1,
+  "aten.slice.Tensor": 4,
+  "aten.view.default": 24
+}

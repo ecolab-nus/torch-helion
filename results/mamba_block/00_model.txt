@@ -1,0 +1,15 @@
+MambaModel(
+  (layers): ModuleList(
+    (0): Mamba2Block(
+      (norm): RMSNorm()
+      (mixer): Mamba2Mixer(
+        (in_proj): Linear(in_features=512, out_features=4128, bias=False)
+        (out_proj): Linear(in_features=1024, out_features=512, bias=False)
+        (norm): RMSNorm()
+      )
+    )
+  )
+  (norm_f): RMSNorm()
+)
+
+config: CompileConfig(run_name='mamba_block', hw_spec=PosixPath('/workspace/torch-helion/third_party/loom/third_party/loom-mlar/tests/2d_mesh/2d_mesh_torus.mlir'), results_dir=PosixPath('/workspace/torch-helion/results'), planner_mode='greedy', tile_alignment=32, max_tile=512, kernel_launch_overhead=2000.0, verify_with_loom=True, loom_njobs=16, loom_topk_candidates=1, check_frontend=True, validate_workers=4, save_params=False, dtype='float16')

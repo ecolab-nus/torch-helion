@@ -1,0 +1,659 @@
+{
+  "hw": {
+    "path": "/workspace/torch-helion/third_party/loom/third_party/loom-mlar/tests/2d_mesh/2d_mesh_torus.mlir",
+    "mesh": [
+      8,
+      8
+    ],
+    "cores": 64,
+    "l1_bytes": 1398784,
+    "dram_bytes": 12884901888,
+    "functions": [
+      "batch_matmul_RR_f16",
+      "batch_matmul_RS_f16",
+      "batch_matmul_SR_f16",
+      "batch_matmul_SS_f16",
+      "dram_to_l1_R_bcst",
+      "dram_to_l1_R_f16",
+      "dram_to_l1_S_bcst",
+      "dram_to_l1_S_f16",
+      "elementwise_add_f16",
+      "elementwise_mul_f16",
+      "l1_gather",
+      "l1_to_dram_f16",
+      "matmul_RR_f16",
+      "matmul_RS_f16",
+      "matmul_SR_f16",
+      "matmul_SS_f16",
+      "vec_add_f16",
+      "vec_cmpf_ogt_f16",
+      "vec_div_f16",
+      "vec_exp_f16",
+      "vec_log_f16",
+      "vec_max1_f16",
+      "vec_max_f16",
+      "vec_mul_f16",
+      "vec_powf_f16",
+      "vec_select_f16",
+      "vec_sub_f16",
+      "vec_sum_f16",
+      "vec_vmax_f16",
+      "vec_vsum_f16"
+    ]
+  },
+  "kernel_launch_overhead": 2000.0,
+  "kernels": [
+    {
+      "name": "k0_gemm",
+      "kind": "gemm",
+      "tiles": {
+        "tile_t": 128,
+        "tile_n": 64,
+        "tile_k": 256
+      },
+      "cycles": 54863.06592178771,
+      "breakdown": {
+        "cycles": 54863.06592178771,
+        "tiles": {
+          "tile_t": 128,
+          "tile_n": 64,
+          "tile_k": 256
+        },
+        "grid_tiles": 64,
+        "waves": 1,
+        "per_tile": 54863.06592178771,
+        "loop_iters": 2,
+        "t_load_iter": 13920.746666666666,
+        "t_compute_iter": 19907.932960893857,
+        "t_prologue": 0.0,
+        "t_epilogue": 0.0,
+        "t_store": 1126.4533333333334,
+        "double_buffer": true,
+        "l1_bytes": 327680,
+        "dram_read_bytes": 2097152.0,
+        "dram_write_bytes": 2097152,
+        "orientation": "t_on_x",
+        "details": {
+          "n_gemm": 2,
+          "sumsq": false,
+          "extras": 0,
+          "outputs": 2
+        }
+      },
+      "loom": null
+    },
+    {
+      "name": "k1_gemm",
+      "kind": "gemm",
+      "tiles": {
+        "tile_t": 64,
+        "tile_n": 128,
+        "tile_k": 256
+      },
+      "cycles": 30807.70666666667,
+      "breakdown": {
+        "cycles": 30807.70666666667,
+        "tiles": {
+          "tile_t": 64,
+          "tile_n": 128,
+          "tile_k": 256
+        },
+        "grid_tiles": 64,
+        "waves": 1,
+        "per_tile": 30807.70666666667,
+        "loop_iters": 2,
+        "t_load_iter": 10081.493333333334,
+        "t_compute_iter": 9953.966480446928,
+        "t_prologue": 0.0,
+        "t_epilogue": 0.0,
+        "t_store": 563.2266666666667,
+        "double_buffer": true,
+        "l1_bytes": 245760,
+        "dram_read_bytes": 1572864.0,
+        "dram_write_bytes": 1048576,
+        "orientation": "t_on_x",
+        "details": {
+          "n_gemm": 1,
+          "sumsq": false,
+          "extras": 0,
+          "outputs": 1
+        }
+      },
+      "loom": null
+    },
+    {
+      "name": "k2_gemm",
+      "kind": "gemm",
+      "tiles": {
+        "tile_t": 32,
+        "tile_n": 32,
+        "tile_k": 256
+      },
+      "cycles": 30849.23127893057,
+      "breakdown": {
+        "cycles": 30849.23127893057,
+        "tiles": {
+          "tile_t": 32,
+          "tile_n": 32,
+          "tile_k": 256
+        },
+        "grid_tiles": 16,
+        "waves": 1,
+        "per_tile": 30849.23127893057,
+        "loop_iters": 2,
+        "t_load_iter": 3910.186666666667,
+        "t_compute_iter": 12757.932960893855,
+        "t_prologue": 0.0,
+        "t_epilogue": 955.525357142857,
+        "t_store": 467.6533333333333,
+        "double_buffer": true,
+        "l1_bytes": 141312,
+        "dram_read_bytes": 163840.0,
+        "dram_write_bytes": 32768,
+        "orientation": "t_on_x",
+        "details": {
+          "n_gemm": 1,
+          "sumsq": true,
+          "extras": 1,
+          "outputs": 1
+        }
+      },
+      "loom": null
+    },
+    {
+      "name": "k3_gemm",
+      "kind": "gemm",
+      "tiles": {
+        "tile_t": 128,
+        "tile_n": 64,
+        "tile_k": 32
+      },
+      "cycles": 13426.038286778397,
+      "breakdown": {
+        "cycles": 13426.038286778397,
+        "tiles": {
+          "tile_t": 128,
+          "tile_n": 64,
+          "tile_k": 32
+        },
+        "grid_tiles": 64,
+        "waves": 1,
+        "per_tile": 13426.038286778397,
+        "loop_iters": 1,
+        "t_load_iter": 2643.0933333333332,
+        "t_compute_iter": 9656.491620111732,
+        "t_prologue": 0.0,
+        "t_epilogue": 0.0,
+        "t_store": 1126.4533333333334,
+        "double_buffer": true,
+        "l1_bytes": 98304,
+        "dram_read_bytes": 131072.0,
+        "dram_write_bytes": 2097152,
+        "orientation": "t_on_x",
+        "details": {
+          "n_gemm": 2,
+          "sumsq": false,
+          "extras": 0,
+          "outputs": 2
+        }
+      },
+      "loom": null
+    },
+    {
+      "name": "k4_gemm",
+      "kind": "gemm",
+      "tiles": {
+        "tile_t": 64,
+        "tile_n": 128,
+        "tile_k": 256
+      },
+      "cycles": 30807.70666666667,
+      "breakdown": {
+        "cycles": 30807.70666666667,
+        "tiles": {
+          "tile_t": 64,
+          "tile_n": 128,
+          "tile_k": 256
+        },
+        "grid_tiles": 64,
+        "waves": 1,
+        "per_tile": 30807.70666666667,
+        "loop_iters": 2,
+        "t_load_iter": 10081.493333333334,
+        "t_compute_iter": 9953.966480446928,
+        "t_prologue": 0.0,
+        "t_epilogue": 0.0,
+        "t_store": 563.2266666666667,
+        "double_buffer": true,
+        "l1_bytes": 245760,
+        "dram_read_bytes": 1572864.0,
+        "dram_write_bytes": 1048576,
+        "orientation": "t_on_x",
+        "details": {
+          "n_gemm": 1,
+          "sumsq": false,
+          "extras": 0,
+          "outputs": 1
+        }
+      },
+      "loom": null
+    },
+    {
+      "name": "k5_gemm",
+      "kind": "gemm",
+      "tiles": {
+        "tile_t": 64,
+        "tile_n": 128,
+        "tile_k": 256
+      },
+      "cycles": 54489.83282654962,
+      "breakdown": {
+        "cycles": 54489.83282654962,
+        "tiles": {
+          "tile_t": 64,
+          "tile_n": 128,
+          "tile_k": 256
+        },
+        "grid_tiles": 64,
+        "waves": 1,
+        "per_tile": 54489.83282654962,
+        "loop_iters": 2,
+        "t_load_iter": 10081.493333333334,
+        "t_compute_iter": 16869.932960893857,
+        "t_prologue": 0.0,
+        "t_epilogue": 8415.566904761905,
+        "t_store": 2252.9066666666668,
+        "double_buffer": true,
+        "l1_bytes": 397312,
+        "dram_read_bytes": 4718592.0,
+        "dram_write_bytes": 4194304,
+        "orientation": "t_on_x",
+        "details": {
+          "n_gemm": 1,
+          "sumsq": true,
+          "extras": 3,
+          "outputs": 4
+        }
+      },
+      "loom": null
+    },
+    {
+      "name": "k6_ssd",
+      "kind": "ssd",
+      "tiles": {
+        "tile_m": 256,
+        "tile_n": 256
+      },
+      "cycles": 66882.84248470339,
+      "breakdown": {
+        "cycles": 66882.84248470339,
+        "tiles": {
+          "tile_m": 256,
+          "tile_n": 256
+        },
+        "grid_tiles": 64,
+        "waves": 1,
+        "per_tile": 66882.84248470339,
+        "loop_iters": 1,
+        "t_load_iter": 7714.24,
+        "t_compute_iter": 48824.004389465284,
+        "t_prologue": 3922.12,
+        "t_epilogue": 5859.251428571428,
+        "t_store": 563.2266666666667,
+        "double_buffer": true,
+        "l1_bytes": 311296,
+        "dram_read_bytes": 7340032,
+        "dram_write_bytes": 1048576,
+        "orientation": "bh_on_mesh",
+        "details": {
+          "batch": 2,
+          "heads": 32,
+          "seq": 256,
+          "head_dim": 32,
+          "state_dim": 32,
+          "extras": 1
+        }
+      },
+      "loom": null
+    },
+    {
+      "name": "k7_gemm",
+      "kind": "gemm",
+      "tiles": {
+        "tile_t": 32,
+        "tile_n": 128,
+        "tile_k": 256
+      },
+      "cycles": 67236.12577214684,
+      "breakdown": {
+        "cycles": 67236.12577214684,
+        "tiles": {
+          "tile_t": 32,
+          "tile_n": 128,
+          "tile_k": 256
+        },
+        "grid_tiles": 64,
+        "waves": 1,
+        "per_tile": 67236.12577214684,
+        "loop_iters": 4,
+        "t_load_iter": 8333.866666666667,
+        "t_compute_iter": 14293.932960893855,
+        "t_prologue": 0.0,
+        "t_epilogue": 1217.9139285714286,
+        "t_store": 508.61333333333334,
+        "double_buffer": true,
+        "l1_bytes": 264192,
+        "dram_read_bytes": 3145728.0,
+        "dram_write_bytes": 524288,
+        "orientation": "t_on_x",
+        "details": {
+          "n_gemm": 1,
+          "sumsq": true,
+          "extras": 1,
+          "outputs": 1
+        }
+      },
+      "loom": null
+    },
+    {
+      "name": "k8_gemm",
+      "kind": "gemm",
+      "tiles": {
+        "tile_t": 32,
+        "tile_n": 32,
+        "tile_k": 256
+      },
+      "cycles": 30849.23127893057,
+      "breakdown": {
+        "cycles": 30849.23127893057,
+        "tiles": {
+          "tile_t": 32,
+          "tile_n": 32,
+          "tile_k": 256
+        },
+        "grid_tiles": 16,
+        "waves": 1,
+        "per_tile": 30849.23127893057,
+        "loop_iters": 2,
+        "t_load_iter": 3910.186666666667,
+        "t_compute_iter": 12757.932960893855,
+        "t_prologue": 0.0,
+        "t_epilogue": 955.525357142857,
+        "t_store": 467.6533333333333,
+        "double_buffer": true,
+        "l1_bytes": 141312,
+        "dram_read_bytes": 163840.0,
+        "dram_write_bytes": 32768,
+        "orientation": "t_on_x",
+        "details": {
+          "n_gemm": 1,
+          "sumsq": true,
+          "extras": 1,
+          "outputs": 1
+        }
+      },
+      "loom": null
+    },
+    {
+      "name": "k9_gemm",
+      "kind": "gemm",
+      "tiles": {
+        "tile_t": 128,
+        "tile_n": 64,
+        "tile_k": 32
+      },
+      "cycles": 13426.038286778397,
+      "breakdown": {
+        "cycles": 13426.038286778397,
+        "tiles": {
+          "tile_t": 128,
+          "tile_n": 64,
+          "tile_k": 32
+        },
+        "grid_tiles": 64,
+        "waves": 1,
+        "per_tile": 13426.038286778397,
+        "loop_iters": 1,
+        "t_load_iter": 2643.0933333333332,
+        "t_compute_iter": 9656.491620111732,
+        "t_prologue": 0.0,
+        "t_epilogue": 0.0,
+        "t_store": 1126.4533333333334,
+        "double_buffer": true,
+        "l1_bytes": 98304,
+        "dram_read_bytes": 131072.0,
+        "dram_write_bytes": 2097152,
+        "orientation": "t_on_x",
+        "details": {
+          "n_gemm": 2,
+          "sumsq": false,
+          "extras": 0,
+          "outputs": 2
+        }
+      },
+      "loom": null
+    },
+    {
+      "name": "k10_gemm",
+      "kind": "gemm",
+      "tiles": {
+        "tile_t": 64,
+        "tile_n": 128,
+        "tile_k": 256
+      },
+      "cycles": 30807.70666666667,
+      "breakdown": {
+        "cycles": 30807.70666666667,
+        "tiles": {
+          "tile_t": 64,
+          "tile_n": 128,
+          "tile_k": 256
+        },
+        "grid_tiles": 64,
+        "waves": 1,
+        "per_tile": 30807.70666666667,
+        "loop_iters": 2,
+        "t_load_iter": 10081.493333333334,
+        "t_compute_iter": 9953.966480446928,
+        "t_prologue": 0.0,
+        "t_epilogue": 0.0,
+        "t_store": 563.2266666666667,
+        "double_buffer": true,
+        "l1_bytes": 245760,
+        "dram_read_bytes": 1572864.0,
+        "dram_write_bytes": 1048576,
+        "orientation": "t_on_x",
+        "details": {
+          "n_gemm": 1,
+          "sumsq": false,
+          "extras": 0,
+          "outputs": 1
+        }
+      },
+      "loom": null
+    },
+    {
+      "name": "k11_gemm",
+      "kind": "gemm",
+      "tiles": {
+        "tile_t": 128,
+        "tile_n": 64,
+        "tile_k": 256
+      },
+      "cycles": 120990.71289970737,
+      "breakdown": {
+        "cycles": 120990.71289970737,
+        "tiles": {
+          "tile_t": 128,
+          "tile_n": 64,
+          "tile_k": 256
+        },
+        "grid_tiles": 64,
+        "waves": 1,
+        "per_tile": 120990.71289970737,
+        "loop_iters": 2,
+        "t_load_iter": 20506.986666666668,
+        "t_compute_iter": 47787.83240223464,
+        "t_prologue": 0.0,
+        "t_epilogue": 2655.1547619047615,
+        "t_store": 2252.9066666666668,
+        "double_buffer": true,
+        "l1_bytes": 663552,
+        "dram_read_bytes": 3145728.0,
+        "dram_write_bytes": 4194304,
+        "orientation": "t_on_x",
+        "details": {
+          "n_gemm": 4,
+          "sumsq": true,
+          "extras": 0,
+          "outputs": 4
+        }
+      },
+      "loom": null
+    },
+    {
+      "name": "k12_ssd",
+      "kind": "ssd",
+      "tiles": {
+        "tile_m": 256,
+        "tile_n": 256
+      },
+      "cycles": 66882.84248470339,
+      "breakdown": {
+        "cycles": 66882.84248470339,
+        "tiles": {
+          "tile_m": 256,
+          "tile_n": 256
+        },
+        "grid_tiles": 64,
+        "waves": 1,
+        "per_tile": 66882.84248470339,
+        "loop_iters": 1,
+        "t_load_iter": 7714.24,
+        "t_compute_iter": 48824.004389465284,
+        "t_prologue": 3922.12,
+        "t_epilogue": 5859.251428571428,
+        "t_store": 563.2266666666667,
+        "double_buffer": true,
+        "l1_bytes": 311296,
+        "dram_read_bytes": 7340032,
+        "dram_write_bytes": 1048576,
+        "orientation": "bh_on_mesh",
+        "details": {
+          "batch": 2,
+          "heads": 32,
+          "seq": 256,
+          "head_dim": 32,
+          "state_dim": 32,
+          "extras": 1
+        }
+      },
+      "loom": null
+    },
+    {
+      "name": "k13_gemm",
+      "kind": "gemm",
+      "tiles": {
+        "tile_t": 32,
+        "tile_n": 128,
+        "tile_k": 256
+      },
+      "cycles": 67236.12577214684,
+      "breakdown": {
+        "cycles": 67236.12577214684,
+        "tiles": {
+          "tile_t": 32,
+          "tile_n": 128,
+          "tile_k": 256
+        },
+        "grid_tiles": 64,
+        "waves": 1,
+        "per_tile": 67236.12577214684,
+        "loop_iters": 4,
+        "t_load_iter": 8333.866666666667,
+        "t_compute_iter": 14293.932960893855,
+        "t_prologue": 0.0,
+        "t_epilogue": 1217.9139285714286,
+        "t_store": 508.61333333333334,
+        "double_buffer": true,
+        "l1_bytes": 264192,
+        "dram_read_bytes": 3145728.0,
+        "dram_write_bytes": 524288,
+        "orientation": "t_on_x",
+        "details": {
+          "n_gemm": 1,
+          "sumsq": true,
+          "extras": 1,
+          "outputs": 1
+        }
+      },
+      "loom": null
+    },
+    {
+      "name": "k14_gemm",
+      "kind": "gemm",
+      "tiles": {
+        "tile_t": 32,
+        "tile_n": 128,
+        "tile_k": 256
+      },
+      "cycles": 17512.300222798618,
+      "breakdown": {
+        "cycles": 17512.300222798618,
+        "tiles": {
+          "tile_t": 32,
+          "tile_n": 128,
+          "tile_k": 256
+        },
+        "grid_tiles": 64,
+        "waves": 1,
+        "per_tile": 17512.300222798618,
+        "loop_iters": 2,
+        "t_load_iter": 1818.56,
+        "t_compute_iter": 6387.966480446928,
+        "t_prologue": 0.0,
+        "t_epilogue": 2409.1939285714284,
+        "t_store": 508.61333333333334,
+        "double_buffer": true,
+        "l1_bytes": 133120,
+        "dram_read_bytes": 1310720.0,
+        "dram_write_bytes": 524288,
+        "orientation": "t_on_y",
+        "details": {
+          "n_gemm": 0,
+          "sumsq": true,
+          "extras": 2,
+          "outputs": 1
+        }
+      },
+      "loom": null
+    }
+  ],
+  "total_cycles": 727067.5075159617,
+  "intermediate_tensors": {
+    "matmul_134": 1048576,
+    "mul_92": 1048576,
+    "where_1": 32768,
+    "mul_22": 1048576,
+    "mul_54": 1048576,
+    "matmul_52": 1048576,
+    "mul_50": 1048576,
+    "mul_96": 1048576,
+    "matmul_135": 1048576,
+    "mul_100": 1048576,
+    "matmul_36": 1048576,
+    "matmul_124": 1048576,
+    "add_4": 524288,
+    "mul_9": 1048576,
+    "where": 32768,
+    "matmul_137": 1048576,
+    "mul_58": 1048576,
+    "mul_10": 1048576,
+    "matmul_48": 1048576,
+    "add_9": 524288,
+    "matmul_126": 1048576,
+    "matmul_123": 1048576,
+    "mul_23": 1048576
+  },
+  "intermediate_bytes": 21037056
+}

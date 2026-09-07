@@ -1,0 +1,8 @@
+Program mamba_block: 7 kernels, inputs=['u'], outputs=['mul_71']
+  [gemm] k0_gemm(lhs<-u, w0<-permute_cols_3_norm_38, in0<-layers_0_mixer_dt_bias_full_87) -> where gemms=1 sumsq=True epilogue=9 est=30,849cyc tiles={'tile_t': 32, 'tile_n': 32, 'tile_k': 256}
+  [gemm] k1_gemm(lhs<-where, w0<-ssd_expand_A_75, w1<-ssd_expand_74) -> matmul_77, matmul_76 gemms=2 sumsq=False epilogue=0 est=13,426cyc tiles={'tile_t': 128, 'tile_n': 64, 'tile_k': 32}
+  [gemm] k2_gemm(lhs<-ssd_decay_78, w0<-matmul_77) -> matmul_79 gemms=1 sumsq=False epilogue=0 est=30,808cyc tiles={'tile_t': 64, 'tile_n': 128, 'tile_k': 256}
+  [gemm] k3_gemm(lhs<-u, w0<-permute_cols_1_norm_30, w1<-permute_cols_2_cols_4_norm_42, w2<-permute_cols_2_cols_5_norm_46, w3<-permute_cols_2_cols_6_norm_50) -> mul_45, mul_49, mul_53, mul_9 gemms=4 sumsq=True epilogue=16 est=120,991cyc tiles={'tile_t': 128, 'tile_n': 64, 'tile_k': 256}
+  [ssd] k4_ssd(c<-mul_53, b<-mul_49, x<-mul_45, cum<-matmul_79, dt<-matmul_76, mask<-ssd_causal_80, dskip<-ssd_D_81, xskip<-mul_45, in0<-mul_9) -> mul_10 attrs={'batch': 2, 'seq': 256, 'heads': 32, 'head_dim': 32, 'state_dim': 32, 'pad': 32} est=66,883cyc tiles={'tile_m': 256, 'tile_n': 256}
+  [gemm] k5_gemm(lhs<-mul_10, w0<-permute_11_norm_59, in0<-u) -> add_4 gemms=1 sumsq=True epilogue=6 est=67,236cyc tiles={'tile_t': 32, 'tile_n': 128, 'tile_k': 256}
+  [gemm] k6_gemm(lhs<-add_4, in0<-add_4, in1<-norm_f_weight_full_70) -> mul_71 gemms=0 sumsq=True epilogue=6 est=17,512cyc tiles={'tile_t': 32, 'tile_n': 128, 'tile_k': 256}

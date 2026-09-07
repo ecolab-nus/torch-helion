@@ -1,0 +1,122 @@
+[
+  {
+    "pass": "fold_constants",
+    "rewrites": 12,
+    "nodes": 196,
+    "max_rel_err": 3.6184541386319324e-05
+  },
+  {
+    "pass": "match_softplus",
+    "rewrites": 2,
+    "nodes": 196,
+    "max_rel_err": 3.624066448537633e-05
+  },
+  {
+    "pass": "match_rotate_half",
+    "rewrites": 0,
+    "nodes": 196,
+    "max_rel_err": 3.624066448537633e-05
+  },
+  {
+    "pass": "match_rope",
+    "rewrites": 0,
+    "nodes": 196,
+    "max_rel_err": 3.624066448537633e-05
+  },
+  {
+    "pass": "lower_rope",
+    "rewrites": 0,
+    "nodes": 196,
+    "max_rel_err": 3.624066448537633e-05
+  },
+  {
+    "pass": "match_rmsnorm",
+    "rewrites": 5,
+    "nodes": 196,
+    "max_rel_err": 3.624066448537633e-05
+  },
+  {
+    "pass": "push_slice_into_gemm",
+    "rewrites": 12,
+    "nodes": 208,
+    "max_rel_err": 3.624066448537633e-05
+  },
+  {
+    "pass": "lower_rmsnorm",
+    "rewrites": 5,
+    "nodes": 302,
+    "max_rel_err": 0.00034968802356161177
+  },
+  {
+    "pass": "match_attention",
+    "rewrites": 0,
+    "nodes": 302,
+    "max_rel_err": 0.00034968802356161177
+  },
+  {
+    "pass": "match_ssd",
+    "rewrites": 2,
+    "nodes": 324,
+    "max_rel_err": 0.00034960033372044563
+  },
+  {
+    "pass": "lower_cumsum",
+    "rewrites": 2,
+    "nodes": 330,
+    "max_rel_err": 0.00034960033372044563
+  },
+  {
+    "pass": "fold_constants_2",
+    "rewrites": 0,
+    "nodes": 330,
+    "max_rel_err": 0.00034960033372044563
+  },
+  {
+    "pass": "cleanup_1",
+    "rewrites": 194,
+    "nodes": 136,
+    "max_rel_err": 0.00034960033372044563
+  },
+  {
+    "pass": "flatten_to_2d",
+    "rewrites": 31,
+    "nodes": 105,
+    "max_rel_err": 0.00034960033372044563
+  },
+  {
+    "pass": "materialize_const_operands",
+    "rewrites": 2,
+    "nodes": 107,
+    "max_rel_err": 0.00034960033372044563
+  },
+  {
+    "pass": "rewrite_unregistered",
+    "rewrites": 4,
+    "nodes": 117,
+    "max_rel_err": 0.00034948810935020447
+  },
+  {
+    "pass": "insert_broadcasts",
+    "rewrites": 0,
+    "nodes": 117,
+    "max_rel_err": 0.00034948810935020447
+  },
+  {
+    "pass": "fold_constants_3",
+    "rewrites": 0,
+    "nodes": 117,
+    "max_rel_err": 0.00034948810935020447
+  },
+  {
+    "pass": "dedupe_constants",
+    "rewrites": 4,
+    "nodes": 117,
+    "max_rel_err": 0.00034948810935020447
+  },
+  {
+    "pass": "cleanup_2",
+    "rewrites": 6,
+    "nodes": 111,
+    "max_rel_err": 0.00034948810935020447
+  }
+]

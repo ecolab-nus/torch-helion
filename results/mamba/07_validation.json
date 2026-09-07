@@ -1,0 +1,199 @@
+{
+  "k0_gemm": {
+    "kernel": "k0_gemm",
+    "frontend_ok": true,
+    "exploration_ok": true,
+    "error": null,
+    "variants": 208,
+    "symbols": [
+      "tile_k",
+      "tile_n",
+      "tile_t"
+    ],
+    "stderr_tail": ""
+  },
+  "k1_gemm": {
+    "kernel": "k1_gemm",
+    "frontend_ok": true,
+    "exploration_ok": true,
+    "error": null,
+    "variants": 208,
+    "symbols": [
+      "tile_k",
+      "tile_n",
+      "tile_t"
+    ],
+    "stderr_tail": ""
+  },
+  "k2_gemm": {
+    "kernel": "k2_gemm",
+    "frontend_ok": true,
+    "exploration_ok": true,
+    "error": null,
+    "variants": 208,
+    "symbols": [
+      "tile_k",
+      "tile_n",
+      "tile_t"
+    ],
+    "stderr_tail": ""
+  },
+  "k3_gemm": {
+    "kernel": "k3_gemm",
+    "frontend_ok": true,
+    "exploration_ok": true,
+    "error": null,
+    "variants": 208,
+    "symbols": [
+      "tile_k",
+      "tile_n",
+      "tile_t"
+    ],
+    "stderr_tail": ""
+  },
+  "k4_gemm": {
+    "kernel": "k4_gemm",
+    "frontend_ok": true,
+    "exploration_ok": true,
+    "error": null,
+    "variants": 208,
+    "symbols": [
+      "tile_k",
+      "tile_n",
+      "tile_t"
+    ],
+    "stderr_tail": ""
+  },
+  "k5_gemm": {
+    "kernel": "k5_gemm",
+    "frontend_ok": true,
+    "exploration_ok": true,
+    "error": null,
+    "variants": 208,
+    "symbols": [
+      "tile_k",
+      "tile_n",
+      "tile_t"
+    ],
+    "stderr_tail": ""
+  },
+  "k6_ssd": {
+    "kernel": "k6_ssd",
+    "frontend_ok": true,
+    "exploration_ok": true,
+    "error": null,
+    "variants": 393,
+    "symbols": [
+      "tile_b",
+      "tile_h",
+      "tile_m",
+      "tile_n"
+    ],
+    "stderr_tail": ""
+  },
+  "k7_gemm": {
+    "kernel": "k7_gemm",
+    "frontend_ok": true,
+    "exploration_ok": true,
+    "error": null,
+    "variants": 208,
+    "symbols": [
+      "tile_k",
+      "tile_n",
+      "tile_t"
+    ],
+    "stderr_tail": ""
+  },
+  "k8_gemm": {
+    "kernel": "k8_gemm",
+    "frontend_ok": true,
+    "exploration_ok": true,
+    "error": null,
+    "variants": 208,
+    "symbols": [
+      "tile_k",
+      "tile_n",
+      "tile_t"
+    ],
+    "stderr_tail": ""
+  },
+  "k9_gemm": {
+    "kernel": "k9_gemm",
+    "frontend_ok": true,
+    "exploration_ok": true,
+    "error": null,
+    "variants": 208,
+    "symbols": [
+      "tile_k",
+      "tile_n",
+      "tile_t"
+    ],
+    "stderr_tail": ""
+  },
+  "k10_gemm": {
+    "kernel": "k10_gemm",
+    "frontend_ok": true,
+    "exploration_ok": true,
+    "error": null,
+    "variants": 208,
+    "symbols": [
+      "tile_k",
+      "tile_n",
+      "tile_t"
+    ],
+    "stderr_tail": ""
+  },
+  "k11_gemm": {
+    "kernel": "k11_gemm",
+    "frontend_ok": true,
+    "exploration_ok": true,
+    "error": null,
+    "variants": 208,
+    "symbols": [
+      "tile_k",
+      "tile_n",
+      "tile_t"
+    ],
+    "stderr_tail": ""
+  },
+  "k12_ssd": {
+    "kernel": "k12_ssd",
+    "frontend_ok": true,
+    "exploration_ok": true,
+    "error": null,
+    "variants": 393,
+    "symbols": [
+      "tile_b",
+      "tile_h",
+      "tile_m",
+      "tile_n"
+    ],
+    "stderr_tail": ""
+  },
+  "k13_gemm": {
+    "kernel": "k13_gemm",
+    "frontend_ok": true,
+    "exploration_ok": true,
+    "error": null,
+    "variants": 208,
+    "symbols": [
+      "tile_k",
+      "tile_n",
+      "tile_t"
+    ],
+    "stderr_tail": ""
+  },
+  "k14_gemm": {
+    "kernel": "k14_gemm",
+    "frontend_ok": true,
+    "exploration_ok": true,
+    "error": null,
+    "variants": 104,
+    "symbols": [
+      "tile_k",
+      "tile_n",
+      "tile_t"
+    ],
+    "stderr_tail": ""
+  }
+}

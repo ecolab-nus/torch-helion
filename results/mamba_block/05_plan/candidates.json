@@ -1,0 +1,162 @@
+[
+  {
+    "index": 0,
+    "grouping": {
+      "matmul_31": 0,
+      "matmul_43": 0,
+      "matmul_47": 0,
+      "matmul_51": 0,
+      "matmul_39": 1,
+      "matmul_77": 2,
+      "matmul_76": 2,
+      "matmul_79": 3,
+      "matmul_60": 4
+    },
+    "legal": true,
+    "total_cycles": 361704.95761173184,
+    "kernel_cycles": {
+      "k0_gemm": 30849.23127893057,
+      "k1_gemm": 13426.038286778397,
+      "k2_gemm": 30807.70666666667,
+      "k3_gemm": 120990.71289970737,
+      "k4_ssd": 66882.84248470339,
+      "k5_gemm": 67236.12577214684,
+      "k6_gemm": 17512.300222798618
+    },
+    "kernels": [
+      "k0_gemm",
+      "k1_gemm",
+      "k2_gemm",
+      "k3_gemm",
+      "k4_ssd",
+      "k5_gemm",
+      "k6_gemm"
+    ],
+    "violations": [],
+    "error": null
+  },
+  {
+    "index": 1,
+    "grouping": {
+      "matmul_31": 0,
+      "matmul_43": 0,
+      "matmul_47": 0,
+      "matmul_51": 0,
+      "matmul_39": 1,
+      "matmul_77": 2,
+      "matmul_76": 3,
+      "matmul_79": 4,
+      "matmul_60": 5
+    },
+    "legal": true,
+    "total_cycles": 364786.23761173186,
+    "kernel_cycles": {
+      "k0_gemm": 30849.23127893057,
+      "k1_gemm": 7253.659143389199,
+      "k2_gemm": 30807.70666666667,
+      "k3_gemm": 7253.659143389199,
+      "k4_gemm": 120990.71289970737,
+      "k5_ssd": 66882.84248470339,
+      "k6_gemm": 67236.12577214684,
+      "k7_gemm": 17512.300222798618
+    },
+    "kernels": [
+      "k0_gemm",
+      "k1_gemm",
+      "k2_gemm",
+      "k3_gemm",
+      "k4_gemm",
+      "k5_ssd",
+      "k6_gemm",
+      "k7_gemm"
+    ],
+    "violations": [],
+    "error": null
+  },
+  {
+    "index": 2,
+    "grouping": {
+      "matmul_31": 0,
+      "matmul_43": 1,
+      "matmul_47": 2,
+      "matmul_51": 3,
+      "matmul_39": 4,
+      "matmul_77": 5,
+      "matmul_76": 5,
+      "matmul_79": 6,
+      "matmul_60": 7
+    },
+    "legal": true,
+    "total_cycles": 393627.1975385741,
+    "kernel_cycles": {
+      "k0_gemm": 30807.70666666667,
+      "k1_gemm": 30807.70666666667,
+      "k2_gemm": 30807.70666666667,
+      "k3_gemm": 30849.23127893057,
+      "k4_gemm": 13426.038286778397,
+      "k5_gemm": 30807.70666666667,
+      "k6_gemm": 54489.83282654962,
+      "k7_ssd": 66882.84248470339,
+      "k8_gemm": 67236.12577214684,
+      "k9_gemm": 17512.300222798618
+    },
+    "kernels": [
+      "k0_gemm",
+      "k1_gemm",
+      "k2_gemm",
+      "k3_gemm",
+      "k4_gemm",
+      "k5_gemm",
+      "k6_gemm",
+      "k7_ssd",
+      "k8_gemm",
+      "k9_gemm"
+    ],
+    "violations": [],
+    "error": null
+  },
+  {
+    "index": 3,
+    "grouping": {
+      "matmul_31": 0,
+      "matmul_43": 1,
+      "matmul_47": 2,
+      "matmul_51": 3,
+      "matmul_39": 4,
+      "matmul_77": 5,
+      "matmul_76": 6,
+      "matmul_79": 7,
+      "matmul_60": 8
+    },
+    "legal": true,
+    "total_cycles": 396708.4775385741,
+    "kernel_cycles": {
+      "k0_gemm": 30807.70666666667,
+      "k1_gemm": 30807.70666666667,
+      "k2_gemm": 30807.70666666667,
+      "k3_gemm": 30849.23127893057,
+      "k4_gemm": 7253.659143389199,
+      "k5_gemm": 30807.70666666667,
+      "k6_gemm": 7253.659143389199,
+      "k7_gemm": 54489.83282654962,
+      "k8_ssd": 66882.84248470339,
+      "k9_gemm": 67236.12577214684,
+      "k10_gemm": 17512.300222798618
+    },
+    "kernels": [
+      "k0_gemm",
+      "k1_gemm",
+      "k2_gemm",
+      "k3_gemm",
+      "k4_gemm",
+      "k5_gemm",
+      "k6_gemm",
+      "k7_gemm",
+      "k8_ssd",
+      "k9_gemm",
+      "k10_gemm"
+    ],
+    "violations": [],
+    "error": null
+  }
+]

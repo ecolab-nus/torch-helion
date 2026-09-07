@@ -1,0 +1,4016 @@
+{
+  "name": "mamba",
+  "inputs": [
+    "u"
+  ],
+  "outputs": [
+    "mul_118"
+  ],
+  "tensors": {
+    "u": {
+      "shape": [
+        512,
+        512
+      ],
+      "dtype": "float16"
+    },
+    "row_sumsq_24": {
+      "shape": [
+        512,
+        1
+      ],
+      "dtype": "float16"
+    },
+    "mul_28": {
+      "shape": [
+        512,
+        1
+      ],
+      "dtype": "float16"
+    },
+    "add_29": {
+      "shape": [
+        512,
+        1
+      ],
+      "dtype": "float16"
+    },
+    "powf_30": {
+      "shape": [
+        512,
+        1
+      ],
+      "dtype": "float16"
+    },
+    "permute_cols_1_norm_35": {
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16"
+    },
+    "matmul_36": {
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16"
+    },
+    "broadcast_37": {
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16"
+    },
+    "mul_38": {
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16"
+    },
+    "permute_cols_3_norm_43": {
+      "shape": [
+        512,
+        32
+      ],
+      "dtype": "float16"
+    },
+    "matmul_44": {
+      "shape": [
+        512,
+        32
+      ],
+      "dtype": "float16"
+    },
+    "broadcast_45": {
+      "shape": [
+        512,
+        32
+      ],
+      "dtype": "float16"
+    },
+    "mul_46": {
+      "shape": [
+        512,
+        32
+      ],
+      "dtype": "float16"
+    },
+    "permute_cols_2_cols_4_norm_47": {
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16"
+    },
+    "matmul_48": {
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16"
+    },
+    "broadcast_49": {
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16"
+    },
+    "mul_50": {
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16"
+    },
+    "permute_cols_2_cols_5_norm_51": {
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16"
+    },
+    "matmul_52": {
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16"
+    },
+    "broadcast_53": {
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16"
+    },
+    "mul_54": {
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16"
+    },
+    "permute_cols_2_cols_6_norm_55": {
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16"
+    },
+    "matmul_56": {
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16"
+    },
+    "broadcast_57": {
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16"
+    },
+    "mul_58": {
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16"
+    },
+    "layers_0_mixer_dt_bias_full_148": {
+      "shape": [
+        512,
+        32
+      ],
+      "dtype": "float16"
+    },
+    "add_1": {
+      "shape": [
+        512,
+        32
+      ],
+      "dtype": "float16"
+    },
+    "exp_150": {
+      "shape": [
+        512,
+        32
+      ],
+      "dtype": "float16"
+    },
+    "add_151": {
+      "shape": [
+        512,
+        32
+      ],
+      "dtype": "float16"
+    },
+    "where": {
+      "shape": [
+        512,
+        32
+      ],
+      "dtype": "float16"
+    },
+    "ssd_decay_125": {
+      "shape": [
+        512,
+        512
+      ],
+      "dtype": "float16"
+    },
+    "ssd_expand_A_122": {
+      "shape": [
+        32,
+        1024
+      ],
+      "dtype": "float32"
+    },
+    "matmul_124": {
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16"
+    },
+    "matmul_126": {
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16"
+    },
+    "ssd_expand_121": {
+      "shape": [
+        32,
+        1024
+      ],
+      "dtype": "float16"
+    },
+    "matmul_123": {
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16"
+    },
+    "ssd_causal_127": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float16"
+    },
+    "ssd_D_128": {
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16"
+    },
+    "ssd_129": {
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16"
+    },
+    "mul_152": {
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16"
+    },
+    "exp_153": {
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16"
+    },
+    "add_154": {
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16"
+    },
+    "sigmoid": {
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16"
+    },
+    "mul_9": {
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16"
+    },
+    "mul_10": {
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16"
+    },
+    "permute_11_norm_64": {
+      "shape": [
+        1024,
+        512
+      ],
+      "dtype": "float16"
+    },
+    "matmul_65": {
+      "shape": [
+        512,
+        512
+      ],
+      "dtype": "float16"
+    },
+    "row_sumsq_60": {
+      "shape": [
+        512,
+        1
+      ],
+      "dtype": "float16"
+    },
+    "mul_61": {
+      "shape": [
+        512,
+        1
+      ],
+      "dtype": "float16"
+    },
+    "add_62": {
+      "shape": [
+        512,
+        1
+      ],
+      "dtype": "float16"
+    },
+    "powf_63": {
+      "shape": [
+        512,
+        1
+      ],
+      "dtype": "float16"
+    },
+    "broadcast_66": {
+      "shape": [
+        512,
+        512
+      ],
+      "dtype": "float16"
+    },
+    "mul_67": {
+      "shape": [
+        512,
+        512
+      ],
+      "dtype": "float16"
+    },
+    "add_4": {
+      "shape": [
+        512,
+        512
+      ],
+      "dtype": "float16"
+    },
+    "row_sumsq_69": {
+      "shape": [
+        512,
+        1
+      ],
+      "dtype": "float16"
+    },
+    "mul_70": {
+      "shape": [
+        512,
+        1
+      ],
+      "dtype": "float16"
+    },
+    "add_71": {
+      "shape": [
+        512,
+        1
+      ],
+      "dtype": "float16"
+    },
+    "powf_72": {
+      "shape": [
+        512,
+        1
+      ],
+      "dtype": "float16"
+    },
+    "permute_12_cols_7_norm_77": {
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16"
+    },
+    "matmul_78": {
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16"
+    },
+    "broadcast_79": {
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16"
+    },
+    "mul_80": {
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16"
+    },
+    "permute_12_cols_9_norm_85": {
+      "shape": [
+        512,
+        32
+      ],
+      "dtype": "float16"
+    },
+    "matmul_86": {
+      "shape": [
+        512,
+        32
+      ],
+      "dtype": "float16"
+    },
+    "broadcast_87": {
+      "shape": [
+        512,
+        32
+      ],
+      "dtype": "float16"
+    },
+    "mul_88": {
+      "shape": [
+        512,
+        32
+      ],
+      "dtype": "float16"
+    },
+    "permute_12_cols_8_cols_10_norm_89": {
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16"
+    },
+    "matmul_90": {
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16"
+    },
+    "broadcast_91": {
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16"
+    },
+    "mul_92": {
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16"
+    },
+    "permute_12_cols_8_cols_11_norm_93": {
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16"
+    },
+    "matmul_94": {
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16"
+    },
+    "broadcast_95": {
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16"
+    },
+    "mul_96": {
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16"
+    },
+    "permute_12_cols_8_cols_12_norm_97": {
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16"
+    },
+    "matmul_98": {
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16"
+    },
+    "broadcast_99": {
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16"
+    },
+    "mul_100": {
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16"
+    },
+    "layers_1_mixer_dt_bias_full_149": {
+      "shape": [
+        512,
+        32
+      ],
+      "dtype": "float16"
+    },
+    "add_6": {
+      "shape": [
+        512,
+        32
+      ],
+      "dtype": "float16"
+    },
+    "exp_155": {
+      "shape": [
+        512,
+        32
+      ],
+      "dtype": "float16"
+    },
+    "add_156": {
+      "shape": [
+        512,
+        32
+      ],
+      "dtype": "float16"
+    },
+    "where_1": {
+      "shape": [
+        512,
+        32
+      ],
+      "dtype": "float16"
+    },
+    "ssd_expand_A_133": {
+      "shape": [
+        32,
+        1024
+      ],
+      "dtype": "float32"
+    },
+    "matmul_135": {
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16"
+    },
+    "matmul_137": {
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16"
+    },
+    "matmul_134": {
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16"
+    },
+    "ssd_140": {
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16"
+    },
+    "mul_157": {
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16"
+    },
+    "exp_158": {
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16"
+    },
+    "add_159": {
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16"
+    },
+    "sigmoid_1": {
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16"
+    },
+    "mul_22": {
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16"
+    },
+    "mul_23": {
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16"
+    },
+    "permute_23_norm_106": {
+      "shape": [
+        1024,
+        512
+      ],
+      "dtype": "float16"
+    },
+    "matmul_107": {
+      "shape": [
+        512,
+        512
+      ],
+      "dtype": "float16"
+    },
+    "row_sumsq_102": {
+      "shape": [
+        512,
+        1
+      ],
+      "dtype": "float16"
+    },
+    "mul_103": {
+      "shape": [
+        512,
+        1
+      ],
+      "dtype": "float16"
+    },
+    "add_104": {
+      "shape": [
+        512,
+        1
+      ],
+      "dtype": "float16"
+    },
+    "powf_105": {
+      "shape": [
+        512,
+        1
+      ],
+      "dtype": "float16"
+    },
+    "broadcast_108": {
+      "shape": [
+        512,
+        512
+      ],
+      "dtype": "float16"
+    },
+    "mul_109": {
+      "shape": [
+        512,
+        512
+      ],
+      "dtype": "float16"
+    },
+    "add_9": {
+      "shape": [
+        512,
+        512
+      ],
+      "dtype": "float16"
+    },
+    "row_sumsq_111": {
+      "shape": [
+        512,
+        1
+      ],
+      "dtype": "float16"
+    },
+    "mul_112": {
+      "shape": [
+        512,
+        1
+      ],
+      "dtype": "float16"
+    },
+    "add_113": {
+      "shape": [
+        512,
+        1
+      ],
+      "dtype": "float16"
+    },
+    "powf_114": {
+      "shape": [
+        512,
+        1
+      ],
+      "dtype": "float16"
+    },
+    "broadcast_115": {
+      "shape": [
+        512,
+        512
+      ],
+      "dtype": "float16"
+    },
+    "mul_116": {
+      "shape": [
+        512,
+        512
+      ],
+      "dtype": "float16"
+    },
+    "norm_f_weight_full_117": {
+      "shape": [
+        512,
+        512
+      ],
+      "dtype": "float16"
+    },
+    "mul_118": {
+      "shape": [
+        512,
+        512
+      ],
+      "dtype": "float16"
+    }
+  },
+  "params": [
+    "layers_0_mixer_dt_bias_full_148",
+    "layers_1_mixer_dt_bias_full_149",
+    "norm_f_weight_full_117",
+    "permute_11_norm_64",
+    "permute_12_cols_7_norm_77",
+    "permute_12_cols_8_cols_10_norm_89",
+    "permute_12_cols_8_cols_11_norm_93",
+    "permute_12_cols_8_cols_12_norm_97",
+    "permute_12_cols_9_norm_85",
+    "permute_23_norm_106",
+    "permute_cols_1_norm_35",
+    "permute_cols_2_cols_4_norm_47",
+    "permute_cols_2_cols_5_norm_51",
+    "permute_cols_2_cols_6_norm_55",
+    "permute_cols_3_norm_43",
+    "ssd_D_128",
+    "ssd_causal_127",
+    "ssd_decay_125",
+    "ssd_expand_121",
+    "ssd_expand_A_122",
+    "ssd_expand_A_133"
+  ],
+  "kernels": [
+    {
+      "name": "k0_gemm",
+      "kind": "gemm",
+      "args": [
+        {
+          "name": "lhs",
+          "tensor": "u",
+          "role": "lhs",
+          "view": null
+        },
+        {
+          "name": "w0",
+          "tensor": "permute_cols_1_norm_35",
+          "role": "rhs",
+          "view": null
+        },
+        {
+          "name": "w1",
+          "tensor": "permute_cols_2_cols_4_norm_47",
+          "role": "rhs",
+          "view": null
+        }
+      ],
+      "outputs": [
+        {
+          "tensor": "matmul_36",
+          "value": "acc_matmul_36"
+        },
+        {
+          "tensor": "matmul_48",
+          "value": "acc_matmul_48"
+        }
+      ],
+      "lhs": "lhs",
+      "k_extent": 512,
+      "grid": {
+        "rows": 512,
+        "cols": 1024
+      },
+      "gemms": [
+        {
+          "acc": "acc_matmul_36",
+          "rhs": "w0"
+        },
+        {
+          "acc": "acc_matmul_48",
+          "rhs": "w1"
+        }
+      ],
+      "sumsq": false,
+      "epilogue": [],
+      "attrs": {},
+      "constexprs": {},
+      "tiles": {
+        "tile_t": 128,
+        "tile_n": 64,
+        "tile_k": 256
+      },
+      "cost": {
+        "cycles": 54863.06592178771,
+        "breakdown": {
+          "cycles": 54863.06592178771,
+          "tiles": {
+            "tile_t": 128,
+            "tile_n": 64,
+            "tile_k": 256
+          },
+          "grid_tiles": 64,
+          "waves": 1,
+          "per_tile": 54863.06592178771,
+          "loop_iters": 2,
+          "t_load_iter": 13920.746666666666,
+          "t_compute_iter": 19907.932960893857,
+          "t_prologue": 0.0,
+          "t_epilogue": 0.0,
+          "t_store": 1126.4533333333334,
+          "double_buffer": true,
+          "l1_bytes": 327680,
+          "dram_read_bytes": 2097152.0,
+          "dram_write_bytes": 2097152,
+          "orientation": "t_on_x",
+          "details": {
+            "n_gemm": 2,
+            "sumsq": false,
+            "extras": 0,
+            "outputs": 2
+          }
+        },
+        "evaluated": 125,
+        "feasible": 115,
+        "alternatives": [
+          {
+            "tiles": {
+              "tile_t": 128,
+              "tile_n": 64,
+              "tile_k": 256
+            },
+            "cycles": 54863.06592178771
+          },
+          {
+            "tiles": {
+              "tile_t": 64,
+              "tile_n": 128,
+              "tile_k": 256
+            },
+            "cycles": 57266.05258845438
+          },
+          {
+            "tiles": {
+              "tile_t": 256,
+              "tile_n": 32,
+              "tile_k": 256
+            },
+            "cycles": 57266.05258845438
+          },
+          {
+            "tiles": {
+              "tile_t": 128,
+              "tile_n": 64,
+              "tile_k": 512
+            },
+            "cycles": 59559.81258845438
+          },
+          {
+            "tiles": {
+              "tile_t": 64,
+              "tile_n": 128,
+              "tile_k": 512
+            },
+            "cycles": 64365.785921787705
+          }
+        ],
+        "loom": {
+          "kernel": "k0_gemm",
+          "ok": true,
+          "output_dir": "/workspace/torch-helion/results/mamba/loom/k0_gemm",
+          "best_variant": "_k0_gemm__x8_y1y8__d0i0_d1i0_d2i1__f01__dim_y_level1_bc8_dim_x_level0_bc8_dim_x_level0_bc8_n_n",
+          "solver_units": 880.0,
+          "block_sizes": {
+            "is_double_buffer": 1,
+            "tile_k": 256,
+            "tile_n": 128,
+            "tile_t": 64
+          },
+          "n_variants": 208,
+          "error": null,
+          "log_path": "/workspace/torch-helion/results/mamba/loom/k0_gemm.loom.log",
+          "wall_seconds": 15.016793966293335,
+          "cycles": 56320.0
+        }
+      },
+      "notes": []
+    },
+    {
+      "name": "k1_gemm",
+      "kind": "gemm",
+      "args": [
+        {
+          "name": "lhs",
+          "tensor": "u",
+          "role": "lhs",
+          "view": null
+        },
+        {
+          "name": "w0",
+          "tensor": "permute_cols_2_cols_5_norm_51",
+          "role": "rhs",
+          "view": null
+        }
+      ],
+      "outputs": [
+        {
+          "tensor": "matmul_52",
+          "value": "acc_matmul_52"
+        }
+      ],
+      "lhs": "lhs",
+      "k_extent": 512,
+      "grid": {
+        "rows": 512,
+        "cols": 1024
+      },
+      "gemms": [
+        {
+          "acc": "acc_matmul_52",
+          "rhs": "w0"
+        }
+      ],
+      "sumsq": false,
+      "epilogue": [],
+      "attrs": {},
+      "constexprs": {},
+      "tiles": {
+        "tile_t": 64,
+        "tile_n": 128,
+        "tile_k": 256
+      },
+      "cost": {
+        "cycles": 30807.70666666667,
+        "breakdown": {
+          "cycles": 30807.70666666667,
+          "tiles": {
+            "tile_t": 64,
+            "tile_n": 128,
+            "tile_k": 256
+          },
+          "grid_tiles": 64,
+          "waves": 1,
+          "per_tile": 30807.70666666667,
+          "loop_iters": 2,
+          "t_load_iter": 10081.493333333334,
+          "t_compute_iter": 9953.966480446928,
+          "t_prologue": 0.0,
+          "t_epilogue": 0.0,
+          "t_store": 563.2266666666667,
+          "double_buffer": true,
+          "l1_bytes": 245760,
+          "dram_read_bytes": 1572864.0,
+          "dram_write_bytes": 1048576,
+          "orientation": "t_on_x",
+          "details": {
+            "n_gemm": 1,
+            "sumsq": false,
+            "extras": 0,
+            "outputs": 1
+          }
+        },
+        "evaluated": 125,
+        "feasible": 118,
+        "alternatives": [
+          {
+            "tiles": {
+              "tile_t": 64,
+              "tile_n": 128,
+              "tile_k": 256
+            },
+            "cycles": 30807.70666666667
+          },
+          {
+            "tiles": {
+              "tile_t": 128,
+              "tile_n": 64,
+              "tile_k": 256
+            },
+            "cycles": 30807.70666666667
+          },
+          {
+            "tiles": {
+              "tile_t": 64,
+              "tile_n": 128,
+              "tile_k": 128
+            },
+            "cycles": 34047.90629422719
+          },
+          {
+            "tiles": {
+              "tile_t": 128,
+              "tile_n": 64,
+              "tile_k": 128
+            },
+            "cycles": 34047.90629422719
+          },
+          {
+            "tiles": {
+              "tile_t": 64,
+              "tile_n": 128,
+              "tile_k": 512
+            },
+            "cycles": 35850.14629422719
+          }
+        ],
+        "loom": {
+          "kernel": "k1_gemm",
+          "ok": true,
+          "output_dir": "/workspace/torch-helion/results/mamba/loom/k1_gemm",
+          "best_variant": "_k1_gemm__x8_y1y8__d0i1_d1i1_d2i0__f01__dim_x_level0_bc8_dim_y_level1_bc8_n",
+          "solver_units": 469.0,
+          "block_sizes": {
+            "is_double_buffer": 1,
+            "tile_k": 256,
+            "tile_n": 128,
+            "tile_t": 64
+          },
+          "n_variants": 208,
+          "error": null,
+          "log_path": "/workspace/torch-helion/results/mamba/loom/k1_gemm.loom.log",
+          "wall_seconds": 12.936631441116333,
+          "cycles": 30016.0
+        }
+      },
+      "notes": []
+    },
+    {
+      "name": "k2_gemm",
+      "kind": "gemm",
+      "args": [
+        {
+          "name": "lhs",
+          "tensor": "u",
+          "role": "lhs",
+          "view": null
+        },
+        {
+          "name": "w0",
+          "tensor": "permute_cols_3_norm_43",
+          "role": "rhs",
+          "view": null
+        },
+        {
+          "name": "in0",
+          "tensor": "layers_0_mixer_dt_bias_full_148",
+          "role": "extra",
+          "view": null
+        }
+      ],
+      "outputs": [
+        {
+          "tensor": "where",
+          "value": "where"
+        }
+      ],
+      "lhs": "lhs",
+      "k_extent": 512,
+      "grid": {
+        "rows": 512,
+        "cols": 32
+      },
+      "gemms": [
+        {
+          "acc": "acc_matmul_44",
+          "rhs": "w0"
+        }
+      ],
+      "sumsq": true,
+      "epilogue": [
+        {
+          "name": "mul_28__col",
+          "op": "mul",
+          "inputs": [
+            "sumsq"
+          ],
+          "attrs": {
+            "scalar": 0.001953125
+          }
+        },
+        {
+          "name": "add_29__col",
+          "op": "add",
+          "inputs": [
+            "mul_28__col"
+          ],
+          "attrs": {
+            "scalar": 1e-05
+          }
+        },
+        {
+          "name": "powf_30__col",
+          "op": "powf",
+          "inputs": [
+            "add_29__col"
+          ],
+          "attrs": {
+            "scalar": -0.5
+          }
+        },
+        {
+          "name": "broadcast_45",
+          "op": "broadcast",
+          "inputs": [
+            "powf_30__col"
+          ],
+          "attrs": {
+            "dim": 1,
+            "shape": [
+              512,
+              32
+            ]
+          }
+        },
+        {
+          "name": "mul_46",
+          "op": "mul",
+          "inputs": [
+            "acc_matmul_44",
+            "broadcast_45"
+          ],
+          "attrs": {}
+        },
+        {
+          "name": "add_1",
+          "op": "add",
+          "inputs": [
+            "mul_46",
+            "in0"
+          ],
+          "attrs": {}
+        },
+        {
+          "name": "exp_150",
+          "op": "exp",
+          "inputs": [
+            "add_1"
+          ],
+          "attrs": {}
+        },
+        {
+          "name": "add_151",
+          "op": "add",
+          "inputs": [
+            "exp_150"
+          ],
+          "attrs": {
+            "scalar": 1.0
+          }
+        },
+        {
+          "name": "where",
+          "op": "log",
+          "inputs": [
+            "add_151"
+          ],
+          "attrs": {}
+        }
+      ],
+      "attrs": {},
+      "constexprs": {},
+      "tiles": {
+        "tile_t": 32,
+        "tile_n": 32,
+        "tile_k": 256
+      },
+      "cost": {
+        "cycles": 30849.23127893057,
+        "breakdown": {
+          "cycles": 30849.23127893057,
+          "tiles": {
+            "tile_t": 32,
+            "tile_n": 32,
+            "tile_k": 256
+          },
+          "grid_tiles": 16,
+          "waves": 1,
+          "per_tile": 30849.23127893057,
+          "loop_iters": 2,
+          "t_load_iter": 3910.186666666667,
+          "t_compute_iter": 12757.932960893855,
+          "t_prologue": 0.0,
+          "t_epilogue": 955.525357142857,
+          "t_store": 467.6533333333333,
+          "double_buffer": true,
+          "l1_bytes": 141312,
+          "dram_read_bytes": 163840.0,
+          "dram_write_bytes": 32768,
+          "orientation": "t_on_x",
+          "details": {
+            "n_gemm": 1,
+            "sumsq": true,
+            "extras": 1,
+            "outputs": 1
+          }
+        },
+        "evaluated": 25,
+        "feasible": 25,
+        "alternatives": [
+          {
+            "tiles": {
+              "tile_t": 32,
+              "tile_n": 32,
+              "tile_k": 256
+            },
+            "cycles": 30849.23127893057
+          },
+          {
+            "tiles": {
+              "tile_t": 32,
+              "tile_n": 32,
+              "tile_k": 128
+            },
+            "cycles": 31290.137945597235
+          },
+          {
+            "tiles": {
+              "tile_t": 32,
+              "tile_n": 32,
+              "tile_k": 512
+            },
+            "cycles": 33045.41794559723
+          },
+          {
+            "tiles": {
+              "tile_t": 32,
+              "tile_n": 32,
+              "tile_k": 64
+            },
+            "cycles": 34588.591278930566
+          },
+          {
+            "tiles": {
+              "tile_t": 64,
+              "tile_n": 32,
+              "tile_k": 256
+            },
+            "cycles": 34909.96996940676
+          }
+        ],
+        "loom": {
+          "kernel": "k2_gemm",
+          "ok": true,
+          "output_dir": "/workspace/torch-helion/results/mamba/loom/k2_gemm",
+          "best_variant": "_k2_gemm__x8_y2y1__d0i0_d1i0_d2i1__f01__n_dim_x_level0_bc8_dim_y_level1_bc2_n_n",
+          "solver_units": 202.0,
+          "block_sizes": {
+            "is_double_buffer": 1,
+            "tile_k": 256,
+            "tile_n": 32,
+            "tile_t": 32
+          },
+          "n_variants": 208,
+          "error": null,
+          "log_path": "/workspace/torch-helion/results/mamba/loom/k2_gemm.loom.log",
+          "wall_seconds": 21.726181507110596,
+          "cycles": 12928.0
+        }
+      },
+      "notes": []
+    },
+    {
+      "name": "k3_gemm",
+      "kind": "gemm",
+      "args": [
+        {
+          "name": "lhs",
+          "tensor": "where",
+          "role": "lhs",
+          "view": null
+        },
+        {
+          "name": "w0",
+          "tensor": "ssd_expand_A_122",
+          "role": "rhs",
+          "view": null
+        },
+        {
+          "name": "w1",
+          "tensor": "ssd_expand_121",
+          "role": "rhs",
+          "view": null
+        }
+      ],
+      "outputs": [
+        {
+          "tensor": "matmul_124",
+          "value": "acc_matmul_124"
+        },
+        {
+          "tensor": "matmul_123",
+          "value": "acc_matmul_123"
+        }
+      ],
+      "lhs": "lhs",
+      "k_extent": 32,
+      "grid": {
+        "rows": 512,
+        "cols": 1024
+      },
+      "gemms": [
+        {
+          "acc": "acc_matmul_124",
+          "rhs": "w0"
+        },
+        {
+          "acc": "acc_matmul_123",
+          "rhs": "w1"
+        }
+      ],
+      "sumsq": false,
+      "epilogue": [],
+      "attrs": {},
+      "constexprs": {},
+      "tiles": {
+        "tile_t": 128,
+        "tile_n": 64,
+        "tile_k": 32
+      },
+      "cost": {
+        "cycles": 13426.038286778397,
+        "breakdown": {
+          "cycles": 13426.038286778397,
+          "tiles": {
+            "tile_t": 128,
+            "tile_n": 64,
+            "tile_k": 32
+          },
+          "grid_tiles": 64,
+          "waves": 1,
+          "per_tile": 13426.038286778397,
+          "loop_iters": 1,
+          "t_load_iter": 2643.0933333333332,
+          "t_compute_iter": 9656.491620111732,
+          "t_prologue": 0.0,
+          "t_epilogue": 0.0,
+          "t_store": 1126.4533333333334,
+          "double_buffer": true,
+          "l1_bytes": 98304,
+          "dram_read_bytes": 131072.0,
+          "dram_write_bytes": 2097152,
+          "orientation": "t_on_x",
+          "details": {
+            "n_gemm": 2,
+            "sumsq": false,
+            "extras": 0,
+            "outputs": 2
+          }
+        },
+        "evaluated": 25,
+        "feasible": 24,
+        "alternatives": [
+          {
+            "tiles": {
+              "tile_t": 128,
+              "tile_n": 64,
+              "tile_k": 32
+            },
+            "cycles": 13426.038286778397
+          },
+          {
+            "tiles": {
+              "tile_t": 64,
+              "tile_n": 128,
+              "tile_k": 32
+            },
+            "cycles": 13726.411620111732
+          },
+          {
+            "tiles": {
+              "tile_t": 256,
+              "tile_n": 32,
+              "tile_k": 32
+            },
+            "cycles": 13726.411620111732
+          },
+          {
+            "tiles": {
+              "tile_t": 32,
+              "tile_n": 256,
+              "tile_k": 32
+            },
+            "cycles": 14982.518286778399
+          },
+          {
+            "tiles": {
+              "tile_t": 64,
+              "tile_n": 64,
+              "tile_k": 32
+            },
+            "cycles": 17567.809906890132
+          }
+        ],
+        "loom": {
+          "kernel": "k3_gemm",
+          "ok": true,
+          "output_dir": "/workspace/torch-helion/results/mamba/loom/k3_gemm",
+          "best_variant": "_k3_gemm__x8_y1y8__d0i0_d1i0_d2i1__f01__dim_y_level1_bc8_dim_x_level0_bc8_dim_x_level0_bc8_n_n",
+          "solver_units": 213.0,
+          "block_sizes": {
+            "is_double_buffer": 0,
+            "tile_k": 32,
+            "tile_n": 128,
+            "tile_t": 64
+          },
+          "n_variants": 208,
+          "error": null,
+          "log_path": "/workspace/torch-helion/results/mamba/loom/k3_gemm.loom.log",
+          "wall_seconds": 12.550874471664429,
+          "cycles": 13632.0
+        }
+      },
+      "notes": []
+    },
+    {
+      "name": "k4_gemm",
+      "kind": "gemm",
+      "args": [
+        {
+          "name": "lhs",
+          "tensor": "ssd_decay_125",
+          "role": "lhs",
+          "view": null
+        },
+        {
+          "name": "w0",
+          "tensor": "matmul_124",
+          "role": "rhs",
+          "view": null
+        }
+      ],
+      "outputs": [
+        {
+          "tensor": "matmul_126",
+          "value": "acc_matmul_126"
+        }
+      ],
+      "lhs": "lhs",
+      "k_extent": 512,
+      "grid": {
+        "rows": 512,
+        "cols": 1024
+      },
+      "gemms": [
+        {
+          "acc": "acc_matmul_126",
+          "rhs": "w0"
+        }
+      ],
+      "sumsq": false,
+      "epilogue": [],
+      "attrs": {},
+      "constexprs": {},
+      "tiles": {
+        "tile_t": 64,
+        "tile_n": 128,
+        "tile_k": 256
+      },
+      "cost": {
+        "cycles": 30807.70666666667,
+        "breakdown": {
+          "cycles": 30807.70666666667,
+          "tiles": {
+            "tile_t": 64,
+            "tile_n": 128,
+            "tile_k": 256
+          },
+          "grid_tiles": 64,
+          "waves": 1,
+          "per_tile": 30807.70666666667,
+          "loop_iters": 2,
+          "t_load_iter": 10081.493333333334,
+          "t_compute_iter": 9953.966480446928,
+          "t_prologue": 0.0,
+          "t_epilogue": 0.0,
+          "t_store": 563.2266666666667,
+          "double_buffer": true,
+          "l1_bytes": 245760,
+          "dram_read_bytes": 1572864.0,
+          "dram_write_bytes": 1048576,
+          "orientation": "t_on_x",
+          "details": {
+            "n_gemm": 1,
+            "sumsq": false,
+            "extras": 0,
+            "outputs": 1
+          }
+        },
+        "evaluated": 125,
+        "feasible": 118,
+        "alternatives": [
+          {
+            "tiles": {
+              "tile_t": 64,
+              "tile_n": 128,
+              "tile_k": 256
+            },
+            "cycles": 30807.70666666667
+          },
+          {
+            "tiles": {
+              "tile_t": 128,
+              "tile_n": 64,
+              "tile_k": 256
+            },
+            "cycles": 30807.70666666667
+          },
+          {
+            "tiles": {
+              "tile_t": 64,
+              "tile_n": 128,
+              "tile_k": 128
+            },
+            "cycles": 34047.90629422719
+          },
+          {
+            "tiles": {
+              "tile_t": 128,
+              "tile_n": 64,
+              "tile_k": 128
+            },
+            "cycles": 34047.90629422719
+          },
+          {
+            "tiles": {
+              "tile_t": 64,
+              "tile_n": 128,
+              "tile_k": 512
+            },
+            "cycles": 35850.14629422719
+          }
+        ],
+        "loom": {
+          "kernel": "k4_gemm",
+          "ok": true,
+          "output_dir": "/workspace/torch-helion/results/mamba/loom/k4_gemm",
+          "best_variant": "_k4_gemm__x8_y1y8__d0i1_d1i1_d2i0__f01__dim_x_level0_bc8_dim_y_level1_bc8_n",
+          "solver_units": 469.0,
+          "block_sizes": {
+            "is_double_buffer": 1,
+            "tile_k": 256,
+            "tile_n": 128,
+            "tile_t": 64
+          },
+          "n_variants": 208,
+          "error": null,
+          "log_path": "/workspace/torch-helion/results/mamba/loom/k4_gemm.loom.log",
+          "wall_seconds": 13.03624677658081,
+          "cycles": 30016.0
+        }
+      },
+      "notes": []
+    },
+    {
+      "name": "k5_gemm",
+      "kind": "gemm",
+      "args": [
+        {
+          "name": "lhs",
+          "tensor": "u",
+          "role": "lhs",
+          "view": null
+        },
+        {
+          "name": "w0",
+          "tensor": "permute_cols_2_cols_6_norm_55",
+          "role": "rhs",
+          "view": null
+        },
+        {
+          "name": "in0",
+          "tensor": "matmul_36",
+          "role": "extra",
+          "view": null
+        },
+        {
+          "name": "in1",
+          "tensor": "matmul_48",
+          "role": "extra",
+          "view": null
+        },
+        {
+          "name": "in2",
+          "tensor": "matmul_52",
+          "role": "extra",
+          "view": null
+        }
+      ],
+      "outputs": [
+        {
+          "tensor": "mul_50",
+          "value": "mul_50"
+        },
+        {
+          "tensor": "mul_54",
+          "value": "mul_54"
+        },
+        {
+          "tensor": "mul_58",
+          "value": "mul_58"
+        },
+        {
+          "tensor": "mul_9",
+          "value": "mul_9"
+        }
+      ],
+      "lhs": "lhs",
+      "k_extent": 512,
+      "grid": {
+        "rows": 512,
+        "cols": 1024
+      },
+      "gemms": [
+        {
+          "acc": "acc_matmul_56",
+          "rhs": "w0"
+        }
+      ],
+      "sumsq": true,
+      "epilogue": [
+        {
+          "name": "mul_28__col",
+          "op": "mul",
+          "inputs": [
+            "sumsq"
+          ],
+          "attrs": {
+            "scalar": 0.001953125
+          }
+        },
+        {
+          "name": "add_29__col",
+          "op": "add",
+          "inputs": [
+            "mul_28__col"
+          ],
+          "attrs": {
+            "scalar": 1e-05
+          }
+        },
+        {
+          "name": "powf_30__col",
+          "op": "powf",
+          "inputs": [
+            "add_29__col"
+          ],
+          "attrs": {
+            "scalar": -0.5
+          }
+        },
+        {
+          "name": "broadcast_37",
+          "op": "broadcast",
+          "inputs": [
+            "powf_30__col"
+          ],
+          "attrs": {
+            "dim": 1,
+            "shape": [
+              512,
+              1024
+            ]
+          }
+        },
+        {
+          "name": "mul_38",
+          "op": "mul",
+          "inputs": [
+            "in0",
+            "broadcast_37"
+          ],
+          "attrs": {}
+        },
+        {
+          "name": "broadcast_49",
+          "op": "broadcast",
+          "inputs": [
+            "powf_30__col"
+          ],
+          "attrs": {
+            "dim": 1,
+            "shape": [
+              512,
+              1024
+            ]
+          }
+        },
+        {
+          "name": "mul_50",
+          "op": "mul",
+          "inputs": [
+            "in1",
+            "broadcast_49"
+          ],
+          "attrs": {}
+        },
+        {
+          "name": "broadcast_53",
+          "op": "broadcast",
+          "inputs": [
+            "powf_30__col"
+          ],
+          "attrs": {
+            "dim": 1,
+            "shape": [
+              512,
+              1024
+            ]
+          }
+        },
+        {
+          "name": "mul_54",
+          "op": "mul",
+          "inputs": [
+            "in2",
+            "broadcast_53"
+          ],
+          "attrs": {}
+        },
+        {
+          "name": "broadcast_57",
+          "op": "broadcast",
+          "inputs": [
+            "powf_30__col"
+          ],
+          "attrs": {
+            "dim": 1,
+            "shape": [
+              512,
+              1024
+            ]
+          }
+        },
+        {
+          "name": "mul_58",
+          "op": "mul",
+          "inputs": [
+            "acc_matmul_56",
+            "broadcast_57"
+          ],
+          "attrs": {}
+        },
+        {
+          "name": "mul_152",
+          "op": "mul",
+          "inputs": [
+            "mul_38"
+          ],
+          "attrs": {
+            "scalar": -1.0
+          }
+        },
+        {
+          "name": "exp_153",
+          "op": "exp",
+          "inputs": [
+            "mul_152"
+          ],
+          "attrs": {}
+        },
+        {
+          "name": "add_154",
+          "op": "add",
+          "inputs": [
+            "exp_153"
+          ],
+          "attrs": {
+            "scalar": 1.0
+          }
+        },
+        {
+          "name": "sigmoid",
+          "op": "div",
+          "inputs": [
+            "add_154"
+          ],
+          "attrs": {
+            "scalar": 1.0,
+            "scalar_first": true
+          }
+        },
+        {
+          "name": "mul_9",
+          "op": "mul",
+          "inputs": [
+            "mul_38",
+            "sigmoid"
+          ],
+          "attrs": {}
+        }
+      ],
+      "attrs": {},
+      "constexprs": {},
+      "tiles": {
+        "tile_t": 64,
+        "tile_n": 128,
+        "tile_k": 256
+      },
+      "cost": {
+        "cycles": 54489.83282654962,
+        "breakdown": {
+          "cycles": 54489.83282654962,
+          "tiles": {
+            "tile_t": 64,
+            "tile_n": 128,
+            "tile_k": 256
+          },
+          "grid_tiles": 64,
+          "waves": 1,
+          "per_tile": 54489.83282654962,
+          "loop_iters": 2,
+          "t_load_iter": 10081.493333333334,
+          "t_compute_iter": 16869.932960893857,
+          "t_prologue": 0.0,
+          "t_epilogue": 8415.566904761905,
+          "t_store": 2252.9066666666668,
+          "double_buffer": true,
+          "l1_bytes": 397312,
+          "dram_read_bytes": 4718592.0,
+          "dram_write_bytes": 4194304,
+          "orientation": "t_on_x",
+          "details": {
+            "n_gemm": 1,
+            "sumsq": true,
+            "extras": 3,
+            "outputs": 4
+          }
+        },
+        "evaluated": 125,
+        "feasible": 105,
+        "alternatives": [
+          {
+            "tiles": {
+              "tile_t": 64,
+              "tile_n": 128,
+              "tile_k": 256
+            },
+            "cycles": 54489.83282654962
+          },
+          {
+            "tiles": {
+              "tile_t": 128,
+              "tile_n": 64,
+              "tile_k": 256
+            },
+            "cycles": 56627.10068369248
+          },
+          {
+            "tiles": {
+              "tile_t": 32,
+              "tile_n": 256,
+              "tile_k": 256
+            },
+            "cycles": 57571.812231311524
+          },
+          {
+            "tiles": {
+              "tile_t": 64,
+              "tile_n": 128,
+              "tile_k": 512
+            },
+            "cycles": 58761.32615988295
+          },
+          {
+            "tiles": {
+              "tile_t": 128,
+              "tile_n": 64,
+              "tile_k": 512
+            },
+            "cycles": 59874.59401702581
+          }
+        ],
+        "loom": {
+          "kernel": "k5_gemm",
+          "ok": true,
+          "output_dir": "/workspace/torch-helion/results/mamba/loom/k5_gemm",
+          "best_variant": "_k5_gemm__x8_y1y8__d0i1_d1i1_d2i0__f01__dim_x_level0_bc8_dim_y_level1_bc8_n_n_n_n_n_n_n",
+          "solver_units": 1001.0,
+          "block_sizes": {
+            "is_double_buffer": 1,
+            "tile_k": 256,
+            "tile_n": 64,
+            "tile_t": 64
+          },
+          "n_variants": 208,
+          "error": null,
+          "log_path": "/workspace/torch-helion/results/mamba/loom/k5_gemm.loom.log",
+          "wall_seconds": 22.735727548599243,
+          "cycles": 64064.0
+        }
+      },
+      "notes": []
+    },
+    {
+      "name": "k6_ssd",
+      "kind": "ssd",
+      "args": [
+        {
+          "name": "c",
+          "tensor": "mul_58",
+          "role": "c",
+          "view": [
+            2,
+            256,
+            32,
+            32
+          ]
+        },
+        {
+          "name": "b",
+          "tensor": "mul_54",
+          "role": "b",
+          "view": [
+            2,
+            256,
+            32,
+            32
+          ]
+        },
+        {
+          "name": "x",
+          "tensor": "mul_50",
+          "role": "x",
+          "view": [
+            2,
+            256,
+            32,
+            32
+          ]
+        },
+        {
+          "name": "cum",
+          "tensor": "matmul_126",
+          "role": "cum",
+          "view": [
+            2,
+            256,
+            32,
+            32
+          ]
+        },
+        {
+          "name": "dt",
+          "tensor": "matmul_123",
+          "role": "dt",
+          "view": [
+            2,
+            256,
+            32,
+            32
+          ]
+        },
+        {
+          "name": "mask",
+          "tensor": "ssd_causal_127",
+          "role": "mask",
+          "view": null
+        },
+        {
+          "name": "dskip",
+          "tensor": "ssd_D_128",
+          "role": "dskip",
+          "view": [
+            2,
+            256,
+            32,
+            32
+          ]
+        },
+        {
+          "name": "xskip",
+          "tensor": "mul_50",
+          "role": "xskip",
+          "view": [
+            2,
+            256,
+            32,
+            32
+          ]
+        },
+        {
+          "name": "in0",
+          "tensor": "mul_9",
+          "role": "extra",
+          "view": [
+            2,
+            256,
+            32,
+            32
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "tensor": "mul_10",
+          "value": "mul_10"
+        }
+      ],
+      "lhs": null,
+      "k_extent": 0,
+      "grid": {},
+      "gemms": [],
+      "sumsq": false,
+      "epilogue": [
+        {
+          "name": "mul_10",
+          "op": "mul",
+          "inputs": [
+            "acc",
+            "in0"
+          ],
+          "attrs": {}
+        }
+      ],
+      "attrs": {
+        "batch": 2,
+        "seq": 256,
+        "heads": 32,
+        "head_dim": 32,
+        "state_dim": 32,
+        "pad": 32
+      },
+      "constexprs": {
+        "p": 32
+      },
+      "tiles": {
+        "tile_m": 256,
+        "tile_n": 256
+      },
+      "cost": {
+        "cycles": 66882.84248470339,
+        "breakdown": {
+          "cycles": 66882.84248470339,
+          "tiles": {
+            "tile_m": 256,
+            "tile_n": 256
+          },
+          "grid_tiles": 64,
+          "waves": 1,
+          "per_tile": 66882.84248470339,
+          "loop_iters": 1,
+          "t_load_iter": 7714.24,
+          "t_compute_iter": 48824.004389465284,
+          "t_prologue": 3922.12,
+          "t_epilogue": 5859.251428571428,
+          "t_store": 563.2266666666667,
+          "double_buffer": true,
+          "l1_bytes": 311296,
+          "dram_read_bytes": 7340032,
+          "dram_write_bytes": 1048576,
+          "orientation": "bh_on_mesh",
+          "details": {
+            "batch": 2,
+            "heads": 32,
+            "seq": 256,
+            "head_dim": 32,
+            "state_dim": 32,
+            "extras": 1
+          }
+        },
+        "evaluated": 16,
+        "feasible": 16,
+        "alternatives": [
+          {
+            "tiles": {
+              "tile_m": 256,
+              "tile_n": 256
+            },
+            "cycles": 66882.84248470339
+          },
+          {
+            "tiles": {
+              "tile_m": 256,
+              "tile_n": 128
+            },
+            "cycles": 68036.7224847034
+          },
+          {
+            "tiles": {
+              "tile_m": 256,
+              "tile_n": 64
+            },
+            "cycles": 74768.16248470338
+          },
+          {
+            "tiles": {
+              "tile_m": 128,
+              "tile_n": 128
+            },
+            "cycles": 81576.88039372173
+          },
+          {
+            "tiles": {
+              "tile_m": 128,
+              "tile_n": 256
+            },
+            "cycles": 83365.12039372174
+          }
+        ],
+        "loom": {
+          "kernel": "k6_ssd",
+          "ok": true,
+          "output_dir": "/workspace/torch-helion/results/mamba/loom/k6_ssd",
+          "best_variant": "_k6_ssd__x1x8_y4y2__d0i2_d1i2_d2i1_d3i0__f012__n_n_n_n_n_dim_y_level0_bc4_dim_x_level1_bc8_dim_y_level0_bc4_dim_y_level0_bc4_dim_y_level0_bc4_n",
+          "solver_units": 2296.0,
+          "block_sizes": {
+            "is_double_buffer": 1,
+            "tile_b": 1,
+            "tile_h": 1,
+            "tile_m": 64,
+            "tile_n": 128
+          },
+          "n_variants": 393,
+          "error": null,
+          "log_path": "/workspace/torch-helion/results/mamba/loom/k6_ssd.loom.log",
+          "wall_seconds": 29.770259141921997,
+          "cycles": 146944.0
+        }
+      },
+      "notes": []
+    },
+    {
+      "name": "k7_gemm",
+      "kind": "gemm",
+      "args": [
+        {
+          "name": "lhs",
+          "tensor": "mul_10",
+          "role": "lhs",
+          "view": null
+        },
+        {
+          "name": "w0",
+          "tensor": "permute_11_norm_64",
+          "role": "rhs",
+          "view": null
+        },
+        {
+          "name": "in0",
+          "tensor": "u",
+          "role": "extra",
+          "view": null
+        }
+      ],
+      "outputs": [
+        {
+          "tensor": "add_4",
+          "value": "add_4"
+        }
+      ],
+      "lhs": "lhs",
+      "k_extent": 1024,
+      "grid": {
+        "rows": 512,
+        "cols": 512
+      },
+      "gemms": [
+        {
+          "acc": "acc_matmul_65",
+          "rhs": "w0"
+        }
+      ],
+      "sumsq": true,
+      "epilogue": [
+        {
+          "name": "mul_61__col",
+          "op": "mul",
+          "inputs": [
+            "sumsq"
+          ],
+          "attrs": {
+            "scalar": 0.0009765625
+          }
+        },
+        {
+          "name": "add_62__col",
+          "op": "add",
+          "inputs": [
+            "mul_61__col"
+          ],
+          "attrs": {
+            "scalar": 1e-05
+          }
+        },
+        {
+          "name": "powf_63__col",
+          "op": "powf",
+          "inputs": [
+            "add_62__col"
+          ],
+          "attrs": {
+            "scalar": -0.5
+          }
+        },
+        {
+          "name": "broadcast_66",
+          "op": "broadcast",
+          "inputs": [
+            "powf_63__col"
+          ],
+          "attrs": {
+            "dim": 1,
+            "shape": [
+              512,
+              512
+            ]
+          }
+        },
+        {
+          "name": "mul_67",
+          "op": "mul",
+          "inputs": [
+            "acc_matmul_65",
+            "broadcast_66"
+          ],
+          "attrs": {}
+        },
+        {
+          "name": "add_4",
+          "op": "add",
+          "inputs": [
+            "in0",
+            "mul_67"
+          ],
+          "attrs": {}
+        }
+      ],
+      "attrs": {},
+      "constexprs": {},
+      "tiles": {
+        "tile_t": 32,
+        "tile_n": 128,
+        "tile_k": 256
+      },
+      "cost": {
+        "cycles": 67236.12577214684,
+        "breakdown": {
+          "cycles": 67236.12577214684,
+          "tiles": {
+            "tile_t": 32,
+            "tile_n": 128,
+            "tile_k": 256
+          },
+          "grid_tiles": 64,
+          "waves": 1,
+          "per_tile": 67236.12577214684,
+          "loop_iters": 4,
+          "t_load_iter": 8333.866666666667,
+          "t_compute_iter": 14293.932960893855,
+          "t_prologue": 0.0,
+          "t_epilogue": 1217.9139285714286,
+          "t_store": 508.61333333333334,
+          "double_buffer": true,
+          "l1_bytes": 264192,
+          "dram_read_bytes": 3145728.0,
+          "dram_write_bytes": 524288,
+          "orientation": "t_on_x",
+          "details": {
+            "n_gemm": 1,
+            "sumsq": true,
+            "extras": 1,
+            "outputs": 1
+          }
+        },
+        "evaluated": 125,
+        "feasible": 113,
+        "alternatives": [
+          {
+            "tiles": {
+              "tile_t": 32,
+              "tile_n": 128,
+              "tile_k": 256
+            },
+            "cycles": 67236.12577214684
+          },
+          {
+            "tiles": {
+              "tile_t": 64,
+              "tile_n": 64,
+              "tile_k": 256
+            },
+            "cycles": 68159.26636738493
+          },
+          {
+            "tiles": {
+              "tile_t": 64,
+              "tile_n": 64,
+              "tile_k": 512
+            },
+            "cycles": 68455.63970071827
+          },
+          {
+            "tiles": {
+              "tile_t": 32,
+              "tile_n": 128,
+              "tile_k": 512
+            },
+            "cycles": 69757.99243881351
+          },
+          {
+            "tiles": {
+              "tile_t": 128,
+              "tile_n": 32,
+              "tile_k": 512
+            },
+            "cycles": 73059.89422452779
+          }
+        ],
+        "loom": {
+          "kernel": "k7_gemm",
+          "ok": true,
+          "output_dir": "/workspace/torch-helion/results/mamba/loom/k7_gemm",
+          "best_variant": "_k7_gemm__x8_y1y8__d0i1_d1i1_d2i0__f01__dim_x_level0_bc8_dim_y_level1_bc8_n_n",
+          "solver_units": 642.0,
+          "block_sizes": {
+            "is_double_buffer": 1,
+            "tile_k": 512,
+            "tile_n": 64,
+            "tile_t": 64
+          },
+          "n_variants": 208,
+          "error": null,
+          "log_path": "/workspace/torch-helion/results/mamba/loom/k7_gemm.loom.log",
+          "wall_seconds": 18.599769592285156,
+          "cycles": 41088.0
+        }
+      },
+      "notes": []
+    },
+    {
+      "name": "k8_gemm",
+      "kind": "gemm",
+      "args": [
+        {
+          "name": "lhs",
+          "tensor": "add_4",
+          "role": "lhs",
+          "view": null
+        },
+        {
+          "name": "w0",
+          "tensor": "permute_12_cols_9_norm_85",
+          "role": "rhs",
+          "view": null
+        },
+        {
+          "name": "in0",
+          "tensor": "layers_1_mixer_dt_bias_full_149",
+          "role": "extra",
+          "view": null
+        }
+      ],
+      "outputs": [
+        {
+          "tensor": "where_1",
+          "value": "where_1"
+        }
+      ],
+      "lhs": "lhs",
+      "k_extent": 512,
+      "grid": {
+        "rows": 512,
+        "cols": 32
+      },
+      "gemms": [
+        {
+          "acc": "acc_matmul_86",
+          "rhs": "w0"
+        }
+      ],
+      "sumsq": true,
+      "epilogue": [
+        {
+          "name": "mul_70__col",
+          "op": "mul",
+          "inputs": [
+            "sumsq"
+          ],
+          "attrs": {
+            "scalar": 0.001953125
+          }
+        },
+        {
+          "name": "add_71__col",
+          "op": "add",
+          "inputs": [
+            "mul_70__col"
+          ],
+          "attrs": {
+            "scalar": 1e-05
+          }
+        },
+        {
+          "name": "powf_72__col",
+          "op": "powf",
+          "inputs": [
+            "add_71__col"
+          ],
+          "attrs": {
+            "scalar": -0.5
+          }
+        },
+        {
+          "name": "broadcast_87",
+          "op": "broadcast",
+          "inputs": [
+            "powf_72__col"
+          ],
+          "attrs": {
+            "dim": 1,
+            "shape": [
+              512,
+              32
+            ]
+          }
+        },
+        {
+          "name": "mul_88",
+          "op": "mul",
+          "inputs": [
+            "acc_matmul_86",
+            "broadcast_87"
+          ],
+          "attrs": {}
+        },
+        {
+          "name": "add_6",
+          "op": "add",
+          "inputs": [
+            "mul_88",
+            "in0"
+          ],
+          "attrs": {}
+        },
+        {
+          "name": "exp_155",
+          "op": "exp",
+          "inputs": [
+            "add_6"
+          ],
+          "attrs": {}
+        },
+        {
+          "name": "add_156",
+          "op": "add",
+          "inputs": [
+            "exp_155"
+          ],
+          "attrs": {
+            "scalar": 1.0
+          }
+        },
+        {
+          "name": "where_1",
+          "op": "log",
+          "inputs": [
+            "add_156"
+          ],
+          "attrs": {}
+        }
+      ],
+      "attrs": {},
+      "constexprs": {},
+      "tiles": {
+        "tile_t": 32,
+        "tile_n": 32,
+        "tile_k": 256
+      },
+      "cost": {
+        "cycles": 30849.23127893057,
+        "breakdown": {
+          "cycles": 30849.23127893057,
+          "tiles": {
+            "tile_t": 32,
+            "tile_n": 32,
+            "tile_k": 256
+          },
+          "grid_tiles": 16,
+          "waves": 1,
+          "per_tile": 30849.23127893057,
+          "loop_iters": 2,
+          "t_load_iter": 3910.186666666667,
+          "t_compute_iter": 12757.932960893855,
+          "t_prologue": 0.0,
+          "t_epilogue": 955.525357142857,
+          "t_store": 467.6533333333333,
+          "double_buffer": true,
+          "l1_bytes": 141312,
+          "dram_read_bytes": 163840.0,
+          "dram_write_bytes": 32768,
+          "orientation": "t_on_x",
+          "details": {
+            "n_gemm": 1,
+            "sumsq": true,
+            "extras": 1,
+            "outputs": 1
+          }
+        },
+        "evaluated": 25,
+        "feasible": 25,
+        "alternatives": [
+          {
+            "tiles": {
+              "tile_t": 32,
+              "tile_n": 32,
+              "tile_k": 256
+            },
+            "cycles": 30849.23127893057
+          },
+          {
+            "tiles": {
+              "tile_t": 32,
+              "tile_n": 32,
+              "tile_k": 128
+            },
+            "cycles": 31290.137945597235
+          },
+          {
+            "tiles": {
+              "tile_t": 32,
+              "tile_n": 32,
+              "tile_k": 512
+            },
+            "cycles": 33045.41794559723
+          },
+          {
+            "tiles": {
+              "tile_t": 32,
+              "tile_n": 32,
+              "tile_k": 64
+            },
+            "cycles": 34588.591278930566
+          },
+          {
+            "tiles": {
+              "tile_t": 64,
+              "tile_n": 32,
+              "tile_k": 256
+            },
+            "cycles": 34909.96996940676
+          }
+        ],
+        "loom": {
+          "kernel": "k8_gemm",
+          "ok": true,
+          "output_dir": "/workspace/torch-helion/results/mamba/loom/k8_gemm",
+          "best_variant": "_k8_gemm__x8_y2y1__d0i0_d1i0_d2i1__f01__n_dim_x_level0_bc8_dim_y_level1_bc2_n_n",
+          "solver_units": 202.0,
+          "block_sizes": {
+            "is_double_buffer": 1,
+            "tile_k": 256,
+            "tile_n": 32,
+            "tile_t": 32
+          },
+          "n_variants": 208,
+          "error": null,
+          "log_path": "/workspace/torch-helion/results/mamba/loom/k8_gemm.loom.log",
+          "wall_seconds": 21.475327253341675,
+          "cycles": 12928.0
+        }
+      },
+      "notes": []
+    },
+    {
+      "name": "k9_gemm",
+      "kind": "gemm",
+      "args": [
+        {
+          "name": "lhs",
+          "tensor": "where_1",
+          "role": "lhs",
+          "view": null
+        },
+        {
+          "name": "w0",
+          "tensor": "ssd_expand_A_133",
+          "role": "rhs",
+          "view": null
+        },
+        {
+          "name": "w1",
+          "tensor": "ssd_expand_121",
+          "role": "rhs",
+          "view": null
+        }
+      ],
+      "outputs": [
+        {
+          "tensor": "matmul_135",
+          "value": "acc_matmul_135"
+        },
+        {
+          "tensor": "matmul_134",
+          "value": "acc_matmul_134"
+        }
+      ],
+      "lhs": "lhs",
+      "k_extent": 32,
+      "grid": {
+        "rows": 512,
+        "cols": 1024
+      },
+      "gemms": [
+        {
+          "acc": "acc_matmul_135",
+          "rhs": "w0"
+        },
+        {
+          "acc": "acc_matmul_134",
+          "rhs": "w1"
+        }
+      ],
+      "sumsq": false,
+      "epilogue": [],
+      "attrs": {},
+      "constexprs": {},
+      "tiles": {
+        "tile_t": 128,
+        "tile_n": 64,
+        "tile_k": 32
+      },
+      "cost": {
+        "cycles": 13426.038286778397,
+        "breakdown": {
+          "cycles": 13426.038286778397,
+          "tiles": {
+            "tile_t": 128,
+            "tile_n": 64,
+            "tile_k": 32
+          },
+          "grid_tiles": 64,
+          "waves": 1,
+          "per_tile": 13426.038286778397,
+          "loop_iters": 1,
+          "t_load_iter": 2643.0933333333332,
+          "t_compute_iter": 9656.491620111732,
+          "t_prologue": 0.0,
+          "t_epilogue": 0.0,
+          "t_store": 1126.4533333333334,
+          "double_buffer": true,
+          "l1_bytes": 98304,
+          "dram_read_bytes": 131072.0,
+          "dram_write_bytes": 2097152,
+          "orientation": "t_on_x",
+          "details": {
+            "n_gemm": 2,
+            "sumsq": false,
+            "extras": 0,
+            "outputs": 2
+          }
+        },
+        "evaluated": 25,
+        "feasible": 24,
+        "alternatives": [
+          {
+            "tiles": {
+              "tile_t": 128,
+              "tile_n": 64,
+              "tile_k": 32
+            },
+            "cycles": 13426.038286778397
+          },
+          {
+            "tiles": {
+              "tile_t": 64,
+              "tile_n": 128,
+              "tile_k": 32
+            },
+            "cycles": 13726.411620111732
+          },
+          {
+            "tiles": {
+              "tile_t": 256,
+              "tile_n": 32,
+              "tile_k": 32
+            },
+            "cycles": 13726.411620111732
+          },
+          {
+            "tiles": {
+              "tile_t": 32,
+              "tile_n": 256,
+              "tile_k": 32
+            },
+            "cycles": 14982.518286778399
+          },
+          {
+            "tiles": {
+              "tile_t": 64,
+              "tile_n": 64,
+              "tile_k": 32
+            },
+            "cycles": 17567.809906890132
+          }
+        ],
+        "loom": {
+          "kernel": "k9_gemm",
+          "ok": true,
+          "output_dir": "/workspace/torch-helion/results/mamba/loom/k9_gemm",
+          "best_variant": "_k9_gemm__x8_y1y8__d0i0_d1i0_d2i1__f01__dim_y_level1_bc8_dim_x_level0_bc8_dim_x_level0_bc8_n_n",
+          "solver_units": 213.0,
+          "block_sizes": {
+            "is_double_buffer": 0,
+            "tile_k": 32,
+            "tile_n": 128,
+            "tile_t": 64
+          },
+          "n_variants": 208,
+          "error": null,
+          "log_path": "/workspace/torch-helion/results/mamba/loom/k9_gemm.loom.log",
+          "wall_seconds": 12.509094476699829,
+          "cycles": 13632.0
+        }
+      },
+      "notes": []
+    },
+    {
+      "name": "k10_gemm",
+      "kind": "gemm",
+      "args": [
+        {
+          "name": "lhs",
+          "tensor": "ssd_decay_125",
+          "role": "lhs",
+          "view": null
+        },
+        {
+          "name": "w0",
+          "tensor": "matmul_135",
+          "role": "rhs",
+          "view": null
+        }
+      ],
+      "outputs": [
+        {
+          "tensor": "matmul_137",
+          "value": "acc_matmul_137"
+        }
+      ],
+      "lhs": "lhs",
+      "k_extent": 512,
+      "grid": {
+        "rows": 512,
+        "cols": 1024
+      },
+      "gemms": [
+        {
+          "acc": "acc_matmul_137",
+          "rhs": "w0"
+        }
+      ],
+      "sumsq": false,
+      "epilogue": [],
+      "attrs": {},
+      "constexprs": {},
+      "tiles": {
+        "tile_t": 64,
+        "tile_n": 128,
+        "tile_k": 256
+      },
+      "cost": {
+        "cycles": 30807.70666666667,
+        "breakdown": {
+          "cycles": 30807.70666666667,
+          "tiles": {
+            "tile_t": 64,
+            "tile_n": 128,
+            "tile_k": 256
+          },
+          "grid_tiles": 64,
+          "waves": 1,
+          "per_tile": 30807.70666666667,
+          "loop_iters": 2,
+          "t_load_iter": 10081.493333333334,
+          "t_compute_iter": 9953.966480446928,
+          "t_prologue": 0.0,
+          "t_epilogue": 0.0,
+          "t_store": 563.2266666666667,
+          "double_buffer": true,
+          "l1_bytes": 245760,
+          "dram_read_bytes": 1572864.0,
+          "dram_write_bytes": 1048576,
+          "orientation": "t_on_x",
+          "details": {
+            "n_gemm": 1,
+            "sumsq": false,
+            "extras": 0,
+            "outputs": 1
+          }
+        },
+        "evaluated": 125,
+        "feasible": 118,
+        "alternatives": [
+          {
+            "tiles": {
+              "tile_t": 64,
+              "tile_n": 128,
+              "tile_k": 256
+            },
+            "cycles": 30807.70666666667
+          },
+          {
+            "tiles": {
+              "tile_t": 128,
+              "tile_n": 64,
+              "tile_k": 256
+            },
+            "cycles": 30807.70666666667
+          },
+          {
+            "tiles": {
+              "tile_t": 64,
+              "tile_n": 128,
+              "tile_k": 128
+            },
+            "cycles": 34047.90629422719
+          },
+          {
+            "tiles": {
+              "tile_t": 128,
+              "tile_n": 64,
+              "tile_k": 128
+            },
+            "cycles": 34047.90629422719
+          },
+          {
+            "tiles": {
+              "tile_t": 64,
+              "tile_n": 128,
+              "tile_k": 512
+            },
+            "cycles": 35850.14629422719
+          }
+        ],
+        "loom": {
+          "kernel": "k10_gemm",
+          "ok": true,
+          "output_dir": "/workspace/torch-helion/results/mamba/loom/k10_gemm",
+          "best_variant": "_k10_gemm__x8_y1y8__d0i1_d1i1_d2i0__f01__dim_x_level0_bc8_dim_y_level1_bc8_n",
+          "solver_units": 469.0,
+          "block_sizes": {
+            "is_double_buffer": 1,
+            "tile_k": 256,
+            "tile_n": 128,
+            "tile_t": 64
+          },
+          "n_variants": 208,
+          "error": null,
+          "log_path": "/workspace/torch-helion/results/mamba/loom/k10_gemm.loom.log",
+          "wall_seconds": 13.154197216033936,
+          "cycles": 30016.0
+        }
+      },
+      "notes": []
+    },
+    {
+      "name": "k11_gemm",
+      "kind": "gemm",
+      "args": [
+        {
+          "name": "lhs",
+          "tensor": "add_4",
+          "role": "lhs",
+          "view": null
+        },
+        {
+          "name": "w0",
+          "tensor": "permute_12_cols_7_norm_77",
+          "role": "rhs",
+          "view": null
+        },
+        {
+          "name": "w1",
+          "tensor": "permute_12_cols_8_cols_10_norm_89",
+          "role": "rhs",
+          "view": null
+        },
+        {
+          "name": "w2",
+          "tensor": "permute_12_cols_8_cols_11_norm_93",
+          "role": "rhs",
+          "view": null
+        },
+        {
+          "name": "w3",
+          "tensor": "permute_12_cols_8_cols_12_norm_97",
+          "role": "rhs",
+          "view": null
+        }
+      ],
+      "outputs": [
+        {
+          "tensor": "mul_92",
+          "value": "mul_92"
+        },
+        {
+          "tensor": "mul_96",
+          "value": "mul_96"
+        },
+        {
+          "tensor": "mul_100",
+          "value": "mul_100"
+        },
+        {
+          "tensor": "mul_22",
+          "value": "mul_22"
+        }
+      ],
+      "lhs": "lhs",
+      "k_extent": 512,
+      "grid": {
+        "rows": 512,
+        "cols": 1024
+      },
+      "gemms": [
+        {
+          "acc": "acc_matmul_78",
+          "rhs": "w0"
+        },
+        {
+          "acc": "acc_matmul_90",
+          "rhs": "w1"
+        },
+        {
+          "acc": "acc_matmul_94",
+          "rhs": "w2"
+        },
+        {
+          "acc": "acc_matmul_98",
+          "rhs": "w3"
+        }
+      ],
+      "sumsq": true,
+      "epilogue": [
+        {
+          "name": "mul_70__col",
+          "op": "mul",
+          "inputs": [
+            "sumsq"
+          ],
+          "attrs": {
+            "scalar": 0.001953125
+          }
+        },
+        {
+          "name": "add_71__col",
+          "op": "add",
+          "inputs": [
+            "mul_70__col"
+          ],
+          "attrs": {
+            "scalar": 1e-05
+          }
+        },
+        {
+          "name": "powf_72__col",
+          "op": "powf",
+          "inputs": [
+            "add_71__col"
+          ],
+          "attrs": {
+            "scalar": -0.5
+          }
+        },
+        {
+          "name": "broadcast_79",
+          "op": "broadcast",
+          "inputs": [
+            "powf_72__col"
+          ],
+          "attrs": {
+            "dim": 1,
+            "shape": [
+              512,
+              1024
+            ]
+          }
+        },
+        {
+          "name": "mul_80",
+          "op": "mul",
+          "inputs": [
+            "acc_matmul_78",
+            "broadcast_79"
+          ],
+          "attrs": {}
+        },
+        {
+          "name": "broadcast_91",
+          "op": "broadcast",
+          "inputs": [
+            "powf_72__col"
+          ],
+          "attrs": {
+            "dim": 1,
+            "shape": [
+              512,
+              1024
+            ]
+          }
+        },
+        {
+          "name": "mul_92",
+          "op": "mul",
+          "inputs": [
+            "acc_matmul_90",
+            "broadcast_91"
+          ],
+          "attrs": {}
+        },
+        {
+          "name": "broadcast_95",
+          "op": "broadcast",
+          "inputs": [
+            "powf_72__col"
+          ],
+          "attrs": {
+            "dim": 1,
+            "shape": [
+              512,
+              1024
+            ]
+          }
+        },
+        {
+          "name": "mul_96",
+          "op": "mul",
+          "inputs": [
+            "acc_matmul_94",
+            "broadcast_95"
+          ],
+          "attrs": {}
+        },
+        {
+          "name": "broadcast_99",
+          "op": "broadcast",
+          "inputs": [
+            "powf_72__col"
+          ],
+          "attrs": {
+            "dim": 1,
+            "shape": [
+              512,
+              1024
+            ]
+          }
+        },
+        {
+          "name": "mul_100",
+          "op": "mul",
+          "inputs": [
+            "acc_matmul_98",
+            "broadcast_99"
+          ],
+          "attrs": {}
+        },
+        {
+          "name": "mul_157",
+          "op": "mul",
+          "inputs": [
+            "mul_80"
+          ],
+          "attrs": {
+            "scalar": -1.0
+          }
+        },
+        {
+          "name": "exp_158",
+          "op": "exp",
+          "inputs": [
+            "mul_157"
+          ],
+          "attrs": {}
+        },
+        {
+          "name": "add_159",
+          "op": "add",
+          "inputs": [
+            "exp_158"
+          ],
+          "attrs": {
+            "scalar": 1.0
+          }
+        },
+        {
+          "name": "sigmoid_1",
+          "op": "div",
+          "inputs": [
+            "add_159"
+          ],
+          "attrs": {
+            "scalar": 1.0,
+            "scalar_first": true
+          }
+        },
+        {
+          "name": "mul_22",
+          "op": "mul",
+          "inputs": [
+            "mul_80",
+            "sigmoid_1"
+          ],
+          "attrs": {}
+        }
+      ],
+      "attrs": {},
+      "constexprs": {},
+      "tiles": {
+        "tile_t": 128,
+        "tile_n": 64,
+        "tile_k": 256
+      },
+      "cost": {
+        "cycles": 120990.71289970737,
+        "breakdown": {
+          "cycles": 120990.71289970737,
+          "tiles": {
+            "tile_t": 128,
+            "tile_n": 64,
+            "tile_k": 256
+          },
+          "grid_tiles": 64,
+          "waves": 1,
+          "per_tile": 120990.71289970737,
+          "loop_iters": 2,
+          "t_load_iter": 20506.986666666668,
+          "t_compute_iter": 47787.83240223464,
+          "t_prologue": 0.0,
+          "t_epilogue": 2655.1547619047615,
+          "t_store": 2252.9066666666668,
+          "double_buffer": true,
+          "l1_bytes": 663552,
+          "dram_read_bytes": 3145728.0,
+          "dram_write_bytes": 4194304,
+          "orientation": "t_on_x",
+          "details": {
+            "n_gemm": 4,
+            "sumsq": true,
+            "extras": 0,
+            "outputs": 4
+          }
+        },
+        "evaluated": 125,
+        "feasible": 96,
+        "alternatives": [
+          {
+            "tiles": {
+              "tile_t": 128,
+              "tile_n": 64,
+              "tile_k": 256
+            },
+            "cycles": 120990.71289970737
+          },
+          {
+            "tiles": {
+              "tile_t": 128,
+              "tile_n": 64,
+              "tile_k": 512
+            },
+            "cycles": 121343.69956637402
+          },
+          {
+            "tiles": {
+              "tile_t": 256,
+              "tile_n": 32,
+              "tile_k": 512
+            },
+            "cycles": 123570.23528065973
+          },
+          {
+            "tiles": {
+              "tile_t": 256,
+              "tile_n": 32,
+              "tile_k": 256
+            },
+            "cycles": 125265.24861399308
+          },
+          {
+            "tiles": {
+              "tile_t": 64,
+              "tile_n": 128,
+              "tile_k": 256
+            },
+            "cycles": 127154.67170923119
+          }
+        ],
+        "loom": {
+          "kernel": "k11_gemm",
+          "ok": true,
+          "output_dir": "/workspace/torch-helion/results/mamba/loom/k11_gemm",
+          "best_variant": "_k11_gemm__x8_y1y8__d0i0_d1i0_d2i1__f01__dim_y_level1_bc8_dim_x_level0_bc8_dim_x_level0_bc8_dim_x_level0_bc8_dim_x_level0_bc8_n_n_n_n",
+          "solver_units": 1785.0,
+          "block_sizes": {
+            "is_double_buffer": 1,
+            "tile_k": 256,
+            "tile_n": 128,
+            "tile_t": 64
+          },
+          "n_variants": 208,
+          "error": null,
+          "log_path": "/workspace/torch-helion/results/mamba/loom/k11_gemm.loom.log",
+          "wall_seconds": 48.89975571632385,
+          "cycles": 114240.0
+        }
+      },
+      "notes": []
+    },
+    {
+      "name": "k12_ssd",
+      "kind": "ssd",
+      "args": [
+        {
+          "name": "c",
+          "tensor": "mul_100",
+          "role": "c",
+          "view": [
+            2,
+            256,
+            32,
+            32
+          ]
+        },
+        {
+          "name": "b",
+          "tensor": "mul_96",
+          "role": "b",
+          "view": [
+            2,
+            256,
+            32,
+            32
+          ]
+        },
+        {
+          "name": "x",
+          "tensor": "mul_92",
+          "role": "x",
+          "view": [
+            2,
+            256,
+            32,
+            32
+          ]
+        },
+        {
+          "name": "cum",
+          "tensor": "matmul_137",
+          "role": "cum",
+          "view": [
+            2,
+            256,
+            32,
+            32
+          ]
+        },
+        {
+          "name": "dt",
+          "tensor": "matmul_134",
+          "role": "dt",
+          "view": [
+            2,
+            256,
+            32,
+            32
+          ]
+        },
+        {
+          "name": "mask",
+          "tensor": "ssd_causal_127",
+          "role": "mask",
+          "view": null
+        },
+        {
+          "name": "dskip",
+          "tensor": "ssd_D_128",
+          "role": "dskip",
+          "view": [
+            2,
+            256,
+            32,
+            32
+          ]
+        },
+        {
+          "name": "xskip",
+          "tensor": "mul_92",
+          "role": "xskip",
+          "view": [
+            2,
+            256,
+            32,
+            32
+          ]
+        },
+        {
+          "name": "in0",
+          "tensor": "mul_22",
+          "role": "extra",
+          "view": [
+            2,
+            256,
+            32,
+            32
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "tensor": "mul_23",
+          "value": "mul_23"
+        }
+      ],
+      "lhs": null,
+      "k_extent": 0,
+      "grid": {},
+      "gemms": [],
+      "sumsq": false,
+      "epilogue": [
+        {
+          "name": "mul_23",
+          "op": "mul",
+          "inputs": [
+            "acc",
+            "in0"
+          ],
+          "attrs": {}
+        }
+      ],
+      "attrs": {
+        "batch": 2,
+        "seq": 256,
+        "heads": 32,
+        "head_dim": 32,
+        "state_dim": 32,
+        "pad": 32
+      },
+      "constexprs": {
+        "p": 32
+      },
+      "tiles": {
+        "tile_m": 256,
+        "tile_n": 256
+      },
+      "cost": {
+        "cycles": 66882.84248470339,
+        "breakdown": {
+          "cycles": 66882.84248470339,
+          "tiles": {
+            "tile_m": 256,
+            "tile_n": 256
+          },
+          "grid_tiles": 64,
+          "waves": 1,
+          "per_tile": 66882.84248470339,
+          "loop_iters": 1,
+          "t_load_iter": 7714.24,
+          "t_compute_iter": 48824.004389465284,
+          "t_prologue": 3922.12,
+          "t_epilogue": 5859.251428571428,
+          "t_store": 563.2266666666667,
+          "double_buffer": true,
+          "l1_bytes": 311296,
+          "dram_read_bytes": 7340032,
+          "dram_write_bytes": 1048576,
+          "orientation": "bh_on_mesh",
+          "details": {
+            "batch": 2,
+            "heads": 32,
+            "seq": 256,
+            "head_dim": 32,
+            "state_dim": 32,
+            "extras": 1
+          }
+        },
+        "evaluated": 16,
+        "feasible": 16,
+        "alternatives": [
+          {
+            "tiles": {
+              "tile_m": 256,
+              "tile_n": 256
+            },
+            "cycles": 66882.84248470339
+          },
+          {
+            "tiles": {
+              "tile_m": 256,
+              "tile_n": 128
+            },
+            "cycles": 68036.7224847034
+          },
+          {
+            "tiles": {
+              "tile_m": 256,
+              "tile_n": 64
+            },
+            "cycles": 74768.16248470338
+          },
+          {
+            "tiles": {
+              "tile_m": 128,
+              "tile_n": 128
+            },
+            "cycles": 81576.88039372173
+          },
+          {
+            "tiles": {
+              "tile_m": 128,
+              "tile_n": 256
+            },
+            "cycles": 83365.12039372174
+          }
+        ],
+        "loom": {
+          "kernel": "k12_ssd",
+          "ok": true,
+          "output_dir": "/workspace/torch-helion/results/mamba/loom/k12_ssd",
+          "best_variant": "_k12_ssd__x1x8_y4y2__d0i2_d1i2_d2i1_d3i0__f012__n_n_n_n_n_dim_y_level0_bc4_dim_x_level1_bc8_dim_y_level0_bc4_dim_y_level0_bc4_dim_y_level0_bc4_n",
+          "solver_units": 2296.0,
+          "block_sizes": {
+            "is_double_buffer": 1,
+            "tile_b": 1,
+            "tile_h": 1,
+            "tile_m": 64,
+            "tile_n": 128
+          },
+          "n_variants": 393,
+          "error": null,
+          "log_path": "/workspace/torch-helion/results/mamba/loom/k12_ssd.loom.log",
+          "wall_seconds": 29.407967567443848,
+          "cycles": 146944.0
+        }
+      },
+      "notes": []
+    },
+    {
+      "name": "k13_gemm",
+      "kind": "gemm",
+      "args": [
+        {
+          "name": "lhs",
+          "tensor": "mul_23",
+          "role": "lhs",
+          "view": null
+        },
+        {
+          "name": "w0",
+          "tensor": "permute_23_norm_106",
+          "role": "rhs",
+          "view": null
+        },
+        {
+          "name": "in0",
+          "tensor": "add_4",
+          "role": "extra",
+          "view": null
+        }
+      ],
+      "outputs": [
+        {
+          "tensor": "add_9",
+          "value": "add_9"
+        }
+      ],
+      "lhs": "lhs",
+      "k_extent": 1024,
+      "grid": {
+        "rows": 512,
+        "cols": 512
+      },
+      "gemms": [
+        {
+          "acc": "acc_matmul_107",
+          "rhs": "w0"
+        }
+      ],
+      "sumsq": true,
+      "epilogue": [
+        {
+          "name": "mul_103__col",
+          "op": "mul",
+          "inputs": [
+            "sumsq"
+          ],
+          "attrs": {
+            "scalar": 0.0009765625
+          }
+        },
+        {
+          "name": "add_104__col",
+          "op": "add",
+          "inputs": [
+            "mul_103__col"
+          ],
+          "attrs": {
+            "scalar": 1e-05
+          }
+        },
+        {
+          "name": "powf_105__col",
+          "op": "powf",
+          "inputs": [
+            "add_104__col"
+          ],
+          "attrs": {
+            "scalar": -0.5
+          }
+        },
+        {
+          "name": "broadcast_108",
+          "op": "broadcast",
+          "inputs": [
+            "powf_105__col"
+          ],
+          "attrs": {
+            "dim": 1,
+            "shape": [
+              512,
+              512
+            ]
+          }
+        },
+        {
+          "name": "mul_109",
+          "op": "mul",
+          "inputs": [
+            "acc_matmul_107",
+            "broadcast_108"
+          ],
+          "attrs": {}
+        },
+        {
+          "name": "add_9",
+          "op": "add",
+          "inputs": [
+            "in0",
+            "mul_109"
+          ],
+          "attrs": {}
+        }
+      ],
+      "attrs": {},
+      "constexprs": {},
+      "tiles": {
+        "tile_t": 32,
+        "tile_n": 128,
+        "tile_k": 256
+      },
+      "cost": {
+        "cycles": 67236.12577214684,
+        "breakdown": {
+          "cycles": 67236.12577214684,
+          "tiles": {
+            "tile_t": 32,
+            "tile_n": 128,
+            "tile_k": 256
+          },
+          "grid_tiles": 64,
+          "waves": 1,
+          "per_tile": 67236.12577214684,
+          "loop_iters": 4,
+          "t_load_iter": 8333.866666666667,
+          "t_compute_iter": 14293.932960893855,
+          "t_prologue": 0.0,
+          "t_epilogue": 1217.9139285714286,
+          "t_store": 508.61333333333334,
+          "double_buffer": true,
+          "l1_bytes": 264192,
+          "dram_read_bytes": 3145728.0,
+          "dram_write_bytes": 524288,
+          "orientation": "t_on_x",
+          "details": {
+            "n_gemm": 1,
+            "sumsq": true,
+            "extras": 1,
+            "outputs": 1
+          }
+        },
+        "evaluated": 125,
+        "feasible": 113,
+        "alternatives": [
+          {
+            "tiles": {
+              "tile_t": 32,
+              "tile_n": 128,
+              "tile_k": 256
+            },
+            "cycles": 67236.12577214684
+          },
+          {
+            "tiles": {
+              "tile_t": 64,
+              "tile_n": 64,
+              "tile_k": 256
+            },
+            "cycles": 68159.26636738493
+          },
+          {
+            "tiles": {
+              "tile_t": 64,
+              "tile_n": 64,
+              "tile_k": 512
+            },
+            "cycles": 68455.63970071827
+          },
+          {
+            "tiles": {
+              "tile_t": 32,
+              "tile_n": 128,
+              "tile_k": 512
+            },
+            "cycles": 69757.99243881351
+          },
+          {
+            "tiles": {
+              "tile_t": 128,
+              "tile_n": 32,
+              "tile_k": 512
+            },
+            "cycles": 73059.89422452779
+          }
+        ],
+        "loom": {
+          "kernel": "k13_gemm",
+          "ok": true,
+          "output_dir": "/workspace/torch-helion/results/mamba/loom/k13_gemm",
+          "best_variant": "_k13_gemm__x8_y1y8__d0i1_d1i1_d2i0__f01__dim_x_level0_bc8_dim_y_level1_bc8_n_n",
+          "solver_units": 642.0,
+          "block_sizes": {
+            "is_double_buffer": 1,
+            "tile_k": 512,
+            "tile_n": 64,
+            "tile_t": 64
+          },
+          "n_variants": 208,
+          "error": null,
+          "log_path": "/workspace/torch-helion/results/mamba/loom/k13_gemm.loom.log",
+          "wall_seconds": 18.365183353424072,
+          "cycles": 41088.0
+        }
+      },
+      "notes": []
+    },
+    {
+      "name": "k14_gemm",
+      "kind": "gemm",
+      "args": [
+        {
+          "name": "lhs",
+          "tensor": "add_9",
+          "role": "lhs",
+          "view": null
+        },
+        {
+          "name": "in0",
+          "tensor": "add_9",
+          "role": "extra",
+          "view": null
+        },
+        {
+          "name": "in1",
+          "tensor": "norm_f_weight_full_117",
+          "role": "extra",
+          "view": null
+        }
+      ],
+      "outputs": [
+        {
+          "tensor": "mul_118",
+          "value": "mul_118"
+        }
+      ],
+      "lhs": "lhs",
+      "k_extent": 512,
+      "grid": {
+        "rows": 512,
+        "cols": 512
+      },
+      "gemms": [],
+      "sumsq": true,
+      "epilogue": [
+        {
+          "name": "mul_112__col",
+          "op": "mul",
+          "inputs": [
+            "sumsq"
+          ],
+          "attrs": {
+            "scalar": 0.001953125
+          }
+        },
+        {
+          "name": "add_113__col",
+          "op": "add",
+          "inputs": [
+            "mul_112__col"
+          ],
+          "attrs": {
+            "scalar": 1e-05
+          }
+        },
+        {
+          "name": "powf_114__col",
+          "op": "powf",
+          "inputs": [
+            "add_113__col"
+          ],
+          "attrs": {
+            "scalar": -0.5
+          }
+        },
+        {
+          "name": "broadcast_115",
+          "op": "broadcast",
+          "inputs": [
+            "powf_114__col"
+          ],
+          "attrs": {
+            "dim": 1,
+            "shape": [
+              512,
+              512
+            ]
+          }
+        },
+        {
+          "name": "mul_116",
+          "op": "mul",
+          "inputs": [
+            "in0",
+            "broadcast_115"
+          ],
+          "attrs": {}
+        },
+        {
+          "name": "mul_118",
+          "op": "mul",
+          "inputs": [
+            "mul_116",
+            "in1"
+          ],
+          "attrs": {}
+        }
+      ],
+      "attrs": {},
+      "constexprs": {},
+      "tiles": {
+        "tile_t": 32,
+        "tile_n": 128,
+        "tile_k": 256
+      },
+      "cost": {
+        "cycles": 17512.300222798618,
+        "breakdown": {
+          "cycles": 17512.300222798618,
+          "tiles": {
+            "tile_t": 32,
+            "tile_n": 128,
+            "tile_k": 256
+          },
+          "grid_tiles": 64,
+          "waves": 1,
+          "per_tile": 17512.300222798618,
+          "loop_iters": 2,
+          "t_load_iter": 1818.56,
+          "t_compute_iter": 6387.966480446928,
+          "t_prologue": 0.0,
+          "t_epilogue": 2409.1939285714284,
+          "t_store": 508.61333333333334,
+          "double_buffer": true,
+          "l1_bytes": 133120,
+          "dram_read_bytes": 1310720.0,
+          "dram_write_bytes": 524288,
+          "orientation": "t_on_y",
+          "details": {
+            "n_gemm": 0,
+            "sumsq": true,
+            "extras": 2,
+            "outputs": 1
+          }
+        },
+        "evaluated": 125,
+        "feasible": 116,
+        "alternatives": [
+          {
+            "tiles": {
+              "tile_t": 32,
+              "tile_n": 128,
+              "tile_k": 256
+            },
+            "cycles": 17512.300222798618
+          },
+          {
+            "tiles": {
+              "tile_t": 32,
+              "tile_n": 128,
+              "tile_k": 128
+            },
+            "cycles": 17803.02022279862
+          },
+          {
+            "tiles": {
+              "tile_t": 32,
+              "tile_n": 128,
+              "tile_k": 512
+            },
+            "cycles": 18472.86022279862
+          },
+          {
+            "tiles": {
+              "tile_t": 32,
+              "tile_n": 256,
+              "tile_k": 256
+            },
+            "cycles": 19049.47355613195
+          },
+          {
+            "tiles": {
+              "tile_t": 32,
+              "tile_n": 256,
+              "tile_k": 128
+            },
+            "cycles": 19340.19355613195
+          }
+        ],
+        "loom": {
+          "kernel": "k14_gemm",
+          "ok": true,
+          "output_dir": "/workspace/torch-helion/results/mamba/loom/k14_gemm",
+          "best_variant": "_k14_gemm__x8_y1y8__d0i1_d1i1_d2i0__f01__dim_x_level0_bc8_n_n_n",
+          "solver_units": 281.0,
+          "block_sizes": {
+            "is_double_buffer": 1,
+            "tile_k": 256,
+            "tile_n": 64,
+            "tile_t": 64
+          },
+          "n_variants": 104,
+          "error": null,
+          "log_path": "/workspace/torch-helion/results/mamba/loom/k14_gemm.loom.log",
+          "wall_seconds": 10.529433488845825,
+          "cycles": 17984.0
+        }
+      },
+      "notes": []
+    }
+  ],
+  "metadata": {
+    "fx_op_histogram": {
+      "<built-in function getitem>": 12,
+      "aten._to_copy.default": 8,
+      "aten.add.Tensor": 11,
+      "aten.bmm.default": 4,
+      "aten.clone.default": 8,
+      "aten.cumsum.default": 2,
+      "aten.exp.default": 6,
+      "aten.expand.default": 8,
+      "aten.gt.Scalar": 2,
+      "aten.log1p.default": 2,
+      "aten.mean.dim": 5,
+      "aten.mm.default": 4,
+      "aten.mul.Tensor": 26,
+      "aten.neg.default": 2,
+      "aten.permute.default": 16,
+      "aten.pow.Tensor_Scalar": 5,
+      "aten.rsqrt.default": 5,
+      "aten.sigmoid.default": 2,
+      "aten.split_with_sizes.default": 4,
+      "aten.sub.Tensor": 2,
+      "aten.unsqueeze.default": 6,
+      "aten.view.default": 32,
+      "aten.where.self": 2
+    },
+    "output_shapes_raw": {
+      "mul_27": [
+        2,
+        256,
+        512
+      ]
+    },
+    "input_shapes": {
+      "u": [
+        2,
+        256,
+        512
+      ]
+    },
+    "output_shapes": {
+      "mul_27": [
+        2,
+        256,
+        512
+      ]
+    },
+    "dtype": "float16",
+    "grouping": {
+      "matmul_36": 0,
+      "matmul_48": 0,
+      "matmul_52": 1,
+      "matmul_56": 2,
+      "matmul_44": 3,
+      "matmul_124": 4,
+      "matmul_123": 4,
+      "matmul_126": 5,
+      "matmul_137": 6,
+      "matmul_65": 7,
+      "matmul_78": 8,
+      "matmul_90": 8,
+      "matmul_94": 8,
+      "matmul_98": 8,
+      "matmul_86": 9,
+      "matmul_135": 10,
+      "matmul_134": 10,
+      "matmul_107": 11
+    },
+    "plan": {
+      "candidates": 512,
+      "legal": 270,
+      "total_cycles": 727067.5075159617,
+      "kernel_cycles": {
+        "k0_gemm": 54863.06592178771,
+        "k1_gemm": 30807.70666666667,
+        "k2_gemm": 30849.23127893057,
+        "k3_gemm": 13426.038286778397,
+        "k4_gemm": 30807.70666666667,
+        "k5_gemm": 54489.83282654962,
+        "k6_ssd": 66882.84248470339,
+        "k7_gemm": 67236.12577214684,
+        "k8_gemm": 30849.23127893057,
+        "k9_gemm": 13426.038286778397,
+        "k10_gemm": 30807.70666666667,
+        "k11_gemm": 120990.71289970737,
+        "k12_ssd": 66882.84248470339,
+        "k13_gemm": 67236.12577214684,
+        "k14_gemm": 17512.300222798618
+      },
+      "launch_overhead": 2000.0
+    }
+  }
+}

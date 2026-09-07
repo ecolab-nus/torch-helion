@@ -1,0 +1,4 @@
+{
+  "output_path": "/workspace/torch-helion/results/mamba/loom/k5_gemm",
+  "hw_spec": "/workspace/torch-helion/third_party/loom/third_party/loom-mlar/tests/2d_mesh/2d_mesh_torus.mlir"
+}

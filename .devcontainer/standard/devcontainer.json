@@ -1,0 +1,23 @@
+{
+  "$schema": "https://raw.githubusercontent.com/devcontainers/spec/main/schemas/devContainer.base.schema.json",
+  "name": "Torch-Helion (Standard)",
+  "image": "ftod/loom_dev:latest",
+  "remoteUser": "root",
+  "updateRemoteUserUID": false,
+  "init": true,
+  "overrideCommand": false,
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace/${localWorkspaceFolderBasename},type=bind",
+  "workspaceFolder": "/workspace/${localWorkspaceFolderBasename}",
+  "runArgs": [
+    "--cap-add=SYS_ADMIN",
+    "--cap-add=SYS_CHROOT",
+    "--cap-add=SETUID",
+    "--cap-add=SETGID",
+    "--cap-add=SYS_PTRACE",
+    "--cap-add=NET_ADMIN",
+    "--cap-add=NET_RAW",
+    "--security-opt=seccomp=unconfined",
+    "--security-opt=apparmor=unconfined"
+  ],
+  "postCreateCommand": "git config --global --add safe.directory '*' && bash install-docker.sh --clean"
+}

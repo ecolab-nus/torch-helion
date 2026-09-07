@@ -1,0 +1,68 @@
+{
+  "k0_gemm": {
+    "kernel": "k0_gemm",
+    "frontend_ok": true,
+    "exploration_ok": true,
+    "error": null,
+    "variants": 104,
+    "symbols": [
+      "tile_k",
+      "tile_n",
+      "tile_t"
+    ],
+    "stderr_tail": ""
+  },
+  "k1_attention": {
+    "kernel": "k1_attention",
+    "frontend_ok": true,
+    "exploration_ok": true,
+    "error": null,
+    "variants": 393,
+    "symbols": [
+      "tile_b",
+      "tile_h",
+      "tile_m",
+      "tile_n"
+    ],
+    "stderr_tail": ""
+  },
+  "k2_gemm": {
+    "kernel": "k2_gemm",
+    "frontend_ok": true,
+    "exploration_ok": true,
+    "error": null,
+    "variants": 208,
+    "symbols": [
+      "tile_k",
+      "tile_n",
+      "tile_t"
+    ],
+    "stderr_tail": ""
+  },
+  "k3_gemm": {
+    "kernel": "k3_gemm",
+    "frontend_ok": true,
+    "exploration_ok": true,
+    "error": null,
+    "variants": 104,
+    "symbols": [
+      "tile_k",
+      "tile_n",
+      "tile_t"
+    ],
+    "stderr_tail": ""
+  },
+  "k4_gemm": {
+    "kernel": "k4_gemm",
+    "frontend_ok": true,
+    "exploration_ok": true,
+    "error": null,
+    "variants": 208,
+    "symbols": [
+      "tile_k",
+      "tile_n",
+      "tile_t"
+    ],
+    "stderr_tail": ""
+  }
+}

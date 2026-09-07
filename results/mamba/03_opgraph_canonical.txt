@@ -1,0 +1,112 @@
+OpGraph model: 111 nodes, inputs=['u'], outputs=['mul_118']
+  u: float16[512, 512] = input()
+  row_sumsq_24: float16[512, 1] = row_sumsq(u)
+  mul_28: float16[512, 1] = mul(row_sumsq_24) {'scalar': 0.001953125}
+  add_29: float16[512, 1] = add(mul_28) {'scalar': 1e-05}
+  powf_30: float16[512, 1] = powf(add_29) {'scalar': -0.5}
+  [const] permute_cols_1_norm_35: float16[512, 1024]
+  matmul_36: float16[512, 1024] = matmul(u, permute_cols_1_norm_35)
+  broadcast_37: float16[512, 1024] = broadcast(powf_30) {'dim': 1, 'shape': [512, 1024]}
+  mul_38: float16[512, 1024] = mul(matmul_36, broadcast_37)
+  [const] permute_cols_3_norm_43: float16[512, 32]
+  matmul_44: float16[512, 32] = matmul(u, permute_cols_3_norm_43)
+  broadcast_45: float16[512, 32] = broadcast(powf_30) {'dim': 1, 'shape': [512, 32]}
+  mul_46: float16[512, 32] = mul(matmul_44, broadcast_45)
+  [const] permute_cols_2_cols_4_norm_47: float16[512, 1024]
+  matmul_48: float16[512, 1024] = matmul(u, permute_cols_2_cols_4_norm_47)
+  broadcast_49: float16[512, 1024] = broadcast(powf_30) {'dim': 1, 'shape': [512, 1024]}
+  mul_50: float16[512, 1024] = mul(matmul_48, broadcast_49)
+  [const] permute_cols_2_cols_5_norm_51: float16[512, 1024]
+  matmul_52: float16[512, 1024] = matmul(u, permute_cols_2_cols_5_norm_51)
+  broadcast_53: float16[512, 1024] = broadcast(powf_30) {'dim': 1, 'shape': [512, 1024]}
+  mul_54: float16[512, 1024] = mul(matmul_52, broadcast_53)
+  [const] permute_cols_2_cols_6_norm_55: float16[512, 1024]
+  matmul_56: float16[512, 1024] = matmul(u, permute_cols_2_cols_6_norm_55)
+  broadcast_57: float16[512, 1024] = broadcast(powf_30) {'dim': 1, 'shape': [512, 1024]}
+  mul_58: float16[512, 1024] = mul(matmul_56, broadcast_57)
+  [const] layers_0_mixer_dt_bias_full_148: float16[512, 32]
+  add_1: float16[512, 32] = add(mul_46, layers_0_mixer_dt_bias_full_148)
+  exp_150: float16[512, 32] = exp(add_1)
+  add_151: float16[512, 32] = add(exp_150) {'scalar': 1.0}
+  where: float16[512, 32] = log(add_151)
+  [const] ssd_decay_125: float16[512, 512]
+  [const] ssd_expand_A_122: float32[32, 1024]
+  matmul_124: float16[512, 1024] = matmul(where, ssd_expand_A_122)
+  matmul_126: float16[512, 1024] = matmul(ssd_decay_125, matmul_124)
+  [const] ssd_expand_121: float16[32, 1024]
+  matmul_123: float16[512, 1024] = matmul(where, ssd_expand_121)
+  [const] ssd_causal_127: float16[256, 256]
+  [const] ssd_D_128: float16[512, 1024]
+  ssd_129: float16[512, 1024] = ssd(mul_58, mul_54, mul_50, matmul_126, matmul_123, ssd_causal_127, ssd_D_128) {'batch': 2, 'seq': 256, 'heads': 32, 'head_dim': 32, 'state_dim': 32, 'pad': 32}
+  mul_152: float16[512, 1024] = mul(mul_38) {'scalar': -1.0}
+  exp_153: float16[512, 1024] = exp(mul_152)
+  add_154: float16[512, 1024] = add(exp_153) {'scalar': 1.0}
+  sigmoid: float16[512, 1024] = div(add_154) {'scalar': 1.0, 'scalar_first': True}
+  mul_9: float16[512, 1024] = mul(mul_38, sigmoid)
+  mul_10: float16[512, 1024] = mul(ssd_129, mul_9)
+  [const] permute_11_norm_64: float16[1024, 512]
+  matmul_65: float16[512, 512] = matmul(mul_10, permute_11_norm_64)
+  row_sumsq_60: float16[512, 1] = row_sumsq(mul_10)
+  mul_61: float16[512, 1] = mul(row_sumsq_60) {'scalar': 0.0009765625}
+  add_62: float16[512, 1] = add(mul_61) {'scalar': 1e-05}
+  powf_63: float16[512, 1] = powf(add_62) {'scalar': -0.5}
+  broadcast_66: float16[512, 512] = broadcast(powf_63) {'dim': 1, 'shape': [512, 512]}
+  mul_67: float16[512, 512] = mul(matmul_65, broadcast_66)
+  add_4: float16[512, 512] = add(u, mul_67)
+  row_sumsq_69: float16[512, 1] = row_sumsq(add_4)
+  mul_70: float16[512, 1] = mul(row_sumsq_69) {'scalar': 0.001953125}
+  add_71: float16[512, 1] = add(mul_70) {'scalar': 1e-05}
+  powf_72: float16[512, 1] = powf(add_71) {'scalar': -0.5}
+  [const] permute_12_cols_7_norm_77: float16[512, 1024]
+  matmul_78: float16[512, 1024] = matmul(add_4, permute_12_cols_7_norm_77)
+  broadcast_79: float16[512, 1024] = broadcast(powf_72) {'dim': 1, 'shape': [512, 1024]}
+  mul_80: float16[512, 1024] = mul(matmul_78, broadcast_79)
+  [const] permute_12_cols_9_norm_85: float16[512, 32]
+  matmul_86: float16[512, 32] = matmul(add_4, permute_12_cols_9_norm_85)
+  broadcast_87: float16[512, 32] = broadcast(powf_72) {'dim': 1, 'shape': [512, 32]}
+  mul_88: float16[512, 32] = mul(matmul_86, broadcast_87)
+  [const] permute_12_cols_8_cols_10_norm_89: float16[512, 1024]
+  matmul_90: float16[512, 1024] = matmul(add_4, permute_12_cols_8_cols_10_norm_89)
+  broadcast_91: float16[512, 1024] = broadcast(powf_72) {'dim': 1, 'shape': [512, 1024]}
+  mul_92: float16[512, 1024] = mul(matmul_90, broadcast_91)
+  [const] permute_12_cols_8_cols_11_norm_93: float16[512, 1024]
+  matmul_94: float16[512, 1024] = matmul(add_4, permute_12_cols_8_cols_11_norm_93)
+  broadcast_95: float16[512, 1024] = broadcast(powf_72) {'dim': 1, 'shape': [512, 1024]}
+  mul_96: float16[512, 1024] = mul(matmul_94, broadcast_95)
+  [const] permute_12_cols_8_cols_12_norm_97: float16[512, 1024]
+  matmul_98: float16[512, 1024] = matmul(add_4, permute_12_cols_8_cols_12_norm_97)
+  broadcast_99: float16[512, 1024] = broadcast(powf_72) {'dim': 1, 'shape': [512, 1024]}
+  mul_100: float16[512, 1024] = mul(matmul_98, broadcast_99)
+  [const] layers_1_mixer_dt_bias_full_149: float16[512, 32]
+  add_6: float16[512, 32] = add(mul_88, layers_1_mixer_dt_bias_full_149)
+  exp_155: float16[512, 32] = exp(add_6)
+  add_156: float16[512, 32] = add(exp_155) {'scalar': 1.0}
+  where_1: float16[512, 32] = log(add_156)
+  [const] ssd_expand_A_133: float32[32, 1024]
+  matmul_135: float16[512, 1024] = matmul(where_1, ssd_expand_A_133)
+  matmul_137: float16[512, 1024] = matmul(ssd_decay_125, matmul_135)
+  matmul_134: float16[512, 1024] = matmul(where_1, ssd_expand_121)
+  ssd_140: float16[512, 1024] = ssd(mul_100, mul_96, mul_92, matmul_137, matmul_134, ssd_causal_127, ssd_D_128) {'batch': 2, 'seq': 256, 'heads': 32, 'head_dim': 32, 'state_dim': 32, 'pad': 32}
+  mul_157: float16[512, 1024] = mul(mul_80) {'scalar': -1.0}
+  exp_158: float16[512, 1024] = exp(mul_157)
+  add_159: float16[512, 1024] = add(exp_158) {'scalar': 1.0}
+  sigmoid_1: float16[512, 1024] = div(add_159) {'scalar': 1.0, 'scalar_first': True}
+  mul_22: float16[512, 1024] = mul(mul_80, sigmoid_1)
+  mul_23: float16[512, 1024] = mul(ssd_140, mul_22)
+  [const] permute_23_norm_106: float16[1024, 512]
+  matmul_107: float16[512, 512] = matmul(mul_23, permute_23_norm_106)
+  row_sumsq_102: float16[512, 1] = row_sumsq(mul_23)
+  mul_103: float16[512, 1] = mul(row_sumsq_102) {'scalar': 0.0009765625}
+  add_104: float16[512, 1] = add(mul_103) {'scalar': 1e-05}
+  powf_105: float16[512, 1] = powf(add_104) {'scalar': -0.5}
+  broadcast_108: float16[512, 512] = broadcast(powf_105) {'dim': 1, 'shape': [512, 512]}
+  mul_109: float16[512, 512] = mul(matmul_107, broadcast_108)
+  add_9: float16[512, 512] = add(add_4, mul_109)
+  row_sumsq_111: float16[512, 1] = row_sumsq(add_9)
+  mul_112: float16[512, 1] = mul(row_sumsq_111) {'scalar': 0.001953125}
+  add_113: float16[512, 1] = add(mul_112) {'scalar': 1e-05}
+  powf_114: float16[512, 1] = powf(add_113) {'scalar': -0.5}
+  broadcast_115: float16[512, 512] = broadcast(powf_114) {'dim': 1, 'shape': [512, 512]}
+  mul_116: float16[512, 512] = mul(add_9, broadcast_115)
+  [const] norm_f_weight_full_117: float16[512, 512]
+  mul_118: float16[512, 512] = mul(mul_116, norm_f_weight_full_117)

@@ -1,0 +1,250 @@
+{
+  "hw": {
+    "path": "/workspace/torch-helion/third_party/loom/third_party/loom-mlar/tests/2d_mesh/2d_mesh_torus.mlir",
+    "mesh": [
+      8,
+      8
+    ],
+    "cores": 64,
+    "l1_bytes": 1398784,
+    "dram_bytes": 12884901888,
+    "functions": [
+      "batch_matmul_RR_f16",
+      "batch_matmul_RS_f16",
+      "batch_matmul_SR_f16",
+      "batch_matmul_SS_f16",
+      "dram_to_l1_R_bcst",
+      "dram_to_l1_R_f16",
+      "dram_to_l1_S_bcst",
+      "dram_to_l1_S_f16",
+      "elementwise_add_f16",
+      "elementwise_mul_f16",
+      "l1_gather",
+      "l1_to_dram_f16",
+      "matmul_RR_f16",
+      "matmul_RS_f16",
+      "matmul_SR_f16",
+      "matmul_SS_f16",
+      "vec_add_f16",
+      "vec_cmpf_ogt_f16",
+      "vec_div_f16",
+      "vec_exp_f16",
+      "vec_log_f16",
+      "vec_max1_f16",
+      "vec_max_f16",
+      "vec_mul_f16",
+      "vec_powf_f16",
+      "vec_select_f16",
+      "vec_sub_f16",
+      "vec_sum_f16",
+      "vec_vmax_f16",
+      "vec_vsum_f16"
+    ]
+  },
+  "kernel_launch_overhead": 2000.0,
+  "kernels": [
+    {
+      "name": "k0_gemm",
+      "kind": "gemm",
+      "tiles": {
+        "tile_t": 64,
+        "tile_n": 32,
+        "tile_k": 256
+      },
+      "cycles": 57409.32007315775,
+      "breakdown": {
+        "cycles": 57409.32007315775,
+        "tiles": {
+          "tile_t": 64,
+          "tile_n": 32,
+          "tile_k": 256
+        },
+        "grid_tiles": 64,
+        "waves": 1,
+        "per_tile": 57409.32007315775,
+        "loop_iters": 1,
+        "t_load_iter": 12932.053333333333,
+        "t_compute_iter": 41325.79888268156,
+        "t_prologue": 0.0,
+        "t_epilogue": 1707.547857142857,
+        "t_store": 1443.92,
+        "double_buffer": true,
+        "l1_bytes": 368640,
+        "dram_read_bytes": 1441792.0,
+        "dram_write_bytes": 786432,
+        "orientation": "t_on_x",
+        "details": {
+          "n_gemm": 5,
+          "sumsq": true,
+          "extras": 2,
+          "outputs": 3
+        }
+      },
+      "loom": null
+    },
+    {
+      "name": "k1_attention",
+      "kind": "attention",
+      "tiles": {
+        "tile_m": 32,
+        "tile_n": 128
+      },
+      "cycles": 23845.96579209896,
+      "breakdown": {
+        "cycles": 23845.96579209896,
+        "tiles": {
+          "tile_m": 32,
+          "tile_n": 128
+        },
+        "grid_tiles": 64,
+        "waves": 1,
+        "per_tile": 23845.96579209896,
+        "loop_iters": 2,
+        "t_load_iter": 3857.12,
+        "t_compute_iter": 9171.28289604948,
+        "t_prologue": 822.64,
+        "t_epilogue": 342.3333333333333,
+        "t_store": 481.3066666666667,
+        "double_buffer": true,
+        "l1_bytes": 98560,
+        "dram_read_bytes": 4456448,
+        "dram_write_bytes": 262144,
+        "orientation": "bh_on_mesh",
+        "details": {
+          "batch": 2,
+          "heads": 4,
+          "seq": 256,
+          "head_dim": 64
+        }
+      },
+      "loom": null
+    },
+    {
+      "name": "k2_gemm",
+      "kind": "gemm",
+      "tiles": {
+        "tile_t": 32,
+        "tile_n": 64,
+        "tile_k": 128
+      },
+      "cycles": 12249.286480446928,
+      "breakdown": {
+        "cycles": 12249.286480446928,
+        "tiles": {
+          "tile_t": 32,
+          "tile_n": 64,
+          "tile_k": 128
+        },
+        "grid_tiles": 64,
+        "waves": 1,
+        "per_tile": 12249.286480446928,
+        "loop_iters": 2,
+        "t_load_iter": 3036.3733333333334,
+        "t_compute_iter": 3952.983240223464,
+        "t_prologue": 0.0,
+        "t_epilogue": 825.64,
+        "t_store": 481.3066666666667,
+        "double_buffer": true,
+        "l1_bytes": 65536,
+        "dram_read_bytes": 655360.0,
+        "dram_write_bytes": 262144,
+        "orientation": "t_on_x",
+        "details": {
+          "n_gemm": 1,
+          "sumsq": false,
+          "extras": 1,
+          "outputs": 1
+        }
+      },
+      "loom": null
+    },
+    {
+      "name": "k3_gemm",
+      "kind": "gemm",
+      "tiles": {
+        "tile_t": 64,
+        "tile_n": 64,
+        "tile_k": 256
+      },
+      "cycles": 34991.08348895983,
+      "breakdown": {
+        "cycles": 34991.08348895983,
+        "tiles": {
+          "tile_t": 64,
+          "tile_n": 64,
+          "tile_k": 256
+        },
+        "grid_tiles": 64,
+        "waves": 1,
+        "per_tile": 34991.08348895983,
+        "loop_iters": 1,
+        "t_load_iter": 10425.493333333334,
+        "t_compute_iter": 22727.89944134078,
+        "t_prologue": 0.0,
+        "t_epilogue": 1329.0773809523807,
+        "t_store": 508.61333333333334,
+        "double_buffer": true,
+        "l1_bytes": 331776,
+        "dram_read_bytes": 786432.0,
+        "dram_write_bytes": 524288,
+        "orientation": "t_on_x",
+        "details": {
+          "n_gemm": 2,
+          "sumsq": true,
+          "extras": 0,
+          "outputs": 1
+        }
+      },
+      "loom": null
+    },
+    {
+      "name": "k4_gemm",
+      "kind": "gemm",
+      "tiles": {
+        "tile_t": 32,
+        "tile_n": 64,
+        "tile_k": 128
+      },
+      "cycles": 20155.252960893857,
+      "breakdown": {
+        "cycles": 20155.252960893857,
+        "tiles": {
+          "tile_t": 32,
+          "tile_n": 64,
+          "tile_k": 128
+        },
+        "grid_tiles": 64,
+        "waves": 1,
+        "per_tile": 20155.252960893857,
+        "loop_iters": 4,
+        "t_load_iter": 3036.3733333333334,
+        "t_compute_iter": 3952.983240223464,
+        "t_prologue": 0.0,
+        "t_epilogue": 825.64,
+        "t_store": 481.3066666666667,
+        "double_buffer": true,
+        "l1_bytes": 65536,
+        "dram_read_bytes": 1048576.0,
+        "dram_write_bytes": 262144,
+        "orientation": "t_on_x",
+        "details": {
+          "n_gemm": 1,
+          "sumsq": false,
+          "extras": 1,
+          "outputs": 1
+        }
+      },
+      "loom": null
+    }
+  ],
+  "total_cycles": 158650.90879555733,
+  "intermediate_tensors": {
+    "mul_59": 262144,
+    "add_13": 262144,
+    "mul_10": 524288,
+    "add_3": 262144,
+    "permute_7": 262144,
+    "add_32": 262144
+  },
+  "intermediate_bytes": 1835008
+}

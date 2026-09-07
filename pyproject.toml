@@ -1,0 +1,66 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "torch-helion"
+version = "0.1.0.dev0"
+description = "Lower high-level PyTorch models to Helion kernels for the Loom compilation stack"
+requires-python = ">=3.10,<3.11"
+dependencies = [
+    "loom",
+    "pyyaml>=6.0.3",
+]
+
+# Mirrors Loom's extras. `helion` pulls helion-mlir, which pins the PyTorch,
+# Helion, Triton and torch-mlir versions the Loom frontend is built against.
+[project.optional-dependencies]
+helion = [
+    "loom[helion]",
+]
+dataflow = [
+    "loom[dataflow]",
+]
+
+[dependency-groups]
+dev = [
+    "lit",
+    "pytest",
+    "ruff",
+]
+
+[tool.uv]
+required-version = ">=0.11.0"
+
+# Loom is consumed as a path dependency rather than a uv workspace member: it
+# is a workspace root itself, and uv rejects nested workspaces. Because uv only
+# honours `tool.uv.sources` from the root project, Loom's own sources for its
+# workspace members and helion-mlir's package indexes are restated here.
+[tool.uv.sources]
+loom = { path = "third_party/loom", editable = true }
+helion-mlir = { path = "third_party/loom/third_party/helion-mlir", editable = true }
+loom-dataflow = { path = "third_party/loom/third_party/loom-dataflow", editable = true }
+torch = { index = "pytorch-cu130" }
+torch-mlir = { index = "torch-mlir-dev-wheels" }
+
+[[tool.uv.index]]
+name = "pytorch-cu130"
+url = "https://download.pytorch.org/whl/cu130"
+explicit = true
+
+[[tool.uv.index]]
+name = "torch-mlir-dev-wheels"
+url = "https://github.com/llvm/torch-mlir-release/releases/expanded_assets/dev-wheels"
+format = "flat"
+explicit = true
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["torch_helion*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+    "slow: takes more than ~20 s (full kernel validation, Loom pipeline)",
+]
+filterwarnings = ["ignore::FutureWarning", "ignore::DeprecationWarning"]

@@ -1,0 +1,101 @@
+OpGraph model: 100 nodes, inputs=['x'], outputs=['add_5']
+  [param] input_norm_weight: float16[256]
+  [param] attn_q_proj_weight: float16[256, 256]
+  [param] attn_k_proj_weight: float16[256, 256]
+  [param] attn_v_proj_weight: float16[256, 256]
+  [param] attn_o_proj_weight: float16[256, 256]
+  [param] post_norm_weight: float16[256]
+  [param] mlp_gate_proj_weight: float16[512, 256]
+  [param] mlp_up_proj_weight: float16[512, 256]
+  [param] mlp_down_proj_weight: float16[256, 512]
+  [param] rope_cos: float16[256, 64]
+  [param] rope_sin: float16[256, 64]
+  x: float16[2, 256, 256] = input()
+  pow_1: float16[2, 256, 256] = powf(x) {'scalar': 2.0}
+  mean: float16[2, 256, 1] = row_mean(pow_1) {'keepdim': True}
+  add: float16[2, 256, 1] = add(mean) {'scalar': 1e-05}
+  rsqrt: float16[2, 256, 1] = rsqrt(add)
+  mul: float16[2, 256, 256] = mul(x, rsqrt)
+  mul_1: float16[2, 256, 256] = mul(mul, input_norm_weight)
+  permute: float16[256, 256] = permute(attn_q_proj_weight) {'dims': [1, 0]}
+  view: float16[512, 256] = view(mul_1) {'shape': [512, 256]}
+  mm: float16[512, 256] = matmul(view, permute)
+  view_1: float16[2, 256, 256] = view(mm) {'shape': [2, 256, 256]}
+  view_2: float16[2, 256, 4, 64] = view(view_1) {'shape': [2, 256, 4, 64]}
+  permute_1: float16[2, 4, 256, 64] = permute(view_2) {'dims': [0, 2, 1, 3]}
+  permute_2: float16[256, 256] = permute(attn_k_proj_weight) {'dims': [1, 0]}
+  view_3: float16[512, 256] = view(mul_1) {'shape': [512, 256]}
+  mm_1: float16[512, 256] = matmul(view_3, permute_2)
+  view_4: float16[2, 256, 256] = view(mm_1) {'shape': [2, 256, 256]}
+  view_5: float16[2, 256, 4, 64] = view(view_4) {'shape': [2, 256, 4, 64]}
+  permute_3: float16[2, 4, 256, 64] = permute(view_5) {'dims': [0, 2, 1, 3]}
+  permute_4: float16[256, 256] = permute(attn_v_proj_weight) {'dims': [1, 0]}
+  view_6: float16[512, 256] = view(mul_1) {'shape': [512, 256]}
+  mm_2: float16[512, 256] = matmul(view_6, permute_4)
+  view_7: float16[2, 256, 256] = view(mm_2) {'shape': [2, 256, 256]}
+  view_8: float16[2, 256, 4, 64] = view(view_7) {'shape': [2, 256, 4, 64]}
+  permute_5: float16[2, 4, 256, 64] = permute(view_8) {'dims': [0, 2, 1, 3]}
+  mul_2: float16[2, 4, 256, 64] = mul(permute_1, rope_cos)
+  slice_1: float16[2, 4, 256, 32] = slice(permute_1) {'dim': 3, 'start': 0, 'end': 32}
+  slice_2: float16[2, 4, 256, 32] = slice(permute_1) {'dim': 3, 'start': 32, 'end': 64}
+  neg: float16[2, 4, 256, 32] = neg(slice_2)
+  cat: float16[2, 4, 256, 64] = cat(neg, slice_1) {'dim': 3}
+  mul_3: float16[2, 4, 256, 64] = mul(cat, rope_sin)
+  add_1: float16[2, 4, 256, 64] = add(mul_2, mul_3)
+  mul_4: float16[2, 4, 256, 64] = mul(permute_3, rope_cos)
+  slice_3: float16[2, 4, 256, 32] = slice(permute_3) {'dim': 3, 'start': 0, 'end': 32}
+  slice_4: float16[2, 4, 256, 32] = slice(permute_3) {'dim': 3, 'start': 32, 'end': 64}
+  neg_1: float16[2, 4, 256, 32] = neg(slice_4)
+  cat_1: float16[2, 4, 256, 64] = cat(neg_1, slice_3) {'dim': 3}
+  mul_5: float16[2, 4, 256, 64] = mul(cat_1, rope_sin)
+  add_2: float16[2, 4, 256, 64] = add(mul_4, mul_5)
+  permute_6: float16[2, 4, 64, 256] = permute(add_2) {'dims': [0, 1, 3, 2]}
+  expand: float16[2, 4, 256, 64] = expand(add_1) {'shape': [2, 4, 256, 64]}
+  clone: float16[2, 4, 256, 64] = clone(expand)
+  view_9: float16[8, 256, 64] = view(clone) {'shape': [8, 256, 64]}
+  expand_1: float16[2, 4, 64, 256] = expand(permute_6) {'shape': [2, 4, 64, 256]}
+  clone_1: float16[2, 4, 64, 256] = clone(expand_1)
+  view_10: float16[8, 64, 256] = view(clone_1) {'shape': [8, 64, 256]}
+  bmm: float16[8, 256, 256] = batch_matmul(view_9, view_10)
+  view_11: float16[2, 4, 256, 256] = view(bmm) {'shape': [2, 4, 256, 256]}
+  mul_6: float16[2, 4, 256, 256] = mul(view_11) {'scalar': 0.125}
+  _softmax: float16[2, 4, 256, 256] = softmax(mul_6)
+  expand_2: float16[2, 4, 256, 256] = expand(_softmax) {'shape': [2, 4, 256, 256]}
+  view_12: float16[8, 256, 256] = view(expand_2) {'shape': [8, 256, 256]}
+  expand_3: float16[2, 4, 256, 64] = expand(permute_5) {'shape': [2, 4, 256, 64]}
+  clone_2: float16[2, 4, 256, 64] = clone(expand_3)
+  view_13: float16[8, 256, 64] = view(clone_2) {'shape': [8, 256, 64]}
+  bmm_1: float16[8, 256, 64] = batch_matmul(view_12, view_13)
+  view_14: float16[2, 4, 256, 64] = view(bmm_1) {'shape': [2, 4, 256, 64]}
+  permute_7: float16[2, 256, 4, 64] = permute(view_14) {'dims': [0, 2, 1, 3]}
+  clone_3: float16[2, 256, 4, 64] = clone(permute_7)
+  view_15: float16[2, 256, 256] = view(clone_3) {'shape': [2, 256, 256]}
+  permute_8: float16[256, 256] = permute(attn_o_proj_weight) {'dims': [1, 0]}
+  view_16: float16[512, 256] = view(view_15) {'shape': [512, 256]}
+  mm_3: float16[512, 256] = matmul(view_16, permute_8)
+  view_17: float16[2, 256, 256] = view(mm_3) {'shape': [2, 256, 256]}
+  add_3: float16[2, 256, 256] = add(x, view_17)
+  pow_2: float16[2, 256, 256] = powf(add_3) {'scalar': 2.0}
+  mean_1: float16[2, 256, 1] = row_mean(pow_2) {'keepdim': True}
+  add_4: float16[2, 256, 1] = add(mean_1) {'scalar': 1e-05}
+  rsqrt_1: float16[2, 256, 1] = rsqrt(add_4)
+  mul_7: float16[2, 256, 256] = mul(add_3, rsqrt_1)
+  mul_8: float16[2, 256, 256] = mul(mul_7, post_norm_weight)
+  permute_9: float16[256, 512] = permute(mlp_gate_proj_weight) {'dims': [1, 0]}
+  view_18: float16[512, 256] = view(mul_8) {'shape': [512, 256]}
+  mm_4: float16[512, 512] = matmul(view_18, permute_9)
+  view_19: float16[2, 256, 512] = view(mm_4) {'shape': [2, 256, 512]}
+  _to_copy: float32[2, 256, 512] = cast(view_19) {'dtype': 'float32'}
+  sigmoid: float32[2, 256, 512] = sigmoid(_to_copy)
+  mul_9: float32[2, 256, 512] = mul(_to_copy, sigmoid)
+  _to_copy_1: float16[2, 256, 512] = cast(mul_9) {'dtype': 'float16'}
+  permute_10: float16[256, 512] = permute(mlp_up_proj_weight) {'dims': [1, 0]}
+  view_20: float16[512, 256] = view(mul_8) {'shape': [512, 256]}
+  mm_5: float16[512, 512] = matmul(view_20, permute_10)
+  view_21: float16[2, 256, 512] = view(mm_5) {'shape': [2, 256, 512]}
+  mul_10: float16[2, 256, 512] = mul(_to_copy_1, view_21)
+  permute_11: float16[512, 256] = permute(mlp_down_proj_weight) {'dims': [1, 0]}
+  view_22: float16[512, 512] = view(mul_10) {'shape': [512, 512]}
+  mm_6: float16[512, 256] = matmul(view_22, permute_11)
+  view_23: float16[2, 256, 256] = view(mm_6) {'shape': [2, 256, 256]}
+  add_5: float16[2, 256, 256] = add(add_3, view_23)

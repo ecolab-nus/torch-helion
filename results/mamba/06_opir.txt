@@ -1,0 +1,16 @@
+Program mamba: 15 kernels, inputs=['u'], outputs=['mul_118']
+  [gemm] k0_gemm(lhs<-u, w0<-permute_cols_1_norm_35, w1<-permute_cols_2_cols_4_norm_47) -> matmul_36, matmul_48 gemms=2 sumsq=False epilogue=0 est=54,863cyc tiles={'tile_t': 128, 'tile_n': 64, 'tile_k': 256}
+  [gemm] k1_gemm(lhs<-u, w0<-permute_cols_2_cols_5_norm_51) -> matmul_52 gemms=1 sumsq=False epilogue=0 est=30,808cyc tiles={'tile_t': 64, 'tile_n': 128, 'tile_k': 256}
+  [gemm] k2_gemm(lhs<-u, w0<-permute_cols_3_norm_43, in0<-layers_0_mixer_dt_bias_full_148) -> where gemms=1 sumsq=True epilogue=9 est=30,849cyc tiles={'tile_t': 32, 'tile_n': 32, 'tile_k': 256}
+  [gemm] k3_gemm(lhs<-where, w0<-ssd_expand_A_122, w1<-ssd_expand_121) -> matmul_124, matmul_123 gemms=2 sumsq=False epilogue=0 est=13,426cyc tiles={'tile_t': 128, 'tile_n': 64, 'tile_k': 32}
+  [gemm] k4_gemm(lhs<-ssd_decay_125, w0<-matmul_124) -> matmul_126 gemms=1 sumsq=False epilogue=0 est=30,808cyc tiles={'tile_t': 64, 'tile_n': 128, 'tile_k': 256}
+  [gemm] k5_gemm(lhs<-u, w0<-permute_cols_2_cols_6_norm_55, in0<-matmul_36, in1<-matmul_48, in2<-matmul_52) -> mul_50, mul_54, mul_58, mul_9 gemms=1 sumsq=True epilogue=16 est=54,490cyc tiles={'tile_t': 64, 'tile_n': 128, 'tile_k': 256}
+  [ssd] k6_ssd(c<-mul_58, b<-mul_54, x<-mul_50, cum<-matmul_126, dt<-matmul_123, mask<-ssd_causal_127, dskip<-ssd_D_128, xskip<-mul_50, in0<-mul_9) -> mul_10 attrs={'batch': 2, 'seq': 256, 'heads': 32, 'head_dim': 32, 'state_dim': 32, 'pad': 32} est=66,883cyc tiles={'tile_m': 256, 'tile_n': 256}
+  [gemm] k7_gemm(lhs<-mul_10, w0<-permute_11_norm_64, in0<-u) -> add_4 gemms=1 sumsq=True epilogue=6 est=67,236cyc tiles={'tile_t': 32, 'tile_n': 128, 'tile_k': 256}
+  [gemm] k8_gemm(lhs<-add_4, w0<-permute_12_cols_9_norm_85, in0<-layers_1_mixer_dt_bias_full_149) -> where_1 gemms=1 sumsq=True epilogue=9 est=30,849cyc tiles={'tile_t': 32, 'tile_n': 32, 'tile_k': 256}
+  [gemm] k9_gemm(lhs<-where_1, w0<-ssd_expand_A_133, w1<-ssd_expand_121) -> matmul_135, matmul_134 gemms=2 sumsq=False epilogue=0 est=13,426cyc tiles={'tile_t': 128, 'tile_n': 64, 'tile_k': 32}
+  [gemm] k10_gemm(lhs<-ssd_decay_125, w0<-matmul_135) -> matmul_137 gemms=1 sumsq=False epilogue=0 est=30,808cyc tiles={'tile_t': 64, 'tile_n': 128, 'tile_k': 256}
+  [gemm] k11_gemm(lhs<-add_4, w0<-permute_12_cols_7_norm_77, w1<-permute_12_cols_8_cols_10_norm_89, w2<-permute_12_cols_8_cols_11_norm_93, w3<-permute_12_cols_8_cols_12_norm_97) -> mul_92, mul_96, mul_100, mul_22 gemms=4 sumsq=True epilogue=16 est=120,991cyc tiles={'tile_t': 128, 'tile_n': 64, 'tile_k': 256}
+  [ssd] k12_ssd(c<-mul_100, b<-mul_96, x<-mul_92, cum<-matmul_137, dt<-matmul_134, mask<-ssd_causal_127, dskip<-ssd_D_128, xskip<-mul_92, in0<-mul_22) -> mul_23 attrs={'batch': 2, 'seq': 256, 'heads': 32, 'head_dim': 32, 'state_dim': 32, 'pad': 32} est=66,883cyc tiles={'tile_m': 256, 'tile_n': 256}
+  [gemm] k13_gemm(lhs<-mul_23, w0<-permute_23_norm_106, in0<-add_4) -> add_9 gemms=1 sumsq=True epilogue=6 est=67,236cyc tiles={'tile_t': 32, 'tile_n': 128, 'tile_k': 256}
+  [gemm] k14_gemm(lhs<-add_9, in0<-add_9, in1<-norm_f_weight_full_117) -> mul_118 gemms=0 sumsq=True epilogue=6 est=17,512cyc tiles={'tile_t': 32, 'tile_n': 128, 'tile_k': 256}

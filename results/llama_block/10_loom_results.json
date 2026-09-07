@@ -1,0 +1,93 @@
+{
+  "k0_gemm": {
+    "kernel": "k0_gemm",
+    "ok": true,
+    "output_dir": "/workspace/torch-helion/results/llama_block/loom/k0_gemm",
+    "best_variant": "_k0_gemm__x1x8_y8__d0i0_d1i0_d2i1__f01__dim_x_level1_bc8_dim_y_level0_bc8_dim_y_level0_bc8_dim_y_level0_bc8_dim_y_level0_bc8_dim_y_level0_bc8_n_n_n_n_n",
+    "solver_units": 528.0,
+    "block_sizes": {
+      "is_double_buffer": 0,
+      "tile_k": 256,
+      "tile_n": 32,
+      "tile_t": 64
+    },
+    "n_variants": 104,
+    "error": null,
+    "log_path": "/workspace/torch-helion/results/llama_block/loom/k0_gemm.loom.log",
+    "wall_seconds": 35.285396099090576,
+    "cycles": 33792.0
+  },
+  "k1_attention": {
+    "kernel": "k1_attention",
+    "ok": true,
+    "output_dir": "/workspace/torch-helion/results/llama_block/loom/k1_attention",
+    "best_variant": "_k1_attention__x8_y1y4y2__d0i2_d1i2_d2i1_d3i0__f012__n_dim_x_level0_bc8_dim_x_level0_bc8_n",
+    "solver_units": 298.0,
+    "block_sizes": {
+      "is_double_buffer": 1,
+      "tile_b": 1,
+      "tile_h": 1,
+      "tile_m": 32,
+      "tile_n": 128
+    },
+    "n_variants": 393,
+    "error": null,
+    "log_path": "/workspace/torch-helion/results/llama_block/loom/k1_attention.loom.log",
+    "wall_seconds": 24.304322481155396,
+    "cycles": 19072.0
+  },
+  "k2_gemm": {
+    "kernel": "k2_gemm",
+    "ok": true,
+    "output_dir": "/workspace/torch-helion/results/llama_block/loom/k2_gemm",
+    "best_variant": "_k2_gemm__x8_y1y8__d0i1_d1i1_d2i0__f01__dim_x_level0_bc8_dim_y_level1_bc8_n_n",
+    "solver_units": 159.0,
+    "block_sizes": {
+      "is_double_buffer": 1,
+      "tile_k": 128,
+      "tile_n": 32,
+      "tile_t": 64
+    },
+    "n_variants": 208,
+    "error": null,
+    "log_path": "/workspace/torch-helion/results/llama_block/loom/k2_gemm.loom.log",
+    "wall_seconds": 11.805886507034302,
+    "cycles": 10176.0
+  },
+  "k3_gemm": {
+    "kernel": "k3_gemm",
+    "ok": true,
+    "output_dir": "/workspace/torch-helion/results/llama_block/loom/k3_gemm",
+    "best_variant": "_k3_gemm__x8_y1y8__d0i0_d1i0_d2i1__f01__dim_y_level1_bc8_dim_x_level0_bc8_dim_x_level0_bc8_n",
+    "solver_units": 368.0,
+    "block_sizes": {
+      "is_double_buffer": 0,
+      "tile_k": 256,
+      "tile_n": 64,
+      "tile_t": 64
+    },
+    "n_variants": 104,
+    "error": null,
+    "log_path": "/workspace/torch-helion/results/llama_block/loom/k3_gemm.loom.log",
+    "wall_seconds": 12.852954626083374,
+    "cycles": 23552.0
+  },
+  "k4_gemm": {
+    "kernel": "k4_gemm",
+    "ok": true,
+    "output_dir": "/workspace/torch-helion/results/llama_block/loom/k4_gemm",
+    "best_variant": "_k4_gemm__x8_y1y8__d0i1_d1i1_d2i0__f01__dim_x_level0_bc8_dim_y_level1_bc8_n_n",
+    "solver_units": 228.0,
+    "block_sizes": {
+      "is_double_buffer": 1,
+      "tile_k": 256,
+      "tile_n": 32,
+      "tile_t": 64
+    },
+    "n_variants": 208,
+    "error": null,
+    "log_path": "/workspace/torch-helion/results/llama_block/loom/k4_gemm.loom.log",
+    "wall_seconds": 12.557353734970093,
+    "cycles": 14592.0
+  }
+}

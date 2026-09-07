@@ -1,0 +1,96 @@
+
+
+
+def forward(self, p_layers_0_norm_weight, p_layers_0_mixer_a_log, p_layers_0_mixer_d, p_layers_0_mixer_dt_bias, p_layers_0_mixer_in_proj_weight, p_layers_0_mixer_out_proj_weight, p_layers_0_mixer_norm_weight, p_norm_f_weight, b_layers_0_mixer_mask_within, b_layers_0_mixer_mask_across, b_layers_0_mixer_mask_prefix, b_layers_0_mixer_mask_causal, b_layers_0_mixer_mask_seq_prefix, u):
+    pow_1 = torch.ops.aten.pow.Tensor_Scalar(u, 2)
+    mean = torch.ops.aten.mean.dim(pow_1, [-1], True);  pow_1 = None
+    add = torch.ops.aten.add.Tensor(mean, 1e-05);  mean = None
+    rsqrt = torch.ops.aten.rsqrt.default(add);  add = None
+    mul = torch.ops.aten.mul.Tensor(u, rsqrt);  rsqrt = None
+    mul_1 = torch.ops.aten.mul.Tensor(mul, p_layers_0_norm_weight);  mul = p_layers_0_norm_weight = None
+    permute = torch.ops.aten.permute.default(p_layers_0_mixer_in_proj_weight, [1, 0]);  p_layers_0_mixer_in_proj_weight = None
+    view = torch.ops.aten.view.default(mul_1, [512, 512]);  mul_1 = None
+    mm = torch.ops.aten.mm.default(view, permute);  view = permute = None
+    view_1 = torch.ops.aten.view.default(mm, [2, 256, 4128]);  mm = None
+    split_with_sizes = torch.ops.aten.split_with_sizes.default(view_1, [1024, 3072, 32], -1);  view_1 = None
+    getitem = split_with_sizes[0]
+    getitem_1 = split_with_sizes[1]
+    getitem_2 = split_with_sizes[2];  split_with_sizes = None
+    split_with_sizes_1 = torch.ops.aten.split_with_sizes.default(getitem_1, [1024, 1024, 1024], -1);  getitem_1 = None
+    getitem_3 = split_with_sizes_1[0]
+    getitem_4 = split_with_sizes_1[1]
+    getitem_5 = split_with_sizes_1[2];  split_with_sizes_1 = None
+    add_1 = torch.ops.aten.add.Tensor(getitem_2, p_layers_0_mixer_dt_bias);  getitem_2 = p_layers_0_mixer_dt_bias = None
+    _to_copy = torch.ops.aten._to_copy.default(add_1, dtype = torch.float32);  add_1 = None
+    exp = torch.ops.aten.exp.default(_to_copy)
+    log1p = torch.ops.aten.log1p.default(exp);  exp = None
+    gt = torch.ops.aten.gt.Scalar(_to_copy, 20)
+    where = torch.ops.aten.where.self(gt, _to_copy, log1p);  gt = _to_copy = log1p = None
+    _to_copy_1 = torch.ops.aten._to_copy.default(where, dtype = torch.float16);  where = None
+    exp_1 = torch.ops.aten.exp.default(p_layers_0_mixer_a_log);  p_layers_0_mixer_a_log = None
+    neg = torch.ops.aten.neg.default(exp_1);  exp_1 = None
+    view_7 = torch.ops.aten.view.default(getitem_3, [2, 256, 32, 32]);  getitem_3 = None
+    permute_5 = torch.ops.aten.permute.default(view_7, [0, 2, 1, 3]);  view_7 = None
+    view_8 = torch.ops.aten.view.default(getitem_4, [2, 256, 32, 32]);  getitem_4 = None
+    permute_6 = torch.ops.aten.permute.default(view_8, [0, 2, 1, 3]);  view_8 = None
+    view_9 = torch.ops.aten.view.default(getitem_5, [2, 256, 32, 32]);  getitem_5 = None
+    permute_7 = torch.ops.aten.permute.default(view_9, [0, 2, 1, 3]);  view_9 = None
+    permute_8 = torch.ops.aten.permute.default(_to_copy_1, [0, 2, 1]);  _to_copy_1 = None
+    view_10 = torch.ops.aten.view.default(neg, [1, 32, 1]);  neg = None
+    mul_3 = torch.ops.aten.mul.Tensor(permute_8, view_10);  view_10 = None
+    cumsum = torch.ops.aten.cumsum.default(mul_3, -1);  mul_3 = None
+    permute_9 = torch.ops.aten.permute.default(permute_6, [0, 1, 3, 2]);  permute_6 = None
+    expand = torch.ops.aten.expand.default(permute_7, [2, 32, 256, 32]);  permute_7 = None
+    clone = torch.ops.aten.clone.default(expand, memory_format = torch.contiguous_format);  expand = None
+    view_11 = torch.ops.aten.view.default(clone, [64, 256, 32]);  clone = None
+    expand_1 = torch.ops.aten.expand.default(permute_9, [2, 32, 32, 256]);  permute_9 = None
+    clone_1 = torch.ops.aten.clone.default(expand_1, memory_format = torch.contiguous_format);  expand_1 = None
+    view_12 = torch.ops.aten.view.default(clone_1, [64, 32, 256]);  clone_1 = None
+    bmm = torch.ops.aten.bmm.default(view_11, view_12);  view_11 = view_12 = None
+    view_13 = torch.ops.aten.view.default(bmm, [2, 32, 256, 256]);  bmm = None
+    unsqueeze = torch.ops.aten.unsqueeze.default(cumsum, -1)
+    unsqueeze_1 = torch.ops.aten.unsqueeze.default(cumsum, -2);  cumsum = None
+    sub = torch.ops.aten.sub.Tensor(unsqueeze, unsqueeze_1);  unsqueeze = unsqueeze_1 = None
+    mul_4 = torch.ops.aten.mul.Tensor(sub, b_layers_0_mixer_mask_causal);  sub = None
+    exp_2 = torch.ops.aten.exp.default(mul_4);  mul_4 = None
+    mul_5 = torch.ops.aten.mul.Tensor(view_13, exp_2);  view_13 = exp_2 = None
+    mul_6 = torch.ops.aten.mul.Tensor(mul_5, b_layers_0_mixer_mask_causal);  mul_5 = b_layers_0_mixer_mask_causal = None
+    unsqueeze_2 = torch.ops.aten.unsqueeze.default(permute_8, -2);  permute_8 = None
+    mul_7 = torch.ops.aten.mul.Tensor(mul_6, unsqueeze_2);  mul_6 = unsqueeze_2 = None
+    expand_2 = torch.ops.aten.expand.default(mul_7, [2, 32, 256, 256]);  mul_7 = None
+    view_14 = torch.ops.aten.view.default(expand_2, [64, 256, 256]);  expand_2 = None
+    expand_3 = torch.ops.aten.expand.default(permute_5, [2, 32, 256, 32])
+    clone_2 = torch.ops.aten.clone.default(expand_3, memory_format = torch.contiguous_format);  expand_3 = None
+    view_15 = torch.ops.aten.view.default(clone_2, [64, 256, 32]);  clone_2 = None
+    bmm_1 = torch.ops.aten.bmm.default(view_14, view_15);  view_14 = view_15 = None
+    view_16 = torch.ops.aten.view.default(bmm_1, [2, 32, 256, 32]);  bmm_1 = None
+    view_17 = torch.ops.aten.view.default(p_layers_0_mixer_d, [1, 32, 1, 1]);  p_layers_0_mixer_d = None
+    mul_8 = torch.ops.aten.mul.Tensor(permute_5, view_17);  permute_5 = view_17 = None
+    add_2 = torch.ops.aten.add.Tensor(view_16, mul_8);  view_16 = mul_8 = None
+    permute_10 = torch.ops.aten.permute.default(add_2, [0, 2, 1, 3]);  add_2 = None
+    clone_3 = torch.ops.aten.clone.default(permute_10, memory_format = torch.contiguous_format);  permute_10 = None
+    view_18 = torch.ops.aten.view.default(clone_3, [2, 256, 1024]);  clone_3 = None
+    _to_copy_2 = torch.ops.aten._to_copy.default(getitem, dtype = torch.float32);  getitem = None
+    sigmoid = torch.ops.aten.sigmoid.default(_to_copy_2)
+    mul_9 = torch.ops.aten.mul.Tensor(_to_copy_2, sigmoid);  _to_copy_2 = sigmoid = None
+    _to_copy_3 = torch.ops.aten._to_copy.default(mul_9, dtype = torch.float16);  mul_9 = None
+    mul_10 = torch.ops.aten.mul.Tensor(view_18, _to_copy_3);  view_18 = _to_copy_3 = None
+    pow_2 = torch.ops.aten.pow.Tensor_Scalar(mul_10, 2)
+    mean_1 = torch.ops.aten.mean.dim(pow_2, [-1], True);  pow_2 = None
+    add_3 = torch.ops.aten.add.Tensor(mean_1, 1e-05);  mean_1 = None
+    rsqrt_1 = torch.ops.aten.rsqrt.default(add_3);  add_3 = None
+    mul_11 = torch.ops.aten.mul.Tensor(mul_10, rsqrt_1);  mul_10 = rsqrt_1 = None
+    mul_12 = torch.ops.aten.mul.Tensor(mul_11, p_layers_0_mixer_norm_weight);  mul_11 = p_layers_0_mixer_norm_weight = None
+    permute_11 = torch.ops.aten.permute.default(p_layers_0_mixer_out_proj_weight, [1, 0]);  p_layers_0_mixer_out_proj_weight = None
+    view_19 = torch.ops.aten.view.default(mul_12, [512, 1024]);  mul_12 = None
+    mm_1 = torch.ops.aten.mm.default(view_19, permute_11);  view_19 = permute_11 = None
+    view_20 = torch.ops.aten.view.default(mm_1, [2, 256, 512]);  mm_1 = None
+    add_4 = torch.ops.aten.add.Tensor(u, view_20);  u = view_20 = None
+    pow_3 = torch.ops.aten.pow.Tensor_Scalar(add_4, 2)
+    mean_2 = torch.ops.aten.mean.dim(pow_3, [-1], True);  pow_3 = None
+    add_5 = torch.ops.aten.add.Tensor(mean_2, 1e-05);  mean_2 = None
+    rsqrt_2 = torch.ops.aten.rsqrt.default(add_5);  add_5 = None
+    mul_13 = torch.ops.aten.mul.Tensor(add_4, rsqrt_2);  add_4 = rsqrt_2 = None
+    mul_14 = torch.ops.aten.mul.Tensor(mul_13, p_norm_f_weight);  mul_13 = p_norm_f_weight = None
+    return (mul_14,)
+    

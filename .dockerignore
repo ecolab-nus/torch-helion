@@ -1,0 +1,12 @@
+.git
+.venv
+.uv-cache
+.uv-python
+.cargo-home
+build
+**/build
+**/target
+**/__pycache__
+.pytest_cache
+.ruff_cache
+test

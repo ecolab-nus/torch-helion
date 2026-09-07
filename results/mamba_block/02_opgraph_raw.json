@@ -1,0 +1,1919 @@
+{
+  "name": "model",
+  "inputs": [
+    "u"
+  ],
+  "outputs": [
+    "mul_14"
+  ],
+  "metadata": {
+    "fx_op_histogram": {
+      "<built-in function getitem>": 6,
+      "aten._to_copy.default": 4,
+      "aten.add.Tensor": 6,
+      "aten.bmm.default": 2,
+      "aten.clone.default": 4,
+      "aten.cumsum.default": 1,
+      "aten.exp.default": 3,
+      "aten.expand.default": 4,
+      "aten.gt.Scalar": 1,
+      "aten.log1p.default": 1,
+      "aten.mean.dim": 3,
+      "aten.mm.default": 2,
+      "aten.mul.Tensor": 14,
+      "aten.neg.default": 1,
+      "aten.permute.default": 8,
+      "aten.pow.Tensor_Scalar": 3,
+      "aten.rsqrt.default": 3,
+      "aten.sigmoid.default": 1,
+      "aten.split_with_sizes.default": 2,
+      "aten.sub.Tensor": 1,
+      "aten.unsqueeze.default": 3,
+      "aten.view.default": 16,
+      "aten.where.self": 1
+    }
+  },
+  "nodes": [
+    {
+      "name": "layers_0_norm_weight",
+      "op": "param",
+      "kind": "param",
+      "inputs": [],
+      "shape": [
+        512
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "p_layers_0_norm_weight"
+    },
+    {
+      "name": "layers_0_mixer_A_log",
+      "op": "param",
+      "kind": "param",
+      "inputs": [],
+      "shape": [
+        32
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "p_layers_0_mixer_a_log"
+    },
+    {
+      "name": "layers_0_mixer_D",
+      "op": "param",
+      "kind": "param",
+      "inputs": [],
+      "shape": [
+        32
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "p_layers_0_mixer_d"
+    },
+    {
+      "name": "layers_0_mixer_dt_bias",
+      "op": "param",
+      "kind": "param",
+      "inputs": [],
+      "shape": [
+        32
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "p_layers_0_mixer_dt_bias"
+    },
+    {
+      "name": "layers_0_mixer_in_proj_weight",
+      "op": "param",
+      "kind": "param",
+      "inputs": [],
+      "shape": [
+        4128,
+        512
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "p_layers_0_mixer_in_proj_weight"
+    },
+    {
+      "name": "layers_0_mixer_out_proj_weight",
+      "op": "param",
+      "kind": "param",
+      "inputs": [],
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "p_layers_0_mixer_out_proj_weight"
+    },
+    {
+      "name": "layers_0_mixer_norm_weight",
+      "op": "param",
+      "kind": "param",
+      "inputs": [],
+      "shape": [
+        1024
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "p_layers_0_mixer_norm_weight"
+    },
+    {
+      "name": "norm_f_weight",
+      "op": "param",
+      "kind": "param",
+      "inputs": [],
+      "shape": [
+        512
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "p_norm_f_weight"
+    },
+    {
+      "name": "layers_0_mixer_mask_within",
+      "op": "param",
+      "kind": "param",
+      "inputs": [],
+      "shape": [
+        64,
+        64
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "b_layers_0_mixer_mask_within"
+    },
+    {
+      "name": "layers_0_mixer_mask_across",
+      "op": "param",
+      "kind": "param",
+      "inputs": [],
+      "shape": [
+        4,
+        4
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "b_layers_0_mixer_mask_across"
+    },
+    {
+      "name": "layers_0_mixer_mask_prefix",
+      "op": "param",
+      "kind": "param",
+      "inputs": [],
+      "shape": [
+        64,
+        64
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "b_layers_0_mixer_mask_prefix"
+    },
+    {
+      "name": "layers_0_mixer_mask_causal",
+      "op": "param",
+      "kind": "param",
+      "inputs": [],
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "b_layers_0_mixer_mask_causal"
+    },
+    {
+      "name": "layers_0_mixer_mask_seq_prefix",
+      "op": "param",
+      "kind": "param",
+      "inputs": [],
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "b_layers_0_mixer_mask_seq_prefix"
+    },
+    {
+      "name": "u",
+      "op": "input",
+      "kind": "input",
+      "inputs": [],
+      "shape": [
+        2,
+        256,
+        512
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "u"
+    },
+    {
+      "name": "pow_1",
+      "op": "powf",
+      "kind": "compute",
+      "inputs": [
+        "u"
+      ],
+      "shape": [
+        2,
+        256,
+        512
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "scalar": 2.0
+      },
+      "origin": "aten.pow.Tensor_Scalar"
+    },
+    {
+      "name": "mean",
+      "op": "row_mean",
+      "kind": "compute",
+      "inputs": [
+        "pow_1"
+      ],
+      "shape": [
+        2,
+        256,
+        1
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "keepdim": true
+      },
+      "origin": "aten.mean.dim"
+    },
+    {
+      "name": "add",
+      "op": "add",
+      "kind": "compute",
+      "inputs": [
+        "mean"
+      ],
+      "shape": [
+        2,
+        256,
+        1
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "scalar": 1e-05
+      },
+      "origin": "aten.add.Tensor"
+    },
+    {
+      "name": "rsqrt",
+      "op": "rsqrt",
+      "kind": "compute",
+      "inputs": [
+        "add"
+      ],
+      "shape": [
+        2,
+        256,
+        1
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "aten.rsqrt.default"
+    },
+    {
+      "name": "mul",
+      "op": "mul",
+      "kind": "compute",
+      "inputs": [
+        "u",
+        "rsqrt"
+      ],
+      "shape": [
+        2,
+        256,
+        512
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "aten.mul.Tensor"
+    },
+    {
+      "name": "mul_1",
+      "op": "mul",
+      "kind": "compute",
+      "inputs": [
+        "mul",
+        "layers_0_norm_weight"
+      ],
+      "shape": [
+        2,
+        256,
+        512
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "aten.mul.Tensor"
+    },
+    {
+      "name": "permute",
+      "op": "permute",
+      "kind": "layout",
+      "inputs": [
+        "layers_0_mixer_in_proj_weight"
+      ],
+      "shape": [
+        512,
+        4128
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "dims": [
+          1,
+          0
+        ]
+      },
+      "origin": "aten.permute.default"
+    },
+    {
+      "name": "view",
+      "op": "view",
+      "kind": "layout",
+      "inputs": [
+        "mul_1"
+      ],
+      "shape": [
+        512,
+        512
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "shape": [
+          512,
+          512
+        ]
+      },
+      "origin": "aten.view.default"
+    },
+    {
+      "name": "mm",
+      "op": "matmul",
+      "kind": "compute",
+      "inputs": [
+        "view",
+        "permute"
+      ],
+      "shape": [
+        512,
+        4128
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "aten.mm.default"
+    },
+    {
+      "name": "view_1",
+      "op": "view",
+      "kind": "layout",
+      "inputs": [
+        "mm"
+      ],
+      "shape": [
+        2,
+        256,
+        4128
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "shape": [
+          2,
+          256,
+          4128
+        ]
+      },
+      "origin": "aten.view.default"
+    },
+    {
+      "name": "getitem",
+      "op": "slice",
+      "kind": "layout",
+      "inputs": [
+        "view_1"
+      ],
+      "shape": [
+        2,
+        256,
+        1024
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "dim": 2,
+        "start": 0,
+        "end": 1024
+      },
+      "origin": "<built-in function getitem>"
+    },
+    {
+      "name": "getitem_1",
+      "op": "slice",
+      "kind": "layout",
+      "inputs": [
+        "view_1"
+      ],
+      "shape": [
+        2,
+        256,
+        3072
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "dim": 2,
+        "start": 1024,
+        "end": 4096
+      },
+      "origin": "<built-in function getitem>"
+    },
+    {
+      "name": "getitem_2",
+      "op": "slice",
+      "kind": "layout",
+      "inputs": [
+        "view_1"
+      ],
+      "shape": [
+        2,
+        256,
+        32
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "dim": 2,
+        "start": 4096,
+        "end": 4128
+      },
+      "origin": "<built-in function getitem>"
+    },
+    {
+      "name": "getitem_3",
+      "op": "slice",
+      "kind": "layout",
+      "inputs": [
+        "getitem_1"
+      ],
+      "shape": [
+        2,
+        256,
+        1024
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "dim": 2,
+        "start": 0,
+        "end": 1024
+      },
+      "origin": "<built-in function getitem>"
+    },
+    {
+      "name": "getitem_4",
+      "op": "slice",
+      "kind": "layout",
+      "inputs": [
+        "getitem_1"
+      ],
+      "shape": [
+        2,
+        256,
+        1024
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "dim": 2,
+        "start": 1024,
+        "end": 2048
+      },
+      "origin": "<built-in function getitem>"
+    },
+    {
+      "name": "getitem_5",
+      "op": "slice",
+      "kind": "layout",
+      "inputs": [
+        "getitem_1"
+      ],
+      "shape": [
+        2,
+        256,
+        1024
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "dim": 2,
+        "start": 2048,
+        "end": 3072
+      },
+      "origin": "<built-in function getitem>"
+    },
+    {
+      "name": "add_1",
+      "op": "add",
+      "kind": "compute",
+      "inputs": [
+        "getitem_2",
+        "layers_0_mixer_dt_bias"
+      ],
+      "shape": [
+        2,
+        256,
+        32
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "aten.add.Tensor"
+    },
+    {
+      "name": "_to_copy",
+      "op": "cast",
+      "kind": "layout",
+      "inputs": [
+        "add_1"
+      ],
+      "shape": [
+        2,
+        256,
+        32
+      ],
+      "dtype": "float32",
+      "attrs": {
+        "dtype": "float32"
+      },
+      "origin": "aten._to_copy.default"
+    },
+    {
+      "name": "exp",
+      "op": "exp",
+      "kind": "compute",
+      "inputs": [
+        "_to_copy"
+      ],
+      "shape": [
+        2,
+        256,
+        32
+      ],
+      "dtype": "float32",
+      "attrs": {},
+      "origin": "aten.exp.default"
+    },
+    {
+      "name": "log1p",
+      "op": "log1p",
+      "kind": "compute",
+      "inputs": [
+        "exp"
+      ],
+      "shape": [
+        2,
+        256,
+        32
+      ],
+      "dtype": "float32",
+      "attrs": {},
+      "origin": "aten.log1p.default"
+    },
+    {
+      "name": "gt",
+      "op": "cmp_gt",
+      "kind": "compute",
+      "inputs": [
+        "_to_copy"
+      ],
+      "shape": [
+        2,
+        256,
+        32
+      ],
+      "dtype": "bool",
+      "attrs": {
+        "scalar": 20.0
+      },
+      "origin": "aten.gt.Scalar"
+    },
+    {
+      "name": "where",
+      "op": "select",
+      "kind": "compute",
+      "inputs": [
+        "gt",
+        "_to_copy",
+        "log1p"
+      ],
+      "shape": [
+        2,
+        256,
+        32
+      ],
+      "dtype": "float32",
+      "attrs": {},
+      "origin": "aten.where.self"
+    },
+    {
+      "name": "_to_copy_1",
+      "op": "cast",
+      "kind": "layout",
+      "inputs": [
+        "where"
+      ],
+      "shape": [
+        2,
+        256,
+        32
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "dtype": "float16"
+      },
+      "origin": "aten._to_copy.default"
+    },
+    {
+      "name": "exp_1",
+      "op": "exp",
+      "kind": "compute",
+      "inputs": [
+        "layers_0_mixer_A_log"
+      ],
+      "shape": [
+        32
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "aten.exp.default"
+    },
+    {
+      "name": "neg",
+      "op": "neg",
+      "kind": "compute",
+      "inputs": [
+        "exp_1"
+      ],
+      "shape": [
+        32
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "aten.neg.default"
+    },
+    {
+      "name": "view_7",
+      "op": "view",
+      "kind": "layout",
+      "inputs": [
+        "getitem_3"
+      ],
+      "shape": [
+        2,
+        256,
+        32,
+        32
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "shape": [
+          2,
+          256,
+          32,
+          32
+        ]
+      },
+      "origin": "aten.view.default"
+    },
+    {
+      "name": "permute_5",
+      "op": "permute",
+      "kind": "layout",
+      "inputs": [
+        "view_7"
+      ],
+      "shape": [
+        2,
+        32,
+        256,
+        32
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "dims": [
+          0,
+          2,
+          1,
+          3
+        ]
+      },
+      "origin": "aten.permute.default"
+    },
+    {
+      "name": "view_8",
+      "op": "view",
+      "kind": "layout",
+      "inputs": [
+        "getitem_4"
+      ],
+      "shape": [
+        2,
+        256,
+        32,
+        32
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "shape": [
+          2,
+          256,
+          32,
+          32
+        ]
+      },
+      "origin": "aten.view.default"
+    },
+    {
+      "name": "permute_6",
+      "op": "permute",
+      "kind": "layout",
+      "inputs": [
+        "view_8"
+      ],
+      "shape": [
+        2,
+        32,
+        256,
+        32
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "dims": [
+          0,
+          2,
+          1,
+          3
+        ]
+      },
+      "origin": "aten.permute.default"
+    },
+    {
+      "name": "view_9",
+      "op": "view",
+      "kind": "layout",
+      "inputs": [
+        "getitem_5"
+      ],
+      "shape": [
+        2,
+        256,
+        32,
+        32
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "shape": [
+          2,
+          256,
+          32,
+          32
+        ]
+      },
+      "origin": "aten.view.default"
+    },
+    {
+      "name": "permute_7",
+      "op": "permute",
+      "kind": "layout",
+      "inputs": [
+        "view_9"
+      ],
+      "shape": [
+        2,
+        32,
+        256,
+        32
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "dims": [
+          0,
+          2,
+          1,
+          3
+        ]
+      },
+      "origin": "aten.permute.default"
+    },
+    {
+      "name": "permute_8",
+      "op": "permute",
+      "kind": "layout",
+      "inputs": [
+        "_to_copy_1"
+      ],
+      "shape": [
+        2,
+        32,
+        256
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "dims": [
+          0,
+          2,
+          1
+        ]
+      },
+      "origin": "aten.permute.default"
+    },
+    {
+      "name": "view_10",
+      "op": "view",
+      "kind": "layout",
+      "inputs": [
+        "neg"
+      ],
+      "shape": [
+        1,
+        32,
+        1
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "shape": [
+          1,
+          32,
+          1
+        ]
+      },
+      "origin": "aten.view.default"
+    },
+    {
+      "name": "mul_3",
+      "op": "mul",
+      "kind": "compute",
+      "inputs": [
+        "permute_8",
+        "view_10"
+      ],
+      "shape": [
+        2,
+        32,
+        256
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "aten.mul.Tensor"
+    },
+    {
+      "name": "cumsum",
+      "op": "row_cumsum",
+      "kind": "compute",
+      "inputs": [
+        "mul_3"
+      ],
+      "shape": [
+        2,
+        32,
+        256
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "aten.cumsum.default"
+    },
+    {
+      "name": "permute_9",
+      "op": "permute",
+      "kind": "layout",
+      "inputs": [
+        "permute_6"
+      ],
+      "shape": [
+        2,
+        32,
+        32,
+        256
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "dims": [
+          0,
+          1,
+          3,
+          2
+        ]
+      },
+      "origin": "aten.permute.default"
+    },
+    {
+      "name": "expand",
+      "op": "expand",
+      "kind": "layout",
+      "inputs": [
+        "permute_7"
+      ],
+      "shape": [
+        2,
+        32,
+        256,
+        32
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "shape": [
+          2,
+          32,
+          256,
+          32
+        ]
+      },
+      "origin": "aten.expand.default"
+    },
+    {
+      "name": "clone",
+      "op": "clone",
+      "kind": "layout",
+      "inputs": [
+        "expand"
+      ],
+      "shape": [
+        2,
+        32,
+        256,
+        32
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "aten.clone.default"
+    },
+    {
+      "name": "view_11",
+      "op": "view",
+      "kind": "layout",
+      "inputs": [
+        "clone"
+      ],
+      "shape": [
+        64,
+        256,
+        32
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "shape": [
+          64,
+          256,
+          32
+        ]
+      },
+      "origin": "aten.view.default"
+    },
+    {
+      "name": "expand_1",
+      "op": "expand",
+      "kind": "layout",
+      "inputs": [
+        "permute_9"
+      ],
+      "shape": [
+        2,
+        32,
+        32,
+        256
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "shape": [
+          2,
+          32,
+          32,
+          256
+        ]
+      },
+      "origin": "aten.expand.default"
+    },
+    {
+      "name": "clone_1",
+      "op": "clone",
+      "kind": "layout",
+      "inputs": [
+        "expand_1"
+      ],
+      "shape": [
+        2,
+        32,
+        32,
+        256
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "aten.clone.default"
+    },
+    {
+      "name": "view_12",
+      "op": "view",
+      "kind": "layout",
+      "inputs": [
+        "clone_1"
+      ],
+      "shape": [
+        64,
+        32,
+        256
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "shape": [
+          64,
+          32,
+          256
+        ]
+      },
+      "origin": "aten.view.default"
+    },
+    {
+      "name": "bmm",
+      "op": "batch_matmul",
+      "kind": "compute",
+      "inputs": [
+        "view_11",
+        "view_12"
+      ],
+      "shape": [
+        64,
+        256,
+        256
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "aten.bmm.default"
+    },
+    {
+      "name": "view_13",
+      "op": "view",
+      "kind": "layout",
+      "inputs": [
+        "bmm"
+      ],
+      "shape": [
+        2,
+        32,
+        256,
+        256
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "shape": [
+          2,
+          32,
+          256,
+          256
+        ]
+      },
+      "origin": "aten.view.default"
+    },
+    {
+      "name": "unsqueeze",
+      "op": "view",
+      "kind": "layout",
+      "inputs": [
+        "cumsum"
+      ],
+      "shape": [
+        2,
+        32,
+        256,
+        1
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "shape": [
+          2,
+          32,
+          256,
+          1
+        ]
+      },
+      "origin": "aten.unsqueeze.default"
+    },
+    {
+      "name": "unsqueeze_1",
+      "op": "view",
+      "kind": "layout",
+      "inputs": [
+        "cumsum"
+      ],
+      "shape": [
+        2,
+        32,
+        1,
+        256
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "shape": [
+          2,
+          32,
+          1,
+          256
+        ]
+      },
+      "origin": "aten.unsqueeze.default"
+    },
+    {
+      "name": "sub",
+      "op": "sub",
+      "kind": "compute",
+      "inputs": [
+        "unsqueeze",
+        "unsqueeze_1"
+      ],
+      "shape": [
+        2,
+        32,
+        256,
+        256
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "aten.sub.Tensor"
+    },
+    {
+      "name": "mul_4",
+      "op": "mul",
+      "kind": "compute",
+      "inputs": [
+        "sub",
+        "layers_0_mixer_mask_causal"
+      ],
+      "shape": [
+        2,
+        32,
+        256,
+        256
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "aten.mul.Tensor"
+    },
+    {
+      "name": "exp_2",
+      "op": "exp",
+      "kind": "compute",
+      "inputs": [
+        "mul_4"
+      ],
+      "shape": [
+        2,
+        32,
+        256,
+        256
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "aten.exp.default"
+    },
+    {
+      "name": "mul_5",
+      "op": "mul",
+      "kind": "compute",
+      "inputs": [
+        "view_13",
+        "exp_2"
+      ],
+      "shape": [
+        2,
+        32,
+        256,
+        256
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "aten.mul.Tensor"
+    },
+    {
+      "name": "mul_6",
+      "op": "mul",
+      "kind": "compute",
+      "inputs": [
+        "mul_5",
+        "layers_0_mixer_mask_causal"
+      ],
+      "shape": [
+        2,
+        32,
+        256,
+        256
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "aten.mul.Tensor"
+    },
+    {
+      "name": "unsqueeze_2",
+      "op": "view",
+      "kind": "layout",
+      "inputs": [
+        "permute_8"
+      ],
+      "shape": [
+        2,
+        32,
+        1,
+        256
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "shape": [
+          2,
+          32,
+          1,
+          256
+        ]
+      },
+      "origin": "aten.unsqueeze.default"
+    },
+    {
+      "name": "mul_7",
+      "op": "mul",
+      "kind": "compute",
+      "inputs": [
+        "mul_6",
+        "unsqueeze_2"
+      ],
+      "shape": [
+        2,
+        32,
+        256,
+        256
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "aten.mul.Tensor"
+    },
+    {
+      "name": "expand_2",
+      "op": "expand",
+      "kind": "layout",
+      "inputs": [
+        "mul_7"
+      ],
+      "shape": [
+        2,
+        32,
+        256,
+        256
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "shape": [
+          2,
+          32,
+          256,
+          256
+        ]
+      },
+      "origin": "aten.expand.default"
+    },
+    {
+      "name": "view_14",
+      "op": "view",
+      "kind": "layout",
+      "inputs": [
+        "expand_2"
+      ],
+      "shape": [
+        64,
+        256,
+        256
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "shape": [
+          64,
+          256,
+          256
+        ]
+      },
+      "origin": "aten.view.default"
+    },
+    {
+      "name": "expand_3",
+      "op": "expand",
+      "kind": "layout",
+      "inputs": [
+        "permute_5"
+      ],
+      "shape": [
+        2,
+        32,
+        256,
+        32
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "shape": [
+          2,
+          32,
+          256,
+          32
+        ]
+      },
+      "origin": "aten.expand.default"
+    },
+    {
+      "name": "clone_2",
+      "op": "clone",
+      "kind": "layout",
+      "inputs": [
+        "expand_3"
+      ],
+      "shape": [
+        2,
+        32,
+        256,
+        32
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "aten.clone.default"
+    },
+    {
+      "name": "view_15",
+      "op": "view",
+      "kind": "layout",
+      "inputs": [
+        "clone_2"
+      ],
+      "shape": [
+        64,
+        256,
+        32
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "shape": [
+          64,
+          256,
+          32
+        ]
+      },
+      "origin": "aten.view.default"
+    },
+    {
+      "name": "bmm_1",
+      "op": "batch_matmul",
+      "kind": "compute",
+      "inputs": [
+        "view_14",
+        "view_15"
+      ],
+      "shape": [
+        64,
+        256,
+        32
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "aten.bmm.default"
+    },
+    {
+      "name": "view_16",
+      "op": "view",
+      "kind": "layout",
+      "inputs": [
+        "bmm_1"
+      ],
+      "shape": [
+        2,
+        32,
+        256,
+        32
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "shape": [
+          2,
+          32,
+          256,
+          32
+        ]
+      },
+      "origin": "aten.view.default"
+    },
+    {
+      "name": "view_17",
+      "op": "view",
+      "kind": "layout",
+      "inputs": [
+        "layers_0_mixer_D"
+      ],
+      "shape": [
+        1,
+        32,
+        1,
+        1
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "shape": [
+          1,
+          32,
+          1,
+          1
+        ]
+      },
+      "origin": "aten.view.default"
+    },
+    {
+      "name": "mul_8",
+      "op": "mul",
+      "kind": "compute",
+      "inputs": [
+        "permute_5",
+        "view_17"
+      ],
+      "shape": [
+        2,
+        32,
+        256,
+        32
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "aten.mul.Tensor"
+    },
+    {
+      "name": "add_2",
+      "op": "add",
+      "kind": "compute",
+      "inputs": [
+        "view_16",
+        "mul_8"
+      ],
+      "shape": [
+        2,
+        32,
+        256,
+        32
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "aten.add.Tensor"
+    },
+    {
+      "name": "permute_10",
+      "op": "permute",
+      "kind": "layout",
+      "inputs": [
+        "add_2"
+      ],
+      "shape": [
+        2,
+        256,
+        32,
+        32
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "dims": [
+          0,
+          2,
+          1,
+          3
+        ]
+      },
+      "origin": "aten.permute.default"
+    },
+    {
+      "name": "clone_3",
+      "op": "clone",
+      "kind": "layout",
+      "inputs": [
+        "permute_10"
+      ],
+      "shape": [
+        2,
+        256,
+        32,
+        32
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "aten.clone.default"
+    },
+    {
+      "name": "view_18",
+      "op": "view",
+      "kind": "layout",
+      "inputs": [
+        "clone_3"
+      ],
+      "shape": [
+        2,
+        256,
+        1024
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "shape": [
+          2,
+          256,
+          1024
+        ]
+      },
+      "origin": "aten.view.default"
+    },
+    {
+      "name": "_to_copy_2",
+      "op": "cast",
+      "kind": "layout",
+      "inputs": [
+        "getitem"
+      ],
+      "shape": [
+        2,
+        256,
+        1024
+      ],
+      "dtype": "float32",
+      "attrs": {
+        "dtype": "float32"
+      },
+      "origin": "aten._to_copy.default"
+    },
+    {
+      "name": "sigmoid",
+      "op": "sigmoid",
+      "kind": "compute",
+      "inputs": [
+        "_to_copy_2"
+      ],
+      "shape": [
+        2,
+        256,
+        1024
+      ],
+      "dtype": "float32",
+      "attrs": {},
+      "origin": "aten.sigmoid.default"
+    },
+    {
+      "name": "mul_9",
+      "op": "mul",
+      "kind": "compute",
+      "inputs": [
+        "_to_copy_2",
+        "sigmoid"
+      ],
+      "shape": [
+        2,
+        256,
+        1024
+      ],
+      "dtype": "float32",
+      "attrs": {},
+      "origin": "aten.mul.Tensor"
+    },
+    {
+      "name": "_to_copy_3",
+      "op": "cast",
+      "kind": "layout",
+      "inputs": [
+        "mul_9"
+      ],
+      "shape": [
+        2,
+        256,
+        1024
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "dtype": "float16"
+      },
+      "origin": "aten._to_copy.default"
+    },
+    {
+      "name": "mul_10",
+      "op": "mul",
+      "kind": "compute",
+      "inputs": [
+        "view_18",
+        "_to_copy_3"
+      ],
+      "shape": [
+        2,
+        256,
+        1024
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "aten.mul.Tensor"
+    },
+    {
+      "name": "pow_2",
+      "op": "powf",
+      "kind": "compute",
+      "inputs": [
+        "mul_10"
+      ],
+      "shape": [
+        2,
+        256,
+        1024
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "scalar": 2.0
+      },
+      "origin": "aten.pow.Tensor_Scalar"
+    },
+    {
+      "name": "mean_1",
+      "op": "row_mean",
+      "kind": "compute",
+      "inputs": [
+        "pow_2"
+      ],
+      "shape": [
+        2,
+        256,
+        1
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "keepdim": true
+      },
+      "origin": "aten.mean.dim"
+    },
+    {
+      "name": "add_3",
+      "op": "add",
+      "kind": "compute",
+      "inputs": [
+        "mean_1"
+      ],
+      "shape": [
+        2,
+        256,
+        1
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "scalar": 1e-05
+      },
+      "origin": "aten.add.Tensor"
+    },
+    {
+      "name": "rsqrt_1",
+      "op": "rsqrt",
+      "kind": "compute",
+      "inputs": [
+        "add_3"
+      ],
+      "shape": [
+        2,
+        256,
+        1
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "aten.rsqrt.default"
+    },
+    {
+      "name": "mul_11",
+      "op": "mul",
+      "kind": "compute",
+      "inputs": [
+        "mul_10",
+        "rsqrt_1"
+      ],
+      "shape": [
+        2,
+        256,
+        1024
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "aten.mul.Tensor"
+    },
+    {
+      "name": "mul_12",
+      "op": "mul",
+      "kind": "compute",
+      "inputs": [
+        "mul_11",
+        "layers_0_mixer_norm_weight"
+      ],
+      "shape": [
+        2,
+        256,
+        1024
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "aten.mul.Tensor"
+    },
+    {
+      "name": "permute_11",
+      "op": "permute",
+      "kind": "layout",
+      "inputs": [
+        "layers_0_mixer_out_proj_weight"
+      ],
+      "shape": [
+        1024,
+        512
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "dims": [
+          1,
+          0
+        ]
+      },
+      "origin": "aten.permute.default"
+    },
+    {
+      "name": "view_19",
+      "op": "view",
+      "kind": "layout",
+      "inputs": [
+        "mul_12"
+      ],
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "shape": [
+          512,
+          1024
+        ]
+      },
+      "origin": "aten.view.default"
+    },
+    {
+      "name": "mm_1",
+      "op": "matmul",
+      "kind": "compute",
+      "inputs": [
+        "view_19",
+        "permute_11"
+      ],
+      "shape": [
+        512,
+        512
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "aten.mm.default"
+    },
+    {
+      "name": "view_20",
+      "op": "view",
+      "kind": "layout",
+      "inputs": [
+        "mm_1"
+      ],
+      "shape": [
+        2,
+        256,
+        512
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "shape": [
+          2,
+          256,
+          512
+        ]
+      },
+      "origin": "aten.view.default"
+    },
+    {
+      "name": "add_4",
+      "op": "add",
+      "kind": "compute",
+      "inputs": [
+        "u",
+        "view_20"
+      ],
+      "shape": [
+        2,
+        256,
+        512
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "aten.add.Tensor"
+    },
+    {
+      "name": "pow_3",
+      "op": "powf",
+      "kind": "compute",
+      "inputs": [
+        "add_4"
+      ],
+      "shape": [
+        2,
+        256,
+        512
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "scalar": 2.0
+      },
+      "origin": "aten.pow.Tensor_Scalar"
+    },
+    {
+      "name": "mean_2",
+      "op": "row_mean",
+      "kind": "compute",
+      "inputs": [
+        "pow_3"
+      ],
+      "shape": [
+        2,
+        256,
+        1
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "keepdim": true
+      },
+      "origin": "aten.mean.dim"
+    },
+    {
+      "name": "add_5",
+      "op": "add",
+      "kind": "compute",
+      "inputs": [
+        "mean_2"
+      ],
+      "shape": [
+        2,
+        256,
+        1
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "scalar": 1e-05
+      },
+      "origin": "aten.add.Tensor"
+    },
+    {
+      "name": "rsqrt_2",
+      "op": "rsqrt",
+      "kind": "compute",
+      "inputs": [
+        "add_5"
+      ],
+      "shape": [
+        2,
+        256,
+        1
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "aten.rsqrt.default"
+    },
+    {
+      "name": "mul_13",
+      "op": "mul",
+      "kind": "compute",
+      "inputs": [
+        "add_4",
+        "rsqrt_2"
+      ],
+      "shape": [
+        2,
+        256,
+        512
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "aten.mul.Tensor"
+    },
+    {
+      "name": "mul_14",
+      "op": "mul",
+      "kind": "compute",
+      "inputs": [
+        "mul_13",
+        "norm_f_weight"
+      ],
+      "shape": [
+        2,
+        256,
+        512
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "aten.mul.Tensor"
+    }
+  ]
+}

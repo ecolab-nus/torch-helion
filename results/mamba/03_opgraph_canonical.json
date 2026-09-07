@@ -1,0 +1,1873 @@
+{
+  "name": "model",
+  "inputs": [
+    "u"
+  ],
+  "outputs": [
+    "mul_118"
+  ],
+  "metadata": {
+    "fx_op_histogram": {
+      "<built-in function getitem>": 12,
+      "aten._to_copy.default": 8,
+      "aten.add.Tensor": 11,
+      "aten.bmm.default": 4,
+      "aten.clone.default": 8,
+      "aten.cumsum.default": 2,
+      "aten.exp.default": 6,
+      "aten.expand.default": 8,
+      "aten.gt.Scalar": 2,
+      "aten.log1p.default": 2,
+      "aten.mean.dim": 5,
+      "aten.mm.default": 4,
+      "aten.mul.Tensor": 26,
+      "aten.neg.default": 2,
+      "aten.permute.default": 16,
+      "aten.pow.Tensor_Scalar": 5,
+      "aten.rsqrt.default": 5,
+      "aten.sigmoid.default": 2,
+      "aten.split_with_sizes.default": 4,
+      "aten.sub.Tensor": 2,
+      "aten.unsqueeze.default": 6,
+      "aten.view.default": 32,
+      "aten.where.self": 2
+    },
+    "output_shapes_raw": {
+      "mul_27": [
+        2,
+        256,
+        512
+      ]
+    },
+    "input_shapes": {
+      "u": [
+        2,
+        256,
+        512
+      ]
+    },
+    "output_shapes": {
+      "mul_27": [
+        2,
+        256,
+        512
+      ]
+    },
+    "dtype": "float16"
+  },
+  "nodes": [
+    {
+      "name": "u",
+      "op": "input",
+      "kind": "input",
+      "inputs": [],
+      "shape": [
+        512,
+        512
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "u"
+    },
+    {
+      "name": "row_sumsq_24",
+      "op": "row_sumsq",
+      "kind": "compute",
+      "inputs": [
+        "u"
+      ],
+      "shape": [
+        512,
+        1
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "lower_rmsnorm(mul_1)"
+    },
+    {
+      "name": "mul_28",
+      "op": "mul",
+      "kind": "compute",
+      "inputs": [
+        "row_sumsq_24"
+      ],
+      "shape": [
+        512,
+        1
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "scalar": 0.001953125
+      },
+      "origin": null
+    },
+    {
+      "name": "add_29",
+      "op": "add",
+      "kind": "compute",
+      "inputs": [
+        "mul_28"
+      ],
+      "shape": [
+        512,
+        1
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "scalar": 1e-05
+      },
+      "origin": null
+    },
+    {
+      "name": "powf_30",
+      "op": "powf",
+      "kind": "compute",
+      "inputs": [
+        "add_29"
+      ],
+      "shape": [
+        512,
+        1
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "scalar": -0.5
+      },
+      "origin": "lower_rmsnorm(mul_1)"
+    },
+    {
+      "name": "permute_cols_1_norm_35",
+      "op": "const",
+      "kind": "const",
+      "inputs": [],
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": null
+    },
+    {
+      "name": "matmul_36",
+      "op": "matmul",
+      "kind": "compute",
+      "inputs": [
+        "u",
+        "permute_cols_1_norm_35"
+      ],
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "lower_rmsnorm(getitem)"
+    },
+    {
+      "name": "broadcast_37",
+      "op": "broadcast",
+      "kind": "compute",
+      "inputs": [
+        "powf_30"
+      ],
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "dim": 1,
+        "shape": [
+          512,
+          1024
+        ]
+      },
+      "origin": null
+    },
+    {
+      "name": "mul_38",
+      "op": "mul",
+      "kind": "compute",
+      "inputs": [
+        "matmul_36",
+        "broadcast_37"
+      ],
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": null
+    },
+    {
+      "name": "permute_cols_3_norm_43",
+      "op": "const",
+      "kind": "const",
+      "inputs": [],
+      "shape": [
+        512,
+        32
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": null
+    },
+    {
+      "name": "matmul_44",
+      "op": "matmul",
+      "kind": "compute",
+      "inputs": [
+        "u",
+        "permute_cols_3_norm_43"
+      ],
+      "shape": [
+        512,
+        32
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "lower_rmsnorm(getitem_2)"
+    },
+    {
+      "name": "broadcast_45",
+      "op": "broadcast",
+      "kind": "compute",
+      "inputs": [
+        "powf_30"
+      ],
+      "shape": [
+        512,
+        32
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "dim": 1,
+        "shape": [
+          512,
+          32
+        ]
+      },
+      "origin": null
+    },
+    {
+      "name": "mul_46",
+      "op": "mul",
+      "kind": "compute",
+      "inputs": [
+        "matmul_44",
+        "broadcast_45"
+      ],
+      "shape": [
+        512,
+        32
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": null
+    },
+    {
+      "name": "permute_cols_2_cols_4_norm_47",
+      "op": "const",
+      "kind": "const",
+      "inputs": [],
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": null
+    },
+    {
+      "name": "matmul_48",
+      "op": "matmul",
+      "kind": "compute",
+      "inputs": [
+        "u",
+        "permute_cols_2_cols_4_norm_47"
+      ],
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "lower_rmsnorm(getitem_3)"
+    },
+    {
+      "name": "broadcast_49",
+      "op": "broadcast",
+      "kind": "compute",
+      "inputs": [
+        "powf_30"
+      ],
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "dim": 1,
+        "shape": [
+          512,
+          1024
+        ]
+      },
+      "origin": null
+    },
+    {
+      "name": "mul_50",
+      "op": "mul",
+      "kind": "compute",
+      "inputs": [
+        "matmul_48",
+        "broadcast_49"
+      ],
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": null
+    },
+    {
+      "name": "permute_cols_2_cols_5_norm_51",
+      "op": "const",
+      "kind": "const",
+      "inputs": [],
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": null
+    },
+    {
+      "name": "matmul_52",
+      "op": "matmul",
+      "kind": "compute",
+      "inputs": [
+        "u",
+        "permute_cols_2_cols_5_norm_51"
+      ],
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "lower_rmsnorm(getitem_4)"
+    },
+    {
+      "name": "broadcast_53",
+      "op": "broadcast",
+      "kind": "compute",
+      "inputs": [
+        "powf_30"
+      ],
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "dim": 1,
+        "shape": [
+          512,
+          1024
+        ]
+      },
+      "origin": null
+    },
+    {
+      "name": "mul_54",
+      "op": "mul",
+      "kind": "compute",
+      "inputs": [
+        "matmul_52",
+        "broadcast_53"
+      ],
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": null
+    },
+    {
+      "name": "permute_cols_2_cols_6_norm_55",
+      "op": "const",
+      "kind": "const",
+      "inputs": [],
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": null
+    },
+    {
+      "name": "matmul_56",
+      "op": "matmul",
+      "kind": "compute",
+      "inputs": [
+        "u",
+        "permute_cols_2_cols_6_norm_55"
+      ],
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "lower_rmsnorm(getitem_5)"
+    },
+    {
+      "name": "broadcast_57",
+      "op": "broadcast",
+      "kind": "compute",
+      "inputs": [
+        "powf_30"
+      ],
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "dim": 1,
+        "shape": [
+          512,
+          1024
+        ]
+      },
+      "origin": null
+    },
+    {
+      "name": "mul_58",
+      "op": "mul",
+      "kind": "compute",
+      "inputs": [
+        "matmul_56",
+        "broadcast_57"
+      ],
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": null
+    },
+    {
+      "name": "layers_0_mixer_dt_bias_full_148",
+      "op": "const",
+      "kind": "const",
+      "inputs": [],
+      "shape": [
+        512,
+        32
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": null
+    },
+    {
+      "name": "add_1",
+      "op": "add",
+      "kind": "compute",
+      "inputs": [
+        "mul_46",
+        "layers_0_mixer_dt_bias_full_148"
+      ],
+      "shape": [
+        512,
+        32
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "aten.add.Tensor"
+    },
+    {
+      "name": "exp_150",
+      "op": "exp",
+      "kind": "compute",
+      "inputs": [
+        "add_1"
+      ],
+      "shape": [
+        512,
+        32
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": null
+    },
+    {
+      "name": "add_151",
+      "op": "add",
+      "kind": "compute",
+      "inputs": [
+        "exp_150"
+      ],
+      "shape": [
+        512,
+        32
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "scalar": 1.0
+      },
+      "origin": null
+    },
+    {
+      "name": "where",
+      "op": "log",
+      "kind": "compute",
+      "inputs": [
+        "add_151"
+      ],
+      "shape": [
+        512,
+        32
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "aten.where.self"
+    },
+    {
+      "name": "ssd_decay_125",
+      "op": "const",
+      "kind": "const",
+      "inputs": [],
+      "shape": [
+        512,
+        512
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": null
+    },
+    {
+      "name": "ssd_expand_A_122",
+      "op": "const",
+      "kind": "const",
+      "inputs": [],
+      "shape": [
+        32,
+        1024
+      ],
+      "dtype": "float32",
+      "attrs": {},
+      "origin": null
+    },
+    {
+      "name": "matmul_124",
+      "op": "matmul",
+      "kind": "compute",
+      "inputs": [
+        "where",
+        "ssd_expand_A_122"
+      ],
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "match_ssd(bmm_1)"
+    },
+    {
+      "name": "matmul_126",
+      "op": "matmul",
+      "kind": "compute",
+      "inputs": [
+        "ssd_decay_125",
+        "matmul_124"
+      ],
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "match_ssd(bmm_1)"
+    },
+    {
+      "name": "ssd_expand_121",
+      "op": "const",
+      "kind": "const",
+      "inputs": [],
+      "shape": [
+        32,
+        1024
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": null
+    },
+    {
+      "name": "matmul_123",
+      "op": "matmul",
+      "kind": "compute",
+      "inputs": [
+        "where",
+        "ssd_expand_121"
+      ],
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "match_ssd(bmm_1)"
+    },
+    {
+      "name": "ssd_causal_127",
+      "op": "const",
+      "kind": "const",
+      "inputs": [],
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": null
+    },
+    {
+      "name": "ssd_D_128",
+      "op": "const",
+      "kind": "const",
+      "inputs": [],
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": null
+    },
+    {
+      "name": "ssd_129",
+      "op": "ssd",
+      "kind": "compute",
+      "inputs": [
+        "mul_58",
+        "mul_54",
+        "mul_50",
+        "matmul_126",
+        "matmul_123",
+        "ssd_causal_127",
+        "ssd_D_128"
+      ],
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "batch": 2,
+        "seq": 256,
+        "heads": 32,
+        "head_dim": 32,
+        "state_dim": 32,
+        "pad": 32
+      },
+      "origin": "match_ssd(bmm_1)"
+    },
+    {
+      "name": "mul_152",
+      "op": "mul",
+      "kind": "compute",
+      "inputs": [
+        "mul_38"
+      ],
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "scalar": -1.0
+      },
+      "origin": null
+    },
+    {
+      "name": "exp_153",
+      "op": "exp",
+      "kind": "compute",
+      "inputs": [
+        "mul_152"
+      ],
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": null
+    },
+    {
+      "name": "add_154",
+      "op": "add",
+      "kind": "compute",
+      "inputs": [
+        "exp_153"
+      ],
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "scalar": 1.0
+      },
+      "origin": null
+    },
+    {
+      "name": "sigmoid",
+      "op": "div",
+      "kind": "compute",
+      "inputs": [
+        "add_154"
+      ],
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "scalar": 1.0,
+        "scalar_first": true
+      },
+      "origin": "aten.sigmoid.default"
+    },
+    {
+      "name": "mul_9",
+      "op": "mul",
+      "kind": "compute",
+      "inputs": [
+        "mul_38",
+        "sigmoid"
+      ],
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "aten.mul.Tensor"
+    },
+    {
+      "name": "mul_10",
+      "op": "mul",
+      "kind": "compute",
+      "inputs": [
+        "ssd_129",
+        "mul_9"
+      ],
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "aten.mul.Tensor"
+    },
+    {
+      "name": "permute_11_norm_64",
+      "op": "const",
+      "kind": "const",
+      "inputs": [],
+      "shape": [
+        1024,
+        512
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": null
+    },
+    {
+      "name": "matmul_65",
+      "op": "matmul",
+      "kind": "compute",
+      "inputs": [
+        "mul_10",
+        "permute_11_norm_64"
+      ],
+      "shape": [
+        512,
+        512
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "lower_rmsnorm(mm_1)"
+    },
+    {
+      "name": "row_sumsq_60",
+      "op": "row_sumsq",
+      "kind": "compute",
+      "inputs": [
+        "mul_10"
+      ],
+      "shape": [
+        512,
+        1
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "lower_rmsnorm(mul_12)"
+    },
+    {
+      "name": "mul_61",
+      "op": "mul",
+      "kind": "compute",
+      "inputs": [
+        "row_sumsq_60"
+      ],
+      "shape": [
+        512,
+        1
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "scalar": 0.0009765625
+      },
+      "origin": null
+    },
+    {
+      "name": "add_62",
+      "op": "add",
+      "kind": "compute",
+      "inputs": [
+        "mul_61"
+      ],
+      "shape": [
+        512,
+        1
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "scalar": 1e-05
+      },
+      "origin": null
+    },
+    {
+      "name": "powf_63",
+      "op": "powf",
+      "kind": "compute",
+      "inputs": [
+        "add_62"
+      ],
+      "shape": [
+        512,
+        1
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "scalar": -0.5
+      },
+      "origin": "lower_rmsnorm(mul_12)"
+    },
+    {
+      "name": "broadcast_66",
+      "op": "broadcast",
+      "kind": "compute",
+      "inputs": [
+        "powf_63"
+      ],
+      "shape": [
+        512,
+        512
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "dim": 1,
+        "shape": [
+          512,
+          512
+        ]
+      },
+      "origin": null
+    },
+    {
+      "name": "mul_67",
+      "op": "mul",
+      "kind": "compute",
+      "inputs": [
+        "matmul_65",
+        "broadcast_66"
+      ],
+      "shape": [
+        512,
+        512
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": null
+    },
+    {
+      "name": "add_4",
+      "op": "add",
+      "kind": "compute",
+      "inputs": [
+        "u",
+        "mul_67"
+      ],
+      "shape": [
+        512,
+        512
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "aten.add.Tensor"
+    },
+    {
+      "name": "row_sumsq_69",
+      "op": "row_sumsq",
+      "kind": "compute",
+      "inputs": [
+        "add_4"
+      ],
+      "shape": [
+        512,
+        1
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "lower_rmsnorm(mul_14)"
+    },
+    {
+      "name": "mul_70",
+      "op": "mul",
+      "kind": "compute",
+      "inputs": [
+        "row_sumsq_69"
+      ],
+      "shape": [
+        512,
+        1
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "scalar": 0.001953125
+      },
+      "origin": null
+    },
+    {
+      "name": "add_71",
+      "op": "add",
+      "kind": "compute",
+      "inputs": [
+        "mul_70"
+      ],
+      "shape": [
+        512,
+        1
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "scalar": 1e-05
+      },
+      "origin": null
+    },
+    {
+      "name": "powf_72",
+      "op": "powf",
+      "kind": "compute",
+      "inputs": [
+        "add_71"
+      ],
+      "shape": [
+        512,
+        1
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "scalar": -0.5
+      },
+      "origin": "lower_rmsnorm(mul_14)"
+    },
+    {
+      "name": "permute_12_cols_7_norm_77",
+      "op": "const",
+      "kind": "const",
+      "inputs": [],
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": null
+    },
+    {
+      "name": "matmul_78",
+      "op": "matmul",
+      "kind": "compute",
+      "inputs": [
+        "add_4",
+        "permute_12_cols_7_norm_77"
+      ],
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "lower_rmsnorm(getitem_6)"
+    },
+    {
+      "name": "broadcast_79",
+      "op": "broadcast",
+      "kind": "compute",
+      "inputs": [
+        "powf_72"
+      ],
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "dim": 1,
+        "shape": [
+          512,
+          1024
+        ]
+      },
+      "origin": null
+    },
+    {
+      "name": "mul_80",
+      "op": "mul",
+      "kind": "compute",
+      "inputs": [
+        "matmul_78",
+        "broadcast_79"
+      ],
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": null
+    },
+    {
+      "name": "permute_12_cols_9_norm_85",
+      "op": "const",
+      "kind": "const",
+      "inputs": [],
+      "shape": [
+        512,
+        32
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": null
+    },
+    {
+      "name": "matmul_86",
+      "op": "matmul",
+      "kind": "compute",
+      "inputs": [
+        "add_4",
+        "permute_12_cols_9_norm_85"
+      ],
+      "shape": [
+        512,
+        32
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "lower_rmsnorm(getitem_8)"
+    },
+    {
+      "name": "broadcast_87",
+      "op": "broadcast",
+      "kind": "compute",
+      "inputs": [
+        "powf_72"
+      ],
+      "shape": [
+        512,
+        32
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "dim": 1,
+        "shape": [
+          512,
+          32
+        ]
+      },
+      "origin": null
+    },
+    {
+      "name": "mul_88",
+      "op": "mul",
+      "kind": "compute",
+      "inputs": [
+        "matmul_86",
+        "broadcast_87"
+      ],
+      "shape": [
+        512,
+        32
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": null
+    },
+    {
+      "name": "permute_12_cols_8_cols_10_norm_89",
+      "op": "const",
+      "kind": "const",
+      "inputs": [],
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": null
+    },
+    {
+      "name": "matmul_90",
+      "op": "matmul",
+      "kind": "compute",
+      "inputs": [
+        "add_4",
+        "permute_12_cols_8_cols_10_norm_89"
+      ],
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "lower_rmsnorm(getitem_9)"
+    },
+    {
+      "name": "broadcast_91",
+      "op": "broadcast",
+      "kind": "compute",
+      "inputs": [
+        "powf_72"
+      ],
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "dim": 1,
+        "shape": [
+          512,
+          1024
+        ]
+      },
+      "origin": null
+    },
+    {
+      "name": "mul_92",
+      "op": "mul",
+      "kind": "compute",
+      "inputs": [
+        "matmul_90",
+        "broadcast_91"
+      ],
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": null
+    },
+    {
+      "name": "permute_12_cols_8_cols_11_norm_93",
+      "op": "const",
+      "kind": "const",
+      "inputs": [],
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": null
+    },
+    {
+      "name": "matmul_94",
+      "op": "matmul",
+      "kind": "compute",
+      "inputs": [
+        "add_4",
+        "permute_12_cols_8_cols_11_norm_93"
+      ],
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "lower_rmsnorm(getitem_10)"
+    },
+    {
+      "name": "broadcast_95",
+      "op": "broadcast",
+      "kind": "compute",
+      "inputs": [
+        "powf_72"
+      ],
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "dim": 1,
+        "shape": [
+          512,
+          1024
+        ]
+      },
+      "origin": null
+    },
+    {
+      "name": "mul_96",
+      "op": "mul",
+      "kind": "compute",
+      "inputs": [
+        "matmul_94",
+        "broadcast_95"
+      ],
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": null
+    },
+    {
+      "name": "permute_12_cols_8_cols_12_norm_97",
+      "op": "const",
+      "kind": "const",
+      "inputs": [],
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": null
+    },
+    {
+      "name": "matmul_98",
+      "op": "matmul",
+      "kind": "compute",
+      "inputs": [
+        "add_4",
+        "permute_12_cols_8_cols_12_norm_97"
+      ],
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "lower_rmsnorm(getitem_11)"
+    },
+    {
+      "name": "broadcast_99",
+      "op": "broadcast",
+      "kind": "compute",
+      "inputs": [
+        "powf_72"
+      ],
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "dim": 1,
+        "shape": [
+          512,
+          1024
+        ]
+      },
+      "origin": null
+    },
+    {
+      "name": "mul_100",
+      "op": "mul",
+      "kind": "compute",
+      "inputs": [
+        "matmul_98",
+        "broadcast_99"
+      ],
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": null
+    },
+    {
+      "name": "layers_1_mixer_dt_bias_full_149",
+      "op": "const",
+      "kind": "const",
+      "inputs": [],
+      "shape": [
+        512,
+        32
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": null
+    },
+    {
+      "name": "add_6",
+      "op": "add",
+      "kind": "compute",
+      "inputs": [
+        "mul_88",
+        "layers_1_mixer_dt_bias_full_149"
+      ],
+      "shape": [
+        512,
+        32
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "aten.add.Tensor"
+    },
+    {
+      "name": "exp_155",
+      "op": "exp",
+      "kind": "compute",
+      "inputs": [
+        "add_6"
+      ],
+      "shape": [
+        512,
+        32
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": null
+    },
+    {
+      "name": "add_156",
+      "op": "add",
+      "kind": "compute",
+      "inputs": [
+        "exp_155"
+      ],
+      "shape": [
+        512,
+        32
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "scalar": 1.0
+      },
+      "origin": null
+    },
+    {
+      "name": "where_1",
+      "op": "log",
+      "kind": "compute",
+      "inputs": [
+        "add_156"
+      ],
+      "shape": [
+        512,
+        32
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "aten.where.self"
+    },
+    {
+      "name": "ssd_expand_A_133",
+      "op": "const",
+      "kind": "const",
+      "inputs": [],
+      "shape": [
+        32,
+        1024
+      ],
+      "dtype": "float32",
+      "attrs": {},
+      "origin": null
+    },
+    {
+      "name": "matmul_135",
+      "op": "matmul",
+      "kind": "compute",
+      "inputs": [
+        "where_1",
+        "ssd_expand_A_133"
+      ],
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "match_ssd(bmm_3)"
+    },
+    {
+      "name": "matmul_137",
+      "op": "matmul",
+      "kind": "compute",
+      "inputs": [
+        "ssd_decay_125",
+        "matmul_135"
+      ],
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "match_ssd(bmm_3)"
+    },
+    {
+      "name": "matmul_134",
+      "op": "matmul",
+      "kind": "compute",
+      "inputs": [
+        "where_1",
+        "ssd_expand_121"
+      ],
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "match_ssd(bmm_3)"
+    },
+    {
+      "name": "ssd_140",
+      "op": "ssd",
+      "kind": "compute",
+      "inputs": [
+        "mul_100",
+        "mul_96",
+        "mul_92",
+        "matmul_137",
+        "matmul_134",
+        "ssd_causal_127",
+        "ssd_D_128"
+      ],
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "batch": 2,
+        "seq": 256,
+        "heads": 32,
+        "head_dim": 32,
+        "state_dim": 32,
+        "pad": 32
+      },
+      "origin": "match_ssd(bmm_3)"
+    },
+    {
+      "name": "mul_157",
+      "op": "mul",
+      "kind": "compute",
+      "inputs": [
+        "mul_80"
+      ],
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "scalar": -1.0
+      },
+      "origin": null
+    },
+    {
+      "name": "exp_158",
+      "op": "exp",
+      "kind": "compute",
+      "inputs": [
+        "mul_157"
+      ],
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": null
+    },
+    {
+      "name": "add_159",
+      "op": "add",
+      "kind": "compute",
+      "inputs": [
+        "exp_158"
+      ],
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "scalar": 1.0
+      },
+      "origin": null
+    },
+    {
+      "name": "sigmoid_1",
+      "op": "div",
+      "kind": "compute",
+      "inputs": [
+        "add_159"
+      ],
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "scalar": 1.0,
+        "scalar_first": true
+      },
+      "origin": "aten.sigmoid.default"
+    },
+    {
+      "name": "mul_22",
+      "op": "mul",
+      "kind": "compute",
+      "inputs": [
+        "mul_80",
+        "sigmoid_1"
+      ],
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "aten.mul.Tensor"
+    },
+    {
+      "name": "mul_23",
+      "op": "mul",
+      "kind": "compute",
+      "inputs": [
+        "ssd_140",
+        "mul_22"
+      ],
+      "shape": [
+        512,
+        1024
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "aten.mul.Tensor"
+    },
+    {
+      "name": "permute_23_norm_106",
+      "op": "const",
+      "kind": "const",
+      "inputs": [],
+      "shape": [
+        1024,
+        512
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": null
+    },
+    {
+      "name": "matmul_107",
+      "op": "matmul",
+      "kind": "compute",
+      "inputs": [
+        "mul_23",
+        "permute_23_norm_106"
+      ],
+      "shape": [
+        512,
+        512
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "lower_rmsnorm(mm_3)"
+    },
+    {
+      "name": "row_sumsq_102",
+      "op": "row_sumsq",
+      "kind": "compute",
+      "inputs": [
+        "mul_23"
+      ],
+      "shape": [
+        512,
+        1
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "lower_rmsnorm(mul_25)"
+    },
+    {
+      "name": "mul_103",
+      "op": "mul",
+      "kind": "compute",
+      "inputs": [
+        "row_sumsq_102"
+      ],
+      "shape": [
+        512,
+        1
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "scalar": 0.0009765625
+      },
+      "origin": null
+    },
+    {
+      "name": "add_104",
+      "op": "add",
+      "kind": "compute",
+      "inputs": [
+        "mul_103"
+      ],
+      "shape": [
+        512,
+        1
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "scalar": 1e-05
+      },
+      "origin": null
+    },
+    {
+      "name": "powf_105",
+      "op": "powf",
+      "kind": "compute",
+      "inputs": [
+        "add_104"
+      ],
+      "shape": [
+        512,
+        1
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "scalar": -0.5
+      },
+      "origin": "lower_rmsnorm(mul_25)"
+    },
+    {
+      "name": "broadcast_108",
+      "op": "broadcast",
+      "kind": "compute",
+      "inputs": [
+        "powf_105"
+      ],
+      "shape": [
+        512,
+        512
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "dim": 1,
+        "shape": [
+          512,
+          512
+        ]
+      },
+      "origin": null
+    },
+    {
+      "name": "mul_109",
+      "op": "mul",
+      "kind": "compute",
+      "inputs": [
+        "matmul_107",
+        "broadcast_108"
+      ],
+      "shape": [
+        512,
+        512
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": null
+    },
+    {
+      "name": "add_9",
+      "op": "add",
+      "kind": "compute",
+      "inputs": [
+        "add_4",
+        "mul_109"
+      ],
+      "shape": [
+        512,
+        512
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "aten.add.Tensor"
+    },
+    {
+      "name": "row_sumsq_111",
+      "op": "row_sumsq",
+      "kind": "compute",
+      "inputs": [
+        "add_9"
+      ],
+      "shape": [
+        512,
+        1
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "rmsnorm(mul_27)"
+    },
+    {
+      "name": "mul_112",
+      "op": "mul",
+      "kind": "compute",
+      "inputs": [
+        "row_sumsq_111"
+      ],
+      "shape": [
+        512,
+        1
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "scalar": 0.001953125
+      },
+      "origin": null
+    },
+    {
+      "name": "add_113",
+      "op": "add",
+      "kind": "compute",
+      "inputs": [
+        "mul_112"
+      ],
+      "shape": [
+        512,
+        1
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "scalar": 1e-05
+      },
+      "origin": null
+    },
+    {
+      "name": "powf_114",
+      "op": "powf",
+      "kind": "compute",
+      "inputs": [
+        "add_113"
+      ],
+      "shape": [
+        512,
+        1
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "scalar": -0.5
+      },
+      "origin": "rmsnorm(mul_27)"
+    },
+    {
+      "name": "broadcast_115",
+      "op": "broadcast",
+      "kind": "compute",
+      "inputs": [
+        "powf_114"
+      ],
+      "shape": [
+        512,
+        512
+      ],
+      "dtype": "float16",
+      "attrs": {
+        "dim": 1,
+        "shape": [
+          512,
+          512
+        ]
+      },
+      "origin": null
+    },
+    {
+      "name": "mul_116",
+      "op": "mul",
+      "kind": "compute",
+      "inputs": [
+        "add_9",
+        "broadcast_115"
+      ],
+      "shape": [
+        512,
+        512
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": null
+    },
+    {
+      "name": "norm_f_weight_full_117",
+      "op": "const",
+      "kind": "const",
+      "inputs": [],
+      "shape": [
+        512,
+        512
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": null
+    },
+    {
+      "name": "mul_118",
+      "op": "mul",
+      "kind": "compute",
+      "inputs": [
+        "mul_116",
+        "norm_f_weight_full_117"
+      ],
+      "shape": [
+        512,
+        512
+      ],
+      "dtype": "float16",
+      "attrs": {},
+      "origin": "rmsnorm(mul_27)"
+    }
+  ]
+}

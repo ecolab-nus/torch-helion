@@ -1,0 +1,60 @@
+# ---------------------------------------------------------------------------
+# Editor / agent scratch
+# ---------------------------------------------------------------------------
+.vscode/
+.idea/
+.codex/
+.DS_Store
+
+# ---------------------------------------------------------------------------
+# Vendored sources
+# ---------------------------------------------------------------------------
+# Local Loom checkout. Not tracked here (and not a submodule) so that
+# torch-helion can later be added as Loom's own third_party module without a
+# circular submodule reference. install-docker.sh clones it on demand.
+third_party/loom/
+
+# ---------------------------------------------------------------------------
+# Python environments and packaging artifacts
+# ---------------------------------------------------------------------------
+.venv/
+venv/
+.uv-cache/
+.uv-python/
+.cargo-home/
+*.egg-info/
+__pycache__/
+*.py[cod]
+dist/
+build/
+*.so
+
+# ---------------------------------------------------------------------------
+# Tooling caches
+# ---------------------------------------------------------------------------
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# ---------------------------------------------------------------------------
+# Pipeline artifacts under results/
+#
+# The small, reviewable stage outputs (opgraphs, plans, OpIR, cost reports,
+# generated kernels, timings) ARE tracked -- docs/results.md documents them and
+# the README points at results/<run>/kernels/*.py directly.
+#
+# What is excluded is everything that is large, binary, or reproducible only by
+# re-running an external tool:
+# ---------------------------------------------------------------------------
+# Loom's own IRs/, constraints/ and solver logs -- hundreds of MB per run.
+results/*/loom/
+# Transformed weights/tables emitted for the kernels -- multi-MB binaries.
+results/**/*.pt
+results/**/*.pth
+results/**/*.safetensors
+
+# Ad-hoc run scratch
+tmp_logs/
+tmp_output/
